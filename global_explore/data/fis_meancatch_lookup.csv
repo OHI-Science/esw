@@ -1,0 +1,363 @@
+stock_name,common
+Marine_fishes_not_identified,NA
+Miscellaneous_marine_crustaceans,NA
+Miscellaneous_aquatic_invertebrates,NA
+Marine_finfishes_not_identified,NA
+Marine_groundfishes_not_identified,NA
+Marine_pelagic_fishes_not_identified,NA
+Mollusca,NA
+Elasmobranchii,NA
+Chondrichthyes,NA
+Cephalopoda,NA
+Bivalvia,NA
+Gastropoda,NA
+Echinoidea,NA
+Malacostraca,NA
+Asterozoa,NA
+Chimaeriformes,NA
+Squaliformes,NA
+Rajiformes,NA
+Clupeiformes,NA
+Gadiformes,NA
+Scorpaeniformes,NA
+Perciformes,NA
+Pleuronectiformes,NA
+Batoidea,NA
+Teuthida,NA
+Sepiida,NA
+Octopoda,NA
+Decapoda,NA
+Mytiloida,NA
+Scyliorhinidae,NA
+Carcharhinidae,NA
+Squalidae,NA
+Rajidae,NA
+Acipenseridae,NA
+Clupeidae,NA
+Congridae,NA
+Salmonidae,NA
+Cyprinidae,NA
+Moridae,NA
+Gadidae,NA
+Macrouridae,NA
+Lophiidae,NA
+Atherinidae,NA
+Trachichthyidae,NA
+Berycidae,NA
+Scorpaenidae,NA
+Triglidae,NA
+Serranidae,NA
+Carangidae,NA
+Sparidae,NA
+Sciaenidae,NA
+Mullidae,NA
+Mugilidae,NA
+Labridae,NA
+Trachinidae,NA
+Anarhichadidae,NA
+Gobiidae,NA
+Trichiuridae,NA
+Scombridae,NA
+Pleuronectidae,NA
+Soleidae,NA
+Balistidae,NA
+Triakidae,NA
+Scophthalmidae,NA
+Sebastidae,NA
+Peristediidae,NA
+Loliginidae,NA
+Sepiidae,NA
+Octopodidae,NA
+Buccinidae,NA
+Littorinidae,NA
+Palaemonidae,NA
+Portunidae,NA
+Crangonidae,NA
+Pandalidae,NA
+Mytilidae,NA
+Pectinidae,NA
+Cardiidae,NA
+Veneridae,NA
+Mactridae,NA
+Raja,NA
+Lophius,NA
+Salmo,NA
+Mullus,NA
+Trigla,NA
+Argentina,NA
+Alosa,NA
+Solea,NA
+Dasyatis,NA
+Trachurus,NA
+Diplodus,NA
+Myoxocephalus,NA
+Molva,NA
+Beryx,NA
+Sebastes,NA
+Microchirus,NA
+Dicentrarchus,NA
+Lepidorhombus,NA
+Anarhichas,NA
+Loligo,NA
+Octopus,NA
+Crassostrea,NA
+Littorina,NA
+Palinurus,NA
+Pandalus,NA
+Ostrea,NA
+Donax,NA
+Ruditapes,NA
+Patella,NA
+Clupea_harengus,Atlantic herring
+Glyptocephalus_cynoglossus,Witch flounder
+Lepidorhombus_boscii,NA
+Lepidorhombus_whiffiagonis,Megrim
+Merlangius_merlangus,Whiting
+Merluccius_merluccius,European hake
+Micromesistius_poutassou,Blue whiting
+Molva_molva,Ling
+Pollachius_pollachius,Pollack
+Anguilla_anguilla,European eel
+Arnoglossus_laterna,NA
+Chelidonichthys_cuculus,Red gurnard
+Belone_belone,Garfish
+Brosme_brosme,Tusk
+Capros_aper,Boarfish
+Cepola_macrophthalma,NA
+Cyclopterus_lumpus,Lumpfish
+Dicentrarchus_labrax,European seabass
+Engraulis_encrasicolus,European anchovy
+Eutrigla_gurnardus,Grey gurnard
+Gadus_morhua,Atlantic cod
+Helicolenus_dactylopterus,NA
+Istiophorus_albicans,Atlantic sailfish
+Lamna_nasus,Porbeagle
+Cetorhinus_maximus,Basking shark
+Auxis_thazard,Frigate tuna
+Euthynnus_alletteratus,Little tunny
+Katsuwonus_pelamis,Skipjack tuna
+Sarda_sarda,Atlantic bonito
+Scomber_scombrus,Atlantic mackerel
+Somniosus_microcephalus,NA
+Squalus_acanthias,Piked dogfish
+Thunnus_albacares,Yellowfin tuna
+Thunnus_thynnus,Atlantic bluefin tuna
+Boops_boops,Bogue
+Xiphias_gladius,Swordfish
+Alepocephalus_bairdii,NA
+Coregonus_lavaretus,NA
+Salmo_salar,Atlantic salmon
+Salmo_trutta,Sea trout
+Mallotus_villosus,Capelin
+Esox_lucius,Northern pike
+Carassius_carassius,NA
+Rutilus_rutilus,Roach
+Conger_conger,European conger
+Macrourus_berglax,Roughhead grenadier
+Coryphaenoides_rupestris,Roundnose grenadier
+Hoplostethus_atlanticus,Orange roughy
+Polyprion_americanus,NA
+Perca_fluviatilis,European perch
+Sander_lucioperca,Pike-perch
+Brama_brama,Atlantic pomfret
+Dicentrarchus_punctatus,NA
+Argyrosomus_regius,Meagre
+Zoarces_viviparus,Eelpout
+Trisopterus_minutus,Poor cod
+Sebastes_norvegicus,Golden redfish
+Reinhardtius_hippoglossoides,Greenland halibut
+Solea_solea,Common sole
+Scophthalmus_rhombus,Brill
+Labrus_bergylta,NA
+Hexanchus_griseus,NA
+Lepidopus_caudatus,Silver scabbardfish
+Aphanopus_carbo,Black scabbardfish
+Centrophorus_squamosus,NA
+Centroscymnus_coelolepis,NA
+Dalatias_licha,NA
+Deania_calcea,NA
+Etmopterus_spinax,NA
+Limanda_limanda,Common dab
+Lophius_piscatorius,Angler
+Oxynotus_paradoxus,NA
+Squatina_squatina,NA
+Isurus_oxyrinchus,Shortfin mako
+Mugil_cephalus,Flathead grey mullet
+Mullus_barbatus_barbatus,NA
+Scyliorhinus_canicula,Smallspotted catshark
+Scyliorhinus_stellaris,NA
+Pagellus_bogaraveo,Blackspot seabream
+Pagellus_erythrinus,Common pandora
+Prionace_glauca,Blue shark
+Trisopterus_esmarkii,Norway pout
+Sparus_aurata,Gilthead seabream
+Mullus_surmuletus,Surmullet
+Osmerus_eperlanus,European smelt
+Phycis_blennoides,Greater forkbeard
+Platichthys_flesus,European flounder
+Pleuronectes_platessa,European plaice
+Pollachius_virens,Saithe
+Scophthalmus_maximus,Turbot
+Sardina_pilchardus,European pilchard
+Spondyliosoma_cantharus,Black seabream
+Sprattus_sprattus,European sprat
+Trachinus_draco,Greater weever
+Trachurus_trachurus,Atlantic horse mackerel
+Chelidonichthys_lucerna,Tub gurnard
+Trisopterus_luscus,Pouting
+Zeus_faber,John dory
+Hippoglossus_hippoglossus,Atlantic halibut
+Melanogrammus_aeglefinus,Haddock
+Microstomus_kitt,Lemon sole
+Molva_dypterygia,Blue ling
+Cyprinus_carpio,NA
+Mola_mola,Ocean sunfish
+Pagrus_pagrus,Red porgy
+Scorpaena_scrofa,NA
+Dipturus_batis,NA
+Raja_clavata,Thornback ray
+Dasyatis_pastinaca,NA
+Gasterosteus_aculeatus,NA
+Anarhichas_lupus,Atlantic wolffish
+Chimaera_monstrosa,NA
+Epigonus_telescopus,Black cardinal fish
+Argentina_silus,Greater argentine
+Anarhichas_minor,Spotted wolffish
+Hippoglossoides_platessoides,American plaice
+Leucoraja_naevus,Cuckoo ray
+Raja_montagui,NA
+Raja_brachyura,NA
+Galeorhinus_galeus,Tope shark
+Mustelus_mustelus,NA
+Trigla_lyra,NA
+Trigloporus_lastoviza,NA
+Alosa_fallax,NA
+Raja_microocellata,NA
+Epinephelus_marginatus,Dusky grouper
+Balistes_capriscus,Grey triggerfish
+Rostroraja_alba,NA
+Leucoraja_circularis,NA
+Dipturus_oxyrinchus,NA
+Raja_undulata,NA
+Leucoraja_fullonica,NA
+Spectrunculus_grandis,NA
+Pandalus_montagui,NA
+Mytilus_edulis,Blue mussel
+Illex_coindetii,NA
+Sepia_officinalis,Common cuttlefish
+Cardium_edule,Common edible cockle
+Littorina_littorea,Common periwinkle
+Palaemon_serratus,NA
+Crangon_crangon,Common shrimp
+Palinurus_elephas,NA
+Cancer_pagurus,Edible crab
+Echinus_esculentus,NA
+Ostrea_edulis,European flat oyster
+Todarodes_sagittatus,European flying squid
+Homarus_gammarus,European lobster
+Pecten_maximus,Great Atlantic scallop
+Carcinus_maenas,Green crab
+Ruditapes_decussatus,NA
+Ruditapes_philippinarum,Japanese carpet shell
+Pandalus_borealis,Northern prawn
+Mercenaria_mercenaria,Northern quahog
+Illex_illecebrosus,Northern shortfin squid
+Nephrops_norvegicus,Norway lobster
+Crassostrea_gigas,Pacific cupped oyster
+Venerupis_corrugata,NA
+Aequipecten_opercularis,Queen scallop
+Asterias_rubens,Red starfish
+Mya_arenaria,NA
+Paracentrotus_lividus,NA
+Chamelea_gallina,Striped venus
+Haliotis_tuberculata,NA
+Mimachlamys_varia,NA
+Necora_puber,Velvet swimcrab
+Buccinum_undatum,Whelk
+Cerastoderma_edule,Common cockle
+Spisula_solida,NA
+Tapes_rhomboides,NA
+Glycymeris_glycymeris,Dog cockle
+Palaemon_longirostris,NA
+Venus_verrucosa,Warty venus
+Chaceon_affinis,NA
+Ensis_siliqua,NA
+Galeus_melastomus,NA
+Galeocerdo_cuvier,NA
+Beryx_splendens,Splendid alfonsino
+Mora_moro,NA
+Lamnidae,NA
+Mustelus,NA
+Phycis,NA
+Eledone,NA
+Solen,NA
+Microchirus_variegatus,NA
+Centroscymnus_crepidater,NA
+Scymnodon_ringens,NA
+Lithognathus_mormyrus,Sand steenbras
+Beryx_decadactylus,NA
+Myliobatis_aquila,NA
+Amblyraja_hyperborea,NA
+Octopus_vulgaris,Common octopus
+Ensis_ensis,NA
+Galeus,NA
+Etmopterus,NA
+Gaidropsarus,NA
+Scyliorhinus,NA
+Serranus_cabrilla,NA
+Argentina_sphyraena,NA
+Centroscyllium_fabricii,NA
+Scorpaena_porcus,NA
+Alopias_vulpinus,Thresher
+Alepocephalus_rostratus,NA
+Aphanopus_intermedius,NA
+Liocarcinus_depurator,NA
+Alopias,NA
+Atherina_presbyter,NA
+Alosa_alosa,NA
+Lampris_guttatus,NA
+Trichiurus_lepturus,Largehead hairtail
+Arctica_islandica,Ocean quahog
+Bramidae,NA
+Mugil,NA
+Mytilus,NA
+Umbrina_canariensis,Canary drum
+Mustelus_asterias,NA
+Caproidae,NA
+Trachipterus,NA
+Squatinidae,NA
+Istiophoridae,NA
+Ommastrephidae,NA
+Solenidae,NA
+Squalus,NA
+Trachinus,NA
+Notoscopelus,NA
+Auxis_rochei,Bullet tuna
+Maurolicus_muelleri,NA
+Ruvettus_pretiosus,Oilfish
+Chelon_labrosus,NA
+Raja_asterias,NA
+Oxynotus_centrina,NA
+Lithodidae,NA
+Ostreidae,NA
+Scorpaena,NA
+Isurus,NA
+Pagrus,NA
+Hydrolagus,NA
+Spisula,NA
+Tellina,NA
+Carcharodon_carcharias,NA
+Scomberesox_saurus_saurus,NA
+Liza_aurata,Golden grey mullet
+Liza_ramada,NA
+Sepia,NA
+Strongylocentrotus,NA
+Echinorhinus_brucus,NA
+Sphyrna_zygaena,Smooth hammerhead
+Acipenser_sturio,NA
+Scardinius_erythrophthalmus,NA
+Palinuridae,NA
+Palaemon,NA
+Spisula_ovalis,NA
+Thunnus,NA
+Loligo_forbesii,NA
