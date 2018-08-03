@@ -11,6 +11,6 @@ output:
 The Ocean Health Index measures and tracks the benefits and services that the ocean provides for people now and into the future. This assessment is being developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use.
 
 
-<center><img src="images/school_fish_NOAA_David Burdick.jpg" width="700px"></center>  
+<center><img src="C/Users/owene/OneDrive - University of Exeter/OHI/Website/github/esw/images/Porthcurnow.JPG" width="700px"></center>  
 
-[![](images/ohi-logo.png)](http://ohi-science.org)
+[![](images/ohi-logo.png)](C/Users/owene/OneDrive - University of Exeter/OHI/Website/github/esw/images/Porthcurnow.JPG)
