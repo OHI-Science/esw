@@ -20,7 +20,8 @@ output:
 
 **Owen Exeter** - o.exeter@exeter.ac.uk
 
-<img src="images/profile_Owen.jpg" width="200px">
+<img src="images/profile_Owen.jpg" width="250px">
+
 
 
 
