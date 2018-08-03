@@ -20,7 +20,8 @@ Christopher Kerry
 
 Owen Exeter
 
-![](C:/Users/owene/OneDrive - University of Exeter/OHI/Website/github/esw/images/profile.jpg)
+<img src="images/profile.jpg" width="150px">
+
 
 
 
