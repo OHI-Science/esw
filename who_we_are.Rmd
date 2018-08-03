@@ -14,19 +14,19 @@ output:
 
 **Dr Rachel Turner**
 
-Dr Stephen Pikesley
+**Dr Stephen Pikesley**
 
-Christopher Kerry
+**Christopher Kerry**
 
-Owen Exeter - o.exeter@exeter.ac.uk
+**Owen Exeter** - o.exeter@exeter.ac.uk
 
-<img src="images/profile_Owen.jpg" width="150px">
-
-
+<img src="images/profile_Owen.jpg" width="200px">
 
 
 
-http://www.exeter.ac.uk
+
+
+From the University of Exeter: http://www.exeter.ac.uk
 
 
 
