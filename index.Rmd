@@ -13,5 +13,5 @@ The Ocean Health Index measures and tracks the benefits and services that the oc
 
 <center><img src="images/Porthcurnow.JPG" width="775px"></center>  
 
-[![](images/ohi-logo.png)]
+![](images/ohi-logo.png)
 
