@@ -18,6 +18,8 @@ output:
 
 **Christopher Kerry** - C.Kerry@exeter.ac.uk
 
+<img src="images/profile_Chris.jpg" width="250px">
+
 **Owen Exeter** - O.Exeter@exeter.ac.uk
 
 <img src="images/profile_Owen.jpg" width="250px">
