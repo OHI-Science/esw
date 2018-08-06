@@ -16,9 +16,9 @@ output:
 
 **Dr Stephen Pikesley**
 
-**Christopher Kerry**
+**Christopher Kerry** - C.Kerry@exeter.ac.uk
 
-**Owen Exeter** - o.exeter@exeter.ac.uk
+**Owen Exeter** - O.Exeter@exeter.ac.uk
 
 <img src="images/profile_Owen.jpg" width="250px">
 
