@@ -16,8 +16,9 @@ output:
 
 **Dr Stephen Pikesley**
 
-**Christopher Kerry** - _C.Kerry@exeter.ac.uk_
 
+<right><img src="images/profile_Chris2.jpg" width="250px"><right>
+**Christopher Kerry** - _C.Kerry@exeter.ac.uk_
 
 
 <img align="right" src="images/profile_Owen.jpg" width="250px">
@@ -28,6 +29,7 @@ output:
 - He has an interdisciplinary academic background with an MSc in Conservation Science and Policy from the University of Exeter and a BA in Politics and International Relations from the University of Nottingham.
 
 - Owen’s research experience is based in systematic conservation planning, decision support software and GIS. This was notably applied to the under-researched country of Myanmar, South East Asia, in association with the Wildlife Conservation Society’s marine spatial planning efforts.
+
 
 
 
