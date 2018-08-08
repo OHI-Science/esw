@@ -1,5 +1,5 @@
 ---
-title: <center>An Ocean Health Index for Southwest England
+title: <center>An Ocean Health Index for South West England
 author:  
 output:
   html_document:
