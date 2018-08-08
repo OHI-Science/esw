@@ -16,15 +16,18 @@ output:
 
 **Dr Stephen Pikesley**
 
-**Christopher Kerry** - C.Kerry@exeter.ac.uk
+**Christopher Kerry** - _C.Kerry@exeter.ac.uk_
 
-**Owen Exeter** - O.Exeter@exeter.ac.uk
 
-<img align="left" src="images/profile_Owen.jpg" width="250px">
 
-Owen is a research assistant at the University of Exeter based in the        Environment and Sustainability Institute, Cornwall.  
-He has an interdisciplinary academic background earning an MSc in Conservation Science and Policy from the University of Exeter and a BA in Politics and International Relations at the University of Nottingham.
-Owen’s research experience is based in systematic conservation planning, decision support software and GIS. This was notably applied to the under researched country of Myanmar, South East Asia, in association with the Wildlife Conservation Society’s marine spatial planning efforts.
+<img align="right" src="images/profile_Owen.jpg" width="250px">
+**Owen Exeter** - _O.Exeter@exeter.ac.uk_
+
+- Owen is a research assistant at the University of Exeter based in the        Environment and Sustainability Institute, Cornwall.  
+
+- He has an interdisciplinary academic background with an MSc in Conservation Science and Policy from the University of Exeter and a BA in Politics and International Relations from the University of Nottingham.
+
+- Owen’s research experience is based in systematic conservation planning, decision support software and GIS. This was notably applied to the under-researched country of Myanmar, South East Asia, in association with the Wildlife Conservation Society’s marine spatial planning efforts.
 
 
 
