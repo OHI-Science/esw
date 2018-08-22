@@ -30,7 +30,7 @@ Stephen is marine spatial ecologist with expertise in dataset integration and st
 
 Stephen is a member of the Biosciences department in the College of Life and Environmental Sciences, based at the Daphne du Maurier building, Cornwall.
 
-
+<img align="right" src="images/profile_Chris2.JPG" width="180px">
 **Christopher Kerry** - (project support officer) - _C.Kerry@exeter.ac.uk_
 
 Chris is an experienced GIS specialist, he routinely works with geospatial data, dataset processing and the challenges of transposing data from aspatial to spatial formats. He will be responsible for managing all datasets for the project. Kerry & Pikesley will develop multiple iterations of OHI+ outputs for varying stakeholder-informed scenarios of targets and thresholds. 
@@ -38,7 +38,7 @@ Chris is an experienced GIS specialist, he routinely works with geospatial data,
 Chris is a research assistant for the Biosciences department, based in the Environment and Sustainability Institute, Cornwall.
 
 
-<img align="right" src="images/profile_Owen.jpg" width="250px">
+<img align="right" src="images/profile_Owen.jpg" width="180px">
 **Owen Exeter** - (project support officer) – _O.Exeter@exeter.ac.uk_
 
 Owen has experience in marine decision support software, GIS and stakeholder engagement. He will be responsible for planning and managing activities to elicit stakeholder input, and will liaise with other team members and stakeholder networks to enable iterative development of OHI+ indicators tailored to the southwest region. He has an interdisciplinary academic background with an MSc in Conservation Science and a BA in Politics and International Relations.
