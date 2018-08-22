@@ -10,7 +10,7 @@ output:
 
 ----
 
-<img align="right" src="images/profile_matt.JPG" width="150px">
+<img align="right" src="images/profile_matt.jpg" width="150px">
 **Dr Matthew Witt** (project lead and geoinformatican) - _M.J.Witt@exeter.ac.uk_
 
 Matt is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment. 
@@ -18,14 +18,14 @@ Matt is a Senior Lecturer in Natural Environment. He has 15 years’ experience 
 Matt will be the project manager and is a member of the College of Life and Environmental Sciences and works across two of Exeter's campuses. At the Streatham Campus (Exeter) his research contributes to the Environmental Biology theme and on the Penryn Campus (Cornwall) to the Environment and Sustainability Institute.
 
 
-<img align="right" src="images/profile_Rachel.JPG" width="150px">
+<img align="right" src="images/profile_Rachel.jpg" width="150px">
 **Dr Rachel Turner** (co-lead and social scientist) - _R.Turner@exeter.ac.uk_
 
 Rachel is an environmental social scientist focusing on marine livelihoods, resource governance, and coastal communities. Her research focuses on understanding how socio-economic and environmental contexts drive resource-use behaviour, which has implications for management and governance systems. Her research is conducted with a focus on the dynamics of social-ecological systems and how resource users respond to change and management. 
 
 Rachel will co-manage the project and lead on evaluation of OHI+ indicators with human dimensions. Rachel is a member of the Environment and Sustainability Institute and of the Geography department in the College of Life and Environmental Sciences.
 
-<img align="right" src="images/profile_Stephen.JPG" width="150px">
+<img align="right" src="images/profile_Stephen.jpg" width="150px">
 **Dr Stephen Pikesley** (post-doctoral research associate) - _S.K.Pikesley@exeter.ac.uk_
 
 Stephen is marine spatial ecologist with expertise in dataset integration and statistical modelling. His research experience integrates the use of spatial ecological tools, including satellite tracking, aerial surveys, remote sensing, GIS and habitat modelling to help identify and gain insight, into marine vertebrate spatial and temporal distribution patterns and trends and, where possible, to ascertain potential areas of threat.
