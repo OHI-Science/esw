@@ -13,6 +13,7 @@ There is a need to assess and track the oceans comprehensively in Southwest Engl
 
 We will develop a repeatable, transparent method for measuring progress toward healthy oceans in Southwest England. The ultimate goal is to enable our community to prioritize policy decisions that affect the sustainability of our ocean resources.
 
+
 <br>
 
 ## What is the timeline and spatial scale of this project?
@@ -23,13 +24,16 @@ The project began in June 2018 and is expected to be complete by early 2020. Spa
 
 ## What year does this OHI assessment represent?  
 
-The assessment will be completed in [*year to be completed*]. It will represent the ocean health in this year using the best available information that will continue to be updated in the future. The most recent data available will be incorporated into the assessment for each goal, so years may vary depending on the data set. This first assessment will serve as our baseline for future assessments. 
+The assessment will be completed early 2020. It will therefore represent the ocean health in the year 2019 using the best available information that will continue to be updated in the future. The most recent data available will be incorporated into the assessment for each goal, so years may vary depending on the data set. This first assessment will serve as our baseline for future assessments. 
 
 <br>
 
 ## Will there be future assessments?
 
-OHI assessments can be updated annually or on other management time frames with less effort than its initial development. This is because all analysis is done with open source collaborative software (R, RStudio, Git, GitHub) and can be updated with the most recent data. Southwest England OHI assessments will continue as long as there is ongoing interest and support from ocean management agencies and stakeholders. 
+This study aims to provide an inital baseline characterisation for the South West region prior to implementation of the SWMP. 
+Once opertaional, OHI assessments can be updated annually or on other management time frames with less effort than its initial development. This is because all analysis is done with open source collaborative software (R, RStudio, Git, GitHub) and can be updated with the most recent data. 
+
+Therefore, there is the potential for OHI assessments to continue or expand to other regions, as long as there is ongoing interest and support from ocean management agencies and stakeholders. 
 
 <br>
 

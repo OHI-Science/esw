@@ -6,13 +6,6 @@ output: html_document
 <!--- please edit as needed!--->
 
 ----
-
-## How healthy are our oceans?
-
-Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index (OHI) does this by measuring progress towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. 
-
-<br>
-
 ## Assessing ocean health in Southwest England
  
 We are building a scientifically robust assessment of ocean health for Southwest England. The OHI framework facilitates transparent and repeatable assessments of ocean health over time, and can be integrated into ongoing policy initiatives to support sustainable ocean management. We will build from previous OHI assessments and tailor the OHI framework to represent the cultural, social, and ecological characteristics and priorities of Southwest England using the best available information and knowledge.
@@ -20,6 +13,14 @@ We are building a scientifically robust assessment of ocean health for Southwest
 We will use this website to share our work in progress, as well as the final results. Our code is available [here](https://github.com/OHI-Science/esw).
 
 <br>
+
+## How healthy are our oceans?
+
+Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index (OHI) does this by measuring progress towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. 
+
+<br>
+
+
 
 ## The Ocean Health Index project
 
