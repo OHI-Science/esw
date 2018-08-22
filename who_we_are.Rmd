@@ -10,25 +10,43 @@ output:
 
 ----
 
-**Dr Matthew Witt**
+**Dr Matthew Witt** (project lead and geoinformatican) - _M.J.Witt@exeter.ac.uk_
 
-**Dr Rachel Turner**
+Matt is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment. 
 
-**Dr Stephen Pikesley**
+Matt is a member of the College of Life and Environmental Sciences and work across two of Exeter's campuses. At the Streatham Campus (Exeter) his research contributes to the Environmental Biology theme and on the Penryn Campus (Cornwall) to the Environment and Sustainability Institute.
 
 
-<right><img src="images/profile_Chris2.jpg" width="250px"><right>
-**Christopher Kerry** - _C.Kerry@exeter.ac.uk_
+**Dr Rachel Turner** (co-lead and social scientist) - _R.Turner@exeter.ac.uk_
+
+Rachel is an environmental social scientist focusing on marine livelihoods, resource governance, and coastal communities. Her research focuses on understanding how socio-economic and environmental contexts drive resource-use behaviour, which has implications for management and governance systems. Her research is conducted with a focus on the dynamics of social-ecological systems and how resource users respond to change and management. 
+
+Rachel will co-manage the project and lead on evaluation and refinement of OHI+ indicators with human dimensions. Rachel is a member of the Environment and Sustainability Institute and of the Geography department in the College of Life and Environmental Sciences.
+
+
+**Dr Stephen Pikesley** (post-doctoral research associate) - _S.K.Pikesley@exeter.ac.uk_
+
+Stephen is marine spatial ecologist with expertise in dataset integration and statistical modelling. He will be the primary modeller in the project responsible for initialising OHI+ models and applying model refinements. His research experience integrates the use of spatial ecological tools, including satellite tracking, aerial surveys, remote sensing, GIS and habitat modelling to help identify and gain insight, into marine vertebrate spatial and temporal distribution patterns and trends and, where possible, to ascertain potential areas of threat.
+
+Stephen is a member of the Biosciences department in the College of Life and Environmental Sciences, based at the Daphne du Maurier building, Cornwall.
+
+
+**Christopher Kerry** - (project support officer) - _C.Kerry@exeter.ac.uk_
+
+Chris is an experienced GIS specialist, he routinely works with geospatial data, dataset processing and the challenges of transposing data from aspatial to spatial formats. He will be responsible for managing all datasets for the project. Kerry & Pikesley will develop multiple iterations of OHI+ outputs for varying stakeholder-informed scenarios of targets and thresholds. 
+
+Chris is a research assistant for the Biosciences department, based in the Environment and Sustainability Institute, Cornwall.
 
 
 <img align="right" src="images/profile_Owen.jpg" width="250px">
-**Owen Exeter** - _O.Exeter@exeter.ac.uk_
+**Owen Exeter** - (project support officer) – _O.Exeter@exeter.ac.uk_
 
-- Owen is a research assistant at the University of Exeter based in the        Environment and Sustainability Institute, Cornwall.  
+Owen has experience in marine decision support software, GIS and stakeholder engagement. He will be responsible for planning and managing activities to elicit stakeholder input, and will liaise with other team members and stakeholder networks to enable iterative development of OHI+ indicators tailored to the southwest region. He has an interdisciplinary academic background with an MSc in Conservation Science and a BA in Politics and International Relations.
 
-- He has an interdisciplinary academic background with an MSc in Conservation Science and Policy from the University of Exeter and a BA in Politics and International Relations from the University of Nottingham.
+Owen is a research assistant for the Geography department, based in the Environment and Sustainability Institute, Cornwall.
 
-- Owen’s research experience is based in systematic conservation planning, decision support software and GIS. This was notably applied to the under-researched country of Myanmar, South East Asia, in association with the Wildlife Conservation Society’s marine spatial planning efforts.
+
+
 
 
 
