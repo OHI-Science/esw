@@ -4,14 +4,15 @@ author:
 output:
   html_document:
     fig_width: 1
+    
 ---
 
 ----
 
 The Ocean Health Index measures and tracks the benefits and services that the ocean provides for people now and into the future. This assessment is being developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use.
 
-
-<center><img src="images/Porthcurnow.JPG" width="775px"></center>  
+<br>
+<center><img src="images/Porthcurnow.JPG" width="1000px"></center>  
 
 <img align="left" src="images/ohi-logo.png" width="100px">
 
