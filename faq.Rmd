@@ -11,7 +11,7 @@ output: html_document
 
 There is a need to assess and track the oceans comprehensively in Southwest England by combining the best available social, economic, and environmental information. This can help chart a path forward to increase economic opportunities and human well being while sustainably managing these critical resources.
 
-We will develop a repeatable, transparent method for measuring progress toward healthy oceans in Southwest England. The ultimate goal is to enable our community to prioritize policy decisions that affect the sustainability of our ocean resources.
+Using the OHI framework, we will develop a repeatable, transparent method for measuring progress toward healthy oceans in Southwest England. The ultimate goal is to enable our community to prioritize policy decisions that affect the sustainability of our ocean resources. We are building a scientifically robust assessment of ocean health for Southwest England. The OHI framework facilitates transparent and repeatable assessments of ocean health over time, and can be integrated into ongoing policy initiatives to support sustainable ocean management. We will build from previous OHI assessments and tailor the OHI framework to represent the cultural, social, and ecological characteristics and priorities of Southwest England using the best available information and knowledge.
 
 
 <br>

@@ -8,7 +8,13 @@ output: html_document
 ----
 ## Assessing ocean health in Southwest England
  
-We are building a scientifically robust assessment of ocean health for Southwest England. The OHI framework facilitates transparent and repeatable assessments of ocean health over time, and can be integrated into ongoing policy initiatives to support sustainable ocean management. We will build from previous OHI assessments and tailor the OHI framework to represent the cultural, social, and ecological characteristics and priorities of Southwest England using the best available information and knowledge.
+There is a need to assess and track the oceans comprehensively in Southwest England by combining the best available social, economic, and environmental information. This is notably true considering the advancement of Marine Spatial Planning (MSP) as a management tool across England’s coastal zones. 
+
+MSP has become an important management tool in coastal and offshore ecosystems due to increasing human pressure placed upon these environments. MSP is a process that brings together multiple users of the ocean to make coordinated decisions about how to utilise marine resources in a sustainable manner. The Southwest Marine Plan (SWMP) offers a regional approach for MSP in English coastal waters.
+
+Such management planning is essential to ensure improved delivery of food security, employment and ecosystem services, but requires regular, preferably independent, assessment to support the plan in delivery of stated benefits. Furthermore, a quantitative baseline understanding of ecosystem health is required from which to evaluate change through time and hence measure the relative success of differing marine policy objectives implemented within marine plans. 
+
+Using the OHI framework, we will develop a repeatable, transparent method for measuring progress toward healthy oceans in Southwest England. The ultimate goal is to enable our community to prioritize policy decisions that affect the sustainability of our ocean resources.
 
 We will use this website to share our work in progress, as well as the final results. Our code is available [here](https://github.com/OHI-Science/esw).
 
