@@ -38,7 +38,7 @@ Stephen will be the primary modeller in the project responsible for initialising
 
 **Christopher Kerry** - (project officer) - _C.Kerry@exeter.ac.uk_
 
-Chris is an experienced GIS specialist, he routinely works with geospatial data, dataset processing and the challenges of transposing data from aspatial to spatial formats. His research interests lie in using emerging technologies to study marine spatial ecology.
+Chris is an experienced GIS specialist, he routinely works with geospatial data, dataset processing and the challenges of transposing data from aspatial to spatial formats. He is interested in the application of new technologies to study the spatial ecology of marine vertebrates and as a tool for fisheries management.
 
 Chris will be responsible for managing all datasets for the project. Chris and Stephen will also develop multiple iterations of OHI+ outputs for varying stakeholder-informed scenarios of targets and thresholds.
 Chris completed his MSc with the University of Exeter and is now a research assistant for the Biosciences department in the College of Life and Environmental Science based in the Environment and Sustainability Institute, Cornwall.
