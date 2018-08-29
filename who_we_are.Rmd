@@ -1,5 +1,5 @@
 ---
-title: <center>Our team
+title: <center>Our Team
 author:  
 output:
   html_document:
