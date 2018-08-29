@@ -11,7 +11,7 @@ output:
 ----
 
 <img align="right" src="images/profile_matt.jpg" width="160px">
-**Dr Matthew Witt** (project lead and geoinformatican) - _M.J.Witt@exeter.ac.uk_
+**Dr Matthew Witt** (project lead and geoinformatician) - _M.J.Witt@exeter.ac.uk_
 
 Matt is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment. 
 
