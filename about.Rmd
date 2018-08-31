@@ -20,7 +20,7 @@ We will use this website to share our work in progress, as well as the final res
 
 <br>
 
-<center><img src="images/Bedruthan.JPG" width="1000px"></center> 
+<center><img src="images/Bedruthan.jpg" width="1000px"></center> 
 
 <br>
 
