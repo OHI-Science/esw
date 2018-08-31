@@ -20,6 +20,10 @@ We will use this website to share our work in progress, as well as the final res
 
 <br>
 
+<center><img src="images/Bedruthan.JPG" width="1000px"></center> 
+
+<br>
+
 ## How healthy are our oceans?
 
 Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index (OHI) does this by measuring progress towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. 
