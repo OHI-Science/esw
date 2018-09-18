@@ -16,7 +16,7 @@ navbar:
 output_dir: "."
 output:
   html_document:
-    theme: simplex
+    theme: yeti
     highlight: textmate
     css:
       - "_sass/main.css"
