@@ -14,12 +14,12 @@ output:
 The Ocean Health Index (OHI) is a tool to measure the benefits and services that the ocean provides for people now and into the future. Assessments are developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use. Discover more at [ohi-science.org](www.ohi-science.org). 
 
 <i class="fa fa-folder-open fa-x"></i>  **The project**</h2> 
-The application of OHI to the South West aims to provide a regional baseline for marine health and to assess the impact of marine management policies. The project specifically coincides with development of the Marine Management Organisation's [South West Marine Plan](https://www.gov.uk/government/collections/south-west-marine-plan). Results can help guide decision makers to improve sustaibaility with all data to be transparent and openly available.
+The application of OHI to the [South West](http://ohi-science.org/esw/about.html) aims to provide a regional baseline for marine health and to assess the impact of management policies. The project specifically coincides with development of the Marine Management Organisation's [South West Marine Plan](https://www.gov.uk/government/collections/south-west-marine-plan). Results will help inform management decision making with all data openly available.
 
 <i class="fa fa-user fa-x"></i>  **The team**</h2>
 The South West Ocean Health Index is being conducted by [researchers](http://ohi-science.org/esw/who_we_are.html) from the University of Exeter. The project began in 2018 and results are expected to be made available early 2020.
 
-A sign up link for project updates will shortly be available here.
+For further information please visit our [FAQ](http://ohi-science.org/esw/faq.html) page and a link for  email updates will be available here shortly.
 
 ----
 
