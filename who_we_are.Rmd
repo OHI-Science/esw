@@ -3,6 +3,7 @@ title: <center>Our Team
 author:  
 output:
   html_document:
+    theme: simplex
     fig_width: 1
 ---
 
@@ -19,6 +20,8 @@ Matt is a Senior Lecturer in Natural Environment. He has 15 years’ experience 
 <br>
 <br>
 <br>
+<br>
+<br>
 
 <img align="right" src="images/profile_Rachel2.jpg" width="160px">
 **Dr Rachel Turner** (project lead and social scientist) - _R.Turner@exeter.ac.uk_
@@ -26,6 +29,9 @@ Matt is a Senior Lecturer in Natural Environment. He has 15 years’ experience 
 Rachel is a Lecturer in Environmental Social Science focusing on coupled human-natural systems and their governance, in particular relating to fisheries and marine conservation. Her research explores issues such as how resource users respond to change, what drives spatial behaviour at sea, and how governance practices influence the social wellbeing of coastal communities.
 Rachel will co-manage the project and lead on all social science aspects of the project. 
 
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -39,6 +45,8 @@ Stephen is a marine spatial ecologist with expertise in dataset integration and 
 <br>
 <br>
 <br>
+<br>
+<br>
 
 <img align="right" src="images/profile_Chris.JPG" width="160px">
 **Christopher Kerry** - (project officer) - _C.Kerry@exeter.ac.uk_
@@ -48,7 +56,8 @@ Chris is an experienced GIS specialist, he routinely works with geospatial data,
 <br>
 <br>
 <br>
-
+<br>
+<br>
 
 <img align="right" src="images/profile_Owen.jpg" width="160px">
 **Owen Exeter** - (project officer) – _O.Exeter@exeter.ac.uk_

@@ -1,6 +1,7 @@
 ---
 title: <center>About
 output: html_document
+theme: simplex
 ---
 
 <!--- please edit as needed!--->

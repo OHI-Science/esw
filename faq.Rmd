@@ -1,6 +1,7 @@
 ---
 title: <center>Frequently Asked Questions
 output: html_document
+theme: simplex
 ---
 
 <!--- please edit as needed!--->

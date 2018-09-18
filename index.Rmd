@@ -3,6 +3,7 @@ title: <center>An Ocean Health Index for South West England
 author:  
 output:
   html_document:
+    theme: simplex
     fig_width: 1
 ---
 ---
