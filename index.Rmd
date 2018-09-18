@@ -3,19 +3,25 @@ title: <center>An Ocean Health Index for South West England
 author:  
 output:
   html_document:
-    theme: simplex
+    theme: lumen
     fig_width: 1
 ---
 ---
 
-The Ocean Health Index measures and tracks the benefits and services that the ocean provides for people now and into the future. This assessment is being developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use.
+<font size="4"><i class="fa fa-globe fa-x"></i>  **The Ocean Health Index**</h2> 
+The Ocean Health Index (OHI) is a tool to measure the benefits and services that the ocean provides for people now and into the future. Assessments are developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use. Discover more at [oceanhealthindex.org](www.oceanhealthindex.org). 
 
-In busy maritime areas such as the Western Approaches, English Channel and Celtic Sea, the OHI would enable an assessment of marine ecosystem health and to ascertain the efficacy of marine planning policies to deliver future sustainable seas. The project, through the application of OHI, will provide a metric to assess the impact of management measures such as fishing regulations, MPAs and marine spatial plans on marine ecosystem health. 
+<i class="fa fa-folder-open fa-x"></i>  **The project**</h2> 
+The application of the OHI framework to the South West coincides with development of the Marine Management Organisation's [South West Marine Plan](https://www.gov.uk/government/collections/south-west-marine-plan). The project aims to provide a metric to assess the impact of this and other management measures for the region.
 
-This study is being conducted by an interdisciplinary team from the University of Exeter and will be overseen by a steering group of local experts from the fields of industry, conservation and governance. The project began in 2018 and results are expected to be made available early 2020.
+<i class="fa fa-tag fa-x"></i>  **The team**</h2>
+The South West Ocean Health Index is being conducted by [researchers](http://ohi-science.org/esw/who_we_are.html) from the University of Exeter. The project began in 2018 and results are expected to be made available early 2020.
 
-<br>
+A sign up link for project updates will shortly be available here.
+
+----
 <center><img src="images/Porthcurnow2.JPG" width="1000px"></center>
+
 <br>
 
 <img align="left" src="images/ohi-logo.png" width="100px">
