@@ -12,12 +12,10 @@ output:
 ----
 
 <img align="right" src="images/profile_matt.jpg" width="160px">
-**Dr Matthew Witt** (project lead and geoinformatician) - _M.J.Witt@exeter.ac.uk_
+<font size="3">**Dr Matthew Witt** (project lead and geoinformatician) - _M.J.Witt@exeter.ac.uk_
 
 Matt is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment. 
 
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -32,9 +30,6 @@ Rachel will co-manage the project and lead on all social science aspects of the 
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
 
 <img align="right" src="images/profile_Stephen.jpg" width="160px">
 **Dr Stephen Pikesley** (post-doctoral research associate) - _S.K.Pikesley@exeter.ac.uk_
@@ -44,18 +39,12 @@ Stephen is a marine spatial ecologist with expertise in dataset integration and 
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
 
 <img align="right" src="images/profile_Chris.JPG" width="160px">
 **Christopher Kerry** - (project officer) - _C.Kerry@exeter.ac.uk_
 
 Chris is an experienced GIS specialist, he routinely works with geospatial data, dataset processing and the challenges of transposing data from aspatial to spatial formats. He is interested in utilising emerging technologies to study the spatial ecology of marine vertebrates and as a tool for fisheries management. Chris will be responsible for managing all datasets for the project. Chris and Stephen will also develop multiple iterations of OHI+ outputs for varying stakeholder-informed scenarios of targets and thresholds.
 
-<br>
-<br>
-<br>
 <br>
 <br>
 
