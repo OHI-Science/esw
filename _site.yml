@@ -6,7 +6,7 @@ navbar:
       href: about.html
     - text: "Frequently Asked Questions"
       href: faq.html
-#   - text: "Goals"
+#   - text: "Goals" ## NOTE: to display this page you'll need to delete eval=FALSE on the .Rmd
 #     href: goals.html
 #   - text: "Scores" ## NOTE: to display this page you'll need to delete eval=FALSE on the .Rmd
 #     href: scores.html
@@ -16,7 +16,7 @@ navbar:
 output_dir: "."
 output:
   html_document:
-    theme: yeti
+    theme: simplex
     highlight: textmate
     css:
       - "_sass/main.css"

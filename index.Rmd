@@ -4,10 +4,8 @@ author:
 output:
   html_document:
     fig_width: 1
-    
 ---
-
-----
+---
 
 The Ocean Health Index measures and tracks the benefits and services that the ocean provides for people now and into the future. This assessment is being developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use.
 
@@ -16,10 +14,10 @@ In busy maritime areas such as the Western Approaches, English Channel and Celti
 This study is being conducted by an interdisciplinary team from the University of Exeter and will be overseen by a steering group of local experts from the fields of industry, conservation and governance. The project began in 2018 and results are expected to be made available early 2020.
 
 <br>
-<center><img src="images/Porthcurnow.JPG" width="1000px"></center>  
+<center><img src="images/Porthcurnow2.JPG" width="1000px"></center>
 <br>
 
 <img align="left" src="images/ohi-logo.png" width="100px">
 
-<img align="right" src="images/UoE_logo.jpg" width="130px">
+<img align="right" src="images/UoE_logo.jpg" width="100px">
 
