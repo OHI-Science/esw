@@ -1,7 +1,7 @@
 ---
 title: <center>Frequently Asked Questions
 output: html_document
-theme: lumen
+theme: flatly
 ---
 
 <!--- please edit as needed!--->
@@ -12,7 +12,7 @@ theme: lumen
 
 The Ocean Health Index is a way to combine social, economic, and environmental data to measure progress towards a suite of benefits people expect healthy oceans to provide – including seafood, protection from storms, and employment. Every year since 2012, the OHI Global team has tracked change in ocean health for 220 coastal nations and territories. The Global team is also helping build a growing network of independent groups around the world to use the OHI to understand their own oceans. 
 
-Learn more and explore ongoing assessments at [ohi-science.org](http://ohi-science.org). Additionally, read publications about [best practices for assessing ocean health](https://peerj.com/articles/1503/) and [how OHI assessments are transparent and repeatable](https://www.nature.com/articles/s41559-017-0160). A full list of publications is available [here](http://ohi-science.org/publications).
+Learn more and explore ongoing assessments at [ohi-science.org](http://ohi-science.org). Additionally, read publications about [best practices](https://peerj.com/articles/1503/) for assessing ocean health and how OHI assessments are [transparent and repeatable](https://www.nature.com/articles/s41559-017-0160). A full list of publications is available [here](http://ohi-science.org/publications).
 
 <br>
 

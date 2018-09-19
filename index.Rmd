@@ -3,14 +3,14 @@ title: <center>An Ocean Health Index for South West England
 author:  
 output:
   html_document:
-    theme: lumen
+    theme: flatly
     fig_width: 1
 ---
 ---
 
 <center><img src="images/Porthcurnow2.JPG" width="1000px"></center>
 <br>
-<font size="4"><i class="fa fa-globe fa-x"></i>  **The Ocean Health Index**</h2> 
+<i class="fa fa-globe fa-x"></i>  **The Ocean Health Index**</h2> 
 The Ocean Health Index (OHI) is a tool to measure the benefits and services that the ocean provides for people now and into the future. Assessments are developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use. Discover more at [ohi-science.org](www.ohi-science.org). 
 
 <i class="fa fa-folder-open fa-x"></i>  **The project**</h2> 

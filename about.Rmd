@@ -1,40 +1,38 @@
 ---
 title: <center>About
 output: html_document
-theme: lumen
+theme: flatly
 ---
 
 <!--- please edit as needed!--->
 
 ----
-## Assessing ocean health in Southwest England
+## Assessing ocean health in South West England
+
+In English waters Marine Spatial Planning (MSP) is currently being implemented by the UK Marine Management Organisation (MMO) through a set of regional Marine Plans. The South West Marine Plan (SWMP) offers a regional approach for MSP in busy maritime areas such as the Western Approaches, English Channel and Celtic Sea. 
+
+MSP is essential to ensure improved delivery of food security, employment and ecosystem services, but requires regular, preferably independent, assessment to support the plan in delivery of stated benefits. Furthermore, a quantitative baseline understanding of ecosystem health is required from which to evaluate change through time and hence measure the relative success of differing marine policy objectives implemented.
+
+The application of OHI for the South West can provide this independent, repeatable and transparent assessment framework. We will tailor the OHI framework to represent the cultural, social, and ecological characteristics and priorities of South West England using the best available information and knowledge. 
+As the OHI framework is transparent and repeatable over time, it can be integrated into ongoing policy initiatives to support sustainable ocean management. 
+
+## What is the timeline and spatial scale of this project?
+
+The project began in June 2018 and is expected to be complete by early 2020. Spatially, the project is defined by the boundaries of the Marine Management Organisation's [South West Marine Plan](https://www.gov.uk/government/collections/south-west-marine-plan). This runs from the River Severn border with Wales to the River Dart in Devon, extending offshore to the edge of the EEZ and therefore incorporating the Isles of Scilly. In total the study area includes approximately 2000 kilometres of coastline and 16,000 square kilometres of sea.
+
+##Who is running the OHI for the South West?
+
+The OHI South West is being conducted by an interdisciplinary [team](http://ohi-science.org/esw/who_we_are.html) from the University of Exeter and will be overseen by a steering group of local experts from the fields of industry, conservation and governance. 
+
+The team is based at the [Environment and Sustainability Institute](https://www.exeter.ac.uk/esi/) in Cornwall and at the [Streatham Campus](https://www.exeter.ac.uk/visit/campuses/streatham/) in Devon.
  
-There is a need to assess and track the oceans comprehensively in Southwest England by combining the best available social, economic, and environmental information. This is notably true considering the advancement of Marine Spatial Planning (MSP) as a management tool across England’s coastal zones. 
+## Will there be future assessments?
 
-MSP has become an important management tool in coastal and offshore ecosystems due to increasing human pressure placed upon these environments. MSP is a process that brings together multiple users of the ocean to make coordinated decisions about how to utilise marine resources in a sustainable manner. The Southwest Marine Plan (SWMP) offers a regional approach for MSP in English coastal waters.
+This study aims to provide an initial baseline characterisation of marine health for the South West region. Once operational, OHI assessments can be updated annually or on other management time frames with less effort than its initial development. This is because all analysis is done with open source collaborative software (R, RStudio, Git, GitHub) and can be updated with the most recent data. 
 
-Such management planning is essential to ensure improved delivery of food security, employment and ecosystem services, but requires regular, preferably independent, assessment to support the plan in delivery of stated benefits. Furthermore, a quantitative baseline understanding of ecosystem health is required from which to evaluate change through time and hence measure the relative success of differing marine policy objectives implemented within marine plans. 
-
-Using the OHI framework, we will develop a repeatable, transparent method for measuring progress toward healthy oceans in Southwest England. The ultimate goal is to enable our community to prioritize policy decisions that affect the sustainability of our ocean resources.
-
-We will use this website to share our work in progress, as well as the final results. Our code is available [here](https://github.com/OHI-Science/esw).
-
-<br>
-
-<center><img src="images/Bedruthan.jpg" width="1000px"></center> 
-
-<br>
-
-## How healthy are our oceans?
-
-Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index (OHI) does this by measuring progress towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. 
-
-<br>
+There is the potential for OHI assessments to continue or expand to other regions, with the ongoing support from marine management agencies and stakeholders. 
 
 
 
-## The Ocean Health Index project
 
-The Ocean Health Index is a way to combine social, economic, and environmental data to measure progress towards a suite of benefits people expect healthy oceans to provide – including seafood, protection from storms, and employment. Every year since 2012, the OHI team has tracked change in global ocean health for 220 coastal nations and territories. The team is also helping build a growing network of independent groups around the world to use the OHI to understand their own oceans. 
 
-Learn more and explore ongoing assessments at [ohi-science.org](http://ohi-science.org). Additionally, read our publications about [best practices for assessing ocean health](https://peerj.com/articles/1503/) and [how OHI assessments are transparent and repeatable](https://www.nature.com/articles/s41559-017-0160). A full list of publications is available [here](http://ohi-science.org/publications).

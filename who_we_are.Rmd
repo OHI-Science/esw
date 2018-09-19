@@ -3,7 +3,7 @@ title: <center>Our Team
 author:  
 output:
   html_document:
-    theme: lumen
+    theme: flatly
     fig_width: 1
 ---
 
