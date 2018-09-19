@@ -24,7 +24,7 @@ As the OHI framework is transparent and repeatable over time, it can be integrat
 
 <font size="3">The OHI South West is being delivered by interdisciplinary researchers from the University of Exeter, overseen by a steering group of local experts from the fields of industry, conservation and governance.  
 
-Based across the [Environment and Sustainability Institute](https://www.exeter.ac.uk/esi/) in Cornwall and at the [Streatham Campus](https://www.exeter.ac.uk/visit/campuses/streatham/) in Devon, read our team profiles [here](http://ohi-science.org/esw/who_we_are.html).
+Based across the [Environment and Sustainability Institute](https://www.exeter.ac.uk/esi/) in Cornwall and at the [Streatham Campus](https://www.exeter.ac.uk/visit/campuses/streatham/) in Devon, you can read our team profiles [here](http://ohi-science.org/esw/who_we_are.html).
  
 <font size="4"> **Future assessments**
 
