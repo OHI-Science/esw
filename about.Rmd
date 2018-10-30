@@ -17,7 +17,7 @@ The application of OHI to the South West can provide this independent, repeatabl
 As the OHI framework is transparent and repeatable over time, it can be integrated into ongoing policy initiatives to support sustainable ocean management. 
 
 <left><img src="images/MMO_SWMP.jpg" width="450px"></left>
-<right><img src="images/Regions_blue.jpg" width="450px"></right>
+<right><img src="images/Regions_bl.jpg" width="450px"></right>
 <br>
 
 <font size="4"> **Project timeline and spatial scale**
