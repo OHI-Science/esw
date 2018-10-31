@@ -6,9 +6,6 @@ output:
     theme: flatly
     fig_width: 1
 ---
-
-<!--- please edit as needed!--->
-
 ----
 
 <font size="4">**What is the Ocean Health Index project?**
