@@ -1,8 +1,10 @@
 ---
 title: <center>Frequently Asked Questions
-output: html_document
-theme: flatly
-fig_width: 1
+author:  
+output:
+  html_document:
+    theme: flatly
+    fig_width: 1
 ---
 
 <!--- please edit as needed!--->
