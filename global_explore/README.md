@@ -1,6 +1,6 @@
 ## README United Kingdom [esw]
 
-This folder contains information for United Kingdom from the OHI global assessments. [View the explore_data file](hthttps://raw.githack.com/OHI-Science/esw/master/global_explore/explore_data.html) that will let you explore data directly from the `ohi-global` repository, or modify the `.Rmd` file. In OHI global assessments, United Kingdom has a region identifier (rgn_id) of 180.
+This folder contains information for United Kingdom from the OHI global assessments. [View the explore_data file](https://raw.githack.com/OHI-Science/esw/master/global_explore/explore_data.html) that will let you explore data directly from the `ohi-global` repository, or modify the `.Rmd` file. In OHI global assessments, United Kingdom has a region identifier (rgn_id) of 180.
 
 In a few cases, data files are saved locally as `.csv` files for United Kingdom only because data for all regions are too big and are not kept on GitHub.
 
