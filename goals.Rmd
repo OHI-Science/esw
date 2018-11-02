@@ -1,5 +1,6 @@
 ---
-title: "Goals"
+title: <center>Goals
+author:  
 output:
   html_document:
     theme: flatly
