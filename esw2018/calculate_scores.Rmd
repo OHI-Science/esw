@@ -37,6 +37,7 @@ library(ohicore)
 
 ## set the working directory to a filepath we all have
 setwd(here::here('esw2018'))
+getwd() #check
 ```
 
 ## Configure Toolbox
@@ -78,7 +79,11 @@ Run this to create flower plots for each region.
 ## source script (to be incorporated into ohicore)
 source('https://raw.githubusercontent.com/OHI-Science/arc/master/circle2016/plot_flower_local.R')
 
-PlotFlower(assessment_name = "ESW",
+
+#or load function 'flower_plot_skp_20181114.R' in 'conf' folder
+#this amends position of 'supra goal radius from centre' and y location of 'goal names'
+
+PlotFlower(assessment_name = "South West England",
 dir_fig_save    = "reports/figures")
 ```
 
