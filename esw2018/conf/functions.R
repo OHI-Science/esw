@@ -1464,6 +1464,17 @@ SP <- function(scores) {
 
 
 CW <- function(layers) {
+
+  #data:
+  #cw_bathing_water_class
+  #cw_inorganic_run_off
+  #cw_nutrients
+  #cw_pesticides
+  #cw_sus_material
+  #cw_trash
+
+  #cw_trash_trend
+
   scen_year <- layers$data$scenario_year
 
   ### function to calculate geometric mean:
@@ -1476,52 +1487,123 @@ CW <- function(layers) {
     }
   }
 
+  #pesticides
+  pest <- AlignDataYears(layer_nm = "cw_pesticides", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = pesticides, scenario_year)
 
-  # layers
-  trend_lyrs <-
-    c('cw_chemical_trend',
-      'cw_nutrient_trend',
-      'cw_trash_trend',
-      'cw_pathogen_trend')
-  prs_lyrs <-
-    c('po_pathogens',
-      'po_nutrients_3nm',
-      'po_chemicals_3nm',
-      'po_trash')
-
-  # get data together:
-  prs_data <- AlignManyDataYears(prs_lyrs) %>%
-    dplyr::filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, value = pressure_score)
-
-  d_pressures <- prs_data %>%
-    mutate(pressure = 1 - value) %>%  # invert pressures
-    group_by(region_id) %>%
-    summarize(score = geometric.mean2(pressure, na.rm = TRUE)) %>% # take geometric mean
-    mutate(score = score * 100) %>%
+  pest_status <- pest %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(score = status * 100) %>%
     mutate(dimension = "status") %>%
+    dplyr::select(region_id, score, dimension)
+
+  trend_years <- (scen_year - 9):(scen_year)
+  pest_trend <- CalculateTrend(status_data = pest, trend_years = trend_years)
+
+  #inorganic run-off
+  #update this section with built areas and monthly rainfall data
+  run_off <- AlignDataYears(layer_nm = "cw_inorganic_run_off", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = inorg_run_off, scenario_year)
+
+  run_off_status <- run_off %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(score = status * 100) %>%
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id, score, dimension)
+
+  trend_years <- (scen_year - 9):(scen_year)
+  run_off_trend <- CalculateTrend(status_data = run_off, trend_years = trend_years)
+  run_off_trend[is.na (run_off_trend)] <- 0
+
+  #nutrients
+  nut <- AlignDataYears(layer_nm = "cw_nutrients", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = nutrients, scenario_year)
+
+  nut_status <- nut %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(score = status * 100) %>%
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id, score, dimension)
+
+  trend_years <- (scen_year - 9):(scen_year)
+  nut_trend <- CalculateTrend(status_data=nut, trend_years = trend_years)
+
+  #bathing water classification
+  #calculate mean beach status by rgn_id & year
+  bw <- AlignDataYears(layer_nm = "cw_bathing_water_class", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = beach_status_score, scenario_year)
+  bw <- bw %>%
+    group_by(region_id, scenario_year) %>%
+    summarise(status = mean (status, na.rm=TRUE)) %>%
     ungroup()
 
+  #no data for IOS (region 4)
+  #assign adjacent region data (Cornwall: region 3) to IOS
+  crn <- bw[bw$region_id == 3,]
+  crn$region_id <- 4
+  bw <- rbind(bw, crn)
+  bw <- bw[order (bw$region_id),]
 
-  # get trend data together:
-  trend_data <- AlignManyDataYears(trend_lyrs) %>%
-    dplyr::filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, value = trend)
+  bw_status <- bw %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(score = status * 100) %>%
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id, score, dimension)
 
-  d_trends <- trend_data %>%
-    mutate(trend = -1 * value)  %>%  # invert trends
+  trend_years <- (scen_year - 9):(scen_year)
+  bw_trend <- CalculateTrend(status_data = bw, trend_years = trend_years)
+
+  #water quality - suspended material
+  wq <- AlignDataYears(layer_nm = "cw_sus_material", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = sus_mat, scenario_year)
+
+  wq_status <- wq %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(score = status * 100) %>%
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id, score, dimension)
+
+  trend_years <- (scen_year - 9):(scen_year)
+  wq_trend <- CalculateTrend(status_data = wq, trend_years = trend_years)
+
+  #plastics at sea 'trash'
+  #note no trend data - read in modelled trend from ohi global data
+  trash <- AlignDataYears(layer_nm = "cw_trash", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = trash, scenario_year)
+
+  trash_status <- trash %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(score = status * 100) %>%
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id, score, dimension)
+
+  trash_trend <- AlignDataYears(layer_nm = "cw_trash_trend", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, score = trend, scenario_year) %>%
+    filter(scenario_year==scen_year)  %>%
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id, score, dimension)
+
+  #bring status and trend scores together
+  status <- rbind (bw_status, nut_status, pest_status, run_off_status, trash_status, wq_status)
+
+  status <- status %>%
     group_by(region_id) %>%
-    summarize(score = mean(trend, na.rm = TRUE)) %>%
+    summarize(score = geometric.mean2 (score, na.rm=TRUE)) %>% # take geometric mean
+    mutate(dimension = "status")%>%
+    ungroup()
+
+  trend <- rbind(bw_trend, nut_trend, pest_trend, run_off_trend, trash_trend, wq_trend)
+
+  trend <- trend %>%
+    group_by(region_id) %>%
+    summarize(score = mean(score, na.rm=TRUE)) %>%
     mutate(dimension = "trend") %>%
     ungroup()
 
-
-  # return scores
-  scores <- rbind(d_pressures, d_trends) %>%
-    mutate(goal = "CW") %>%
-    select(region_id, goal, dimension, score) %>%
+  scores <-  rbind(status, trend) %>%
+    mutate('goal'='CW') %>%
+    select(goal, dimension, region_id, score) %>%
     data.frame()
-
 
   return(scores)
 }
