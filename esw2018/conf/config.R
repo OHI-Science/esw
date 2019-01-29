@@ -1,3 +1,14 @@
+
+#install.packages("rstudioapi")
+library(rstudioapi)
+
+#check source file path
+dirname(rstudioapi::getSourceEditorContext()$path)
+
+list.files()
+
+########
+
 # region data layers----
 # a list of possible id fields used in datalayers (most will use rgn_id, but not always)
 layers_id_fields    = c('rgn_id','cntry_key', 'fao_id', 'fao_saup_id', 'country_id','saup_id','fao_ohi_id') 
@@ -11,13 +22,11 @@ layer_region_areas  = 'rgn_area'
 # pressures & resilience matrices ----
 
 # For goals with elements (e.g., for coastal protection: mangrove, saltmarsh, seagrass), these data layers describe how to weight the contribution of each goal element to calculate the final goal pressure and resilience dimensions.
-resilience_element = list('NP'  = 'np_harvest_product_weight',
-                          'CS'  = 'element_wts_cs_km2_x_storage',      # populated in CS() in functions.R
+resilience_element = list('CS'  = 'element_wts_cs_km2_x_storage',      # populated in CS() in functions.R
                           'CP'  = 'element_wts_cp_km2_x_protection',   # populated in CP() in functions.R
                           'HAB' = 'element_wts_hab_pres_abs')          # populated in HAB() in functions.R
 
-pressures_element  = list('NP'  = 'np_harvest_product_weight',
-                          'CS'  = 'element_wts_cs_km2_x_storage',      # populated in CS() in functions.R
+pressures_element  = list('CS'  = 'element_wts_cs_km2_x_storage',      # populated in CS() in functions.R
                           'CP'  = 'element_wts_cp_km2_x_protection',   # populated in CS() in functions.R
                           'LIV' = 'le_sector_weight',
                           'ECO' = 'le_sector_weight',
