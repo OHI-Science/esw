@@ -183,7 +183,7 @@ FIS <- function(layers) {
   #---------------#
   #OR
   #---------------#
-  #weighted mean
+  #weighted mean (applied in Arctic)
   status_data <- status_data %>%
     group_by(region_id, year) %>%
     summarize(status = weighted.mean(score, wprop)) %>%
@@ -201,7 +201,6 @@ FIS <- function(layers) {
     select(region_id, score, dimension)
   
   # calculate trend
-  
   trend_years <- (scen_year - 4):(scen_year)
   
   trend <- CalculateTrend(status_data = status_data, trend_years = trend_years)
@@ -237,24 +236,14 @@ MAR <- function(layers) {
   
   #remove zero harvest
   rky <- rky[rky$rgn_prod_T > 0,]
-  
-  # 4-year rolling mean of data
-  #m <- rky %>%
-  #group_by(rgn_id, taxa_code, wq_rg_sp) %>%
-  #arrange(rgn_id, taxa_code, scenario_year) %>%
-  #mutate(sm_tonnes = zoo::rollapply(rgn_prod_T, 4, mean, na.rm = TRUE, partial = TRUE)) %>%
-  #ungroup()
-  
+
   m <- rky
-  
-  # smoothed mariculture harvest * sustainability coefficient
-  #m <- m %>%
-  #mutate(sust_tonnes = sust_coeff * sm_tonnes)
-  
+
+  #apply sustainability coeficient derived from water quality monitoring at mariculture sites 
   m <- m %>%
     mutate(sust_tonnes = rgn_prod_T * wq_rg_sp)
   
-  # aggregate all weighted timeseries per region, and divide by coastal human population
+  # aggregate per region, and divide by region coastal length
   ry = m %>%
     group_by(rgn_id, scenario_year) %>%
     summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
@@ -432,6 +421,7 @@ AO <- function(layers) {
   return(scores)
 }
 
+
 NP <- function(scores, layers) {
   scen_year <- layers$data$scenario_year
   
@@ -449,6 +439,7 @@ NP <- function(scores, layers) {
   np_scores <- rbind(np_status, np_trend)
   return(np_scores)
 }
+
 
 CS <- function(layers) {
   scen_year <- layers$data$scenario_year
@@ -552,7 +543,6 @@ health_lyrs <-
   # return scores
   return(scores_CS)
 }
-
 
 
 CP <- function(layers) {
@@ -704,6 +694,7 @@ CP <- function(layers) {
 
 }
 
+
 TR <- function(layers) {
   ## formula:
   ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
@@ -794,6 +785,7 @@ TR <- function(layers) {
 
   return(scores)
 }
+
 
 LIV <- function(layers){
 
@@ -943,6 +935,7 @@ LIV <- function(layers){
 
 }
 
+
 ECO <- function(layers){
 
   ## read in data layers
@@ -1060,20 +1053,43 @@ LE <- function(scores, layers){
 
 
 ICO <- function(layers){
-
+  
   scen_year <- layers$data$scenario_year
 
   rk <- AlignDataYears(layer_nm="ico_spp_iucn_status", layers_obj = layers) %>%
-    select(region_id = rgn_id, sciname, iucn_cat=category, scenario_year, ico_spp_iucn_status_year) %>%
-    mutate(iucn_cat = as.character(iucn_cat))
-
+    select(region_id = rgn_id, species, iucn_cat = category, scenario_year, ico_spp_iucn_status_year, pmt, wildlife_trusts) %>%
+    mutate(iucn_cat = as.character(iucn_cat)) %>%
+    mutate(region_id = as.numeric(region_id))
+  
+#unique(rk$iucn_cat)
+#[1] "VU"    "LR/lc" "LR/nt" "LR/cd" "DD"    "LC"    "NT"   
+  
+  #tidy IUCN clasifications
+  rk$iucn_cat[rk$iucn_cat == "LR/lc"] <- "LC"
+  rk$iucn_cat[rk$iucn_cat == "LR/nt"] <- "NT"
+  rk$iucn_cat[rk$iucn_cat == "LR/cd"] <- "CD"
+  
+  #######
+  #extract sub-set of data
+  #wildlife tusts only
+  #IUCN clasifications: VU (0.4), LC (0), NT (0.2), CD (0.3),  DD (NA)
+                         
+  rk <- filter(rk, wildlife_trusts == 1)
+  
+  #wildlife truat and postcard or magnet or tour operator
+  #wildlife trust and 1 other (this only retains IUCN categories: LC (scores 1) or DD (scores NA)
+  #score = 100 trend = 0
+                              
+  #rk <- filter(rk, c(wildlife_trusts == 1 & pmt == 1))
+  #######
+  
   # lookup for weights status
   #  LC <- "LOWER RISK/LEAST CONCERN (LR/LC)"
   #  NT <- "LOWER RISK/NEAR THREATENED (LR/NT)"
   #  T  <- "THREATENED (T)" treat as "EN"
   #  VU <- "VULNERABLE (V)"
   #  EN <- "ENDANGERED (E)"
-  #  LR/CD <- "LOWER RISK/CONSERVATION DEPENDENT (LR/CD)" treat as between VU and NT
+  #  CD <- "LOWER RISK/CONSERVATION DEPENDENT (LR/CD)" treat as between VU and NT
   #  CR <- "VERY RARE AND BELIEVED TO BE DECREASING IN NUMBERS"
   #  DD <- "INSUFFICIENTLY KNOWN (K)"
   #  DD <- "INDETERMINATE (I)"
@@ -1082,12 +1098,13 @@ ICO <- function(layers){
                                risk_score = c(0,  0.2,  0.3,  0.4,  0.6,  0.8,  1, NA)) %>%
     mutate(status_score = 1-risk_score) %>%
     mutate(iucn_cat = as.character(iucn_cat))
+  
 
   ####### status
   # STEP 1: take mean of subpopulation scores
   r.status_spp <- rk %>%
     left_join(w.risk_category, by = 'iucn_cat') %>%
-    group_by(region_id, sciname, scenario_year, ico_spp_iucn_status_year) %>%
+    group_by(region_id, species, scenario_year, ico_spp_iucn_status_year) %>%
     summarize(spp_mean = mean(status_score, na.rm=TRUE)) %>%
     ungroup()
 
@@ -1112,91 +1129,74 @@ ICO <- function(layers){
   # return scores
   scores <-  rbind(status, trend) %>%
     mutate('goal'='ICO') %>%
-    select(goal, dimension, region_id, score) %>%
+    select(region_id, score, goal, dimension) %>%
     data.frame()
+  
   return(scores)
 
 }
 
 
 LSP <- function(layers) {
+  
   scen_year <- layers$data$scenario_year
 
   ref_pct_cmpa <- 30
-  ref_pct_cp <- 30
+  ref_pct_cpa <- 30
 
   # select data
   total_area <-
     rbind(layers$data$rgn_area_inland1km,
           layers$data$rgn_area_offshore3nm) %>% #total offshore/inland areas
     select(region_id = rgn_id, area, layer) %>%
+    mutate(region_id = as.numeric(region_id)) %>%
     spread(layer, area) %>%
     select(region_id,
            area_inland1km = rgn_area_inland1km,
            area_offshore3nm = rgn_area_offshore3nm)
 
-
   offshore <-
     AlignDataYears(layer_nm = "lsp_prot_area_offshore3nm", layers_obj = layers) %>%
     select(region_id = rgn_id,
            year = scenario_year,
-           cmpa = a_prot_3nm)
+           cmpa = area_km2_m_gf)
   inland <-
     AlignDataYears(layer_nm = "lsp_prot_area_inland1km", layers_obj = layers) %>%
     select(region_id = rgn_id,
            year = scenario_year,
-           cp = a_prot_1km)
+           cpa = area_km2_t_gf)
 
-
-  # ry_offshore <-  layers$data$lsp_prot_area_offshore3nm %>%
-  #   select(region_id = rgn_id, year, cmpa = a_prot_3nm)
-  # ry_inland <- layers$data$lsp_prot_area_inland1km %>%
-  #   select(region_id = rgn_id, year, cp = a_prot_1km)
-  #
   lsp_data <- full_join(offshore, inland, by = c("region_id", "year"))
-
-  # fill in time series for all regions
-  lsp_data_expand <-
-    expand.grid(region_id = unique(lsp_data$region_id),
-                year = unique(lsp_data$year)) %>%
-    left_join(lsp_data, by = c('region_id', 'year')) %>%
-    arrange(region_id, year) %>%
-    mutate(cp = ifelse(is.na(cp), 0, cp),
-           cmpa = ifelse(is.na(cmpa), 0, cmpa)) %>%
-    mutate(pa     = cp + cmpa)
-
 
   # get percent of total area that is protected for inland1km (cp) and offshore3nm (cmpa) per year
   # and calculate status score
-  status_data <- lsp_data_expand %>%
+  status_data <- lsp_data %>%
     full_join(total_area, by = "region_id") %>%
+    arrange(region_id, year) %>%
     mutate(
-      pct_cp    = pmin(cp   / area_inland1km   * 100, 100),
-      pct_cmpa  = pmin(cmpa / area_offshore3nm * 100, 100),
-      status    = (pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1)) / 2
-    ) %>%
-    filter(!is.na(status))
+      pct_cpa = cpa / area_inland1km * 100,
+      pct_cmpa = cmpa / area_offshore3nm * 100,
+      status = (pmin(pct_cpa / ref_pct_cpa, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1)) / 2
+    )
 
-  # extract status based on specified year
-
-  r.status <- status_data %>%
+  #status
+  status <- status_data %>%
     filter(year == scen_year) %>%
     mutate(score = status * 100) %>%
     select(region_id, score) %>%
     mutate(dimension = "status")
 
   # calculate trend
-
   trend_years <- (scen_year - 4):(scen_year)
-
-  r.trend <-
-    CalculateTrend(status_data = status_data, trend_years = trend_years)
-
+  trend <- CalculateTrend(status_data = status_data, trend_years = trend_years)
 
   # return scores
-  scores <- bind_rows(r.status, r.trend) %>%
-    mutate(goal = "LSP")
-  return(scores[, c('region_id', 'goal', 'dimension', 'score')])
+  scores <- bind_rows(status, trend) %>%
+    mutate(goal = "LSP") %>%
+    data.frame()
+  
+  return(scores)
+  #return(scores[, c('region_id', 'goal', 'dimension', 'score')])
 }
 
 SP <- function(scores) {

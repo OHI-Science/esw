@@ -378,6 +378,8 @@ hd_subtidal_sb,2014,2011
 hd_subtidal_sb,2015,2012
 hd_subtidal_sb,2016,2013
 hd_subtidal_sb,2017,2014
+ico_spp_iucn_status,2000,2000
+ico_spp_iucn_status,2001,2001
 ico_spp_iucn_status,2002,2002
 ico_spp_iucn_status,2003,2003
 ico_spp_iucn_status,2004,2004
@@ -393,7 +395,8 @@ ico_spp_iucn_status,2013,2013
 ico_spp_iucn_status,2014,2014
 ico_spp_iucn_status,2015,2015
 ico_spp_iucn_status,2016,2016
-ico_spp_iucn_status,2017,2016
+ico_spp_iucn_status,2017,2017
+ico_spp_iucn_status,2018,2018
 le_jobs_cur_adj_value,2012,2012
 le_jobs_cur_adj_value,2013,2013
 le_jobs_cur_adj_value,2014,2013
@@ -484,6 +487,10 @@ li_gci,2014,2013
 li_gci,2015,2014
 li_gci,2016,2015
 li_gci,2017,2016
+lsp_prot_area_inland1km,2004,2004
+lsp_prot_area_inland1km,2005,2005
+lsp_prot_area_inland1km,2006,2006
+lsp_prot_area_inland1km,2007,2007
 lsp_prot_area_inland1km,2008,2008
 lsp_prot_area_inland1km,2009,2009
 lsp_prot_area_inland1km,2010,2010
@@ -494,6 +501,11 @@ lsp_prot_area_inland1km,2014,2014
 lsp_prot_area_inland1km,2015,2015
 lsp_prot_area_inland1km,2016,2016
 lsp_prot_area_inland1km,2017,2017
+lsp_prot_area_inland1km,2018,2017
+lsp_prot_area_offshore3nm,2004,2004
+lsp_prot_area_offshore3nm,2005,2005
+lsp_prot_area_offshore3nm,2006,2006
+lsp_prot_area_offshore3nm,2007,2007
 lsp_prot_area_offshore3nm,2008,2008
 lsp_prot_area_offshore3nm,2009,2009
 lsp_prot_area_offshore3nm,2010,2010
@@ -504,6 +516,7 @@ lsp_prot_area_offshore3nm,2014,2014
 lsp_prot_area_offshore3nm,2015,2015
 lsp_prot_area_offshore3nm,2016,2016
 lsp_prot_area_offshore3nm,2017,2017
+lsp_prot_area_offshore3nm,2018,2017
 mar_harvest_tonnes,1984,1984
 mar_harvest_tonnes,1985,1985
 mar_harvest_tonnes,1986,1986
