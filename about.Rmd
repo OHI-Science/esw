@@ -9,7 +9,9 @@ theme: flatly
 ----
 <font size="4">**Assessing ocean health in South West England**
 
-<font size="3">In English waters Marine Spatial Planning (MSP) is currently being implemented by the UK Marine Management Organisation (MMO) through a set of regional Marine Plans. The South West Marine Plan (SWMP) offers a regional approach for MSP in busy maritime areas such as the Western Approaches, English Channel and Celtic Sea. 
+<font size="3">This project will apply the OHI methodology to the South West Marine Plan area with the primary goal of assisting marine spatial planning in the delivery of healthy regional ecosystems that support biodiversity and livelihoods.
+
+In English waters Marine Spatial Planning (MSP) is currently being implemented by the UK Marine Management Organisation (MMO) through a set of regional Marine Plans. The South West Marine Plan (SWMP) offers a regional approach for MSP in busy maritime areas such as the Western Approaches, English Channel and Celtic Sea. 
 
 MSP is essential to ensure improved delivery of food security, employment and ecosystem services, but requires regular, preferably independent, assessment to support the plan in delivery of its stated benefits. Furthermore, a baseline understanding of ecosystem health is required from which to evaluate change and measure the relative success of marine policies over time.
 
