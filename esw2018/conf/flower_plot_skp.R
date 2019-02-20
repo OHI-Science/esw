@@ -2,7 +2,7 @@
 library(tidyverse)
 library(stringr)
 library(RColorBrewer)
-#'
+
 PlotFlower <- function(region_plot     = NA,
                        year_plot       = NA,
                        assessment_name = "OHI Assessment",
