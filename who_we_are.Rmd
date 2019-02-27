@@ -20,7 +20,6 @@ Matthew is a Senior Lecturer in Natural Environment. He has 15 years’ experien
 <br>
 <br>
 <br>
-
 <img align="right" src="images/profile_Rachel2.jpg" width="160px">
 [**Dr Rachel Turner**](http://geography.exeter.ac.uk/staff/index.php?web_id=Rachel_Turner) (project lead and social scientist) - _R.Turner@exeter.ac.uk_
 
@@ -30,7 +29,6 @@ Rachel will co-manage the project and lead on all social science aspects of the 
 <br>
 <br>
 <br>
-
 <img align="right" src="images/profile_Stephen.jpg" width="160px">
 **Dr Stephen Pikesley** (post-doctoral research associate) - _S.K.Pikesley@exeter.ac.uk_
 
@@ -40,7 +38,6 @@ Stephen is a marine spatial ecologist with expertise in dataset integration and 
 <br>
 <br>
 <br>
-
 <img align="right" src="images/profile_Chris.JPG" width="160px">
 **Christopher Kerry** - (project officer) - _C.Kerry@exeter.ac.uk_
 
@@ -49,7 +46,6 @@ Chris is an experienced GIS specialist, he routinely works with geospatial data,
 <br>
 <br>
 <br>
-
 <img align="right" src="images/profile_Owen.jpg" width="160px">
 **Owen Exeter** - (project officer) – _O.Exeter@exeter.ac.uk_
 
