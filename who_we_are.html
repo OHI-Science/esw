@@ -98,6 +98,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -112,7 +115,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -132,6 +134,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -153,18 +192,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -214,10 +312,10 @@ $(document).ready(function () {
 
 <!--- please update--->
 <hr />
-<p><img align="right" src="images/profile_matt.jpg" width="160px"> <font size="3"><strong>Dr Matthew Witt</strong> (project lead and geoinformatician) - <em><a href="mailto:M.J.Witt@exeter.ac.uk">M.J.Witt@exeter.ac.uk</a></em></p>
+<p><img align="right" src="images/profile_Matt.jpg" width="160px"> <font size="3"><a href="https://biosciences.exeter.ac.uk/staff/index.php?web_id=matthew_witt"><strong>Dr Matthew Witt</strong></a> (project lead and geoinformatician) - <em><a href="mailto:M.J.Witt@exeter.ac.uk">M.J.Witt@exeter.ac.uk</a></em></p>
 <p>Matthew is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment.</p>
 <p><br> <br> <br> <br></p>
-<p><img align="right" src="images/profile_Rachel2.jpg" width="160px"> <strong>Dr Rachel Turner</strong> (project lead and social scientist) - <em><a href="mailto:R.Turner@exeter.ac.uk">R.Turner@exeter.ac.uk</a></em></p>
+<p><img align="right" src="images/profile_Rachel2.jpg" width="160px"> <a href="http://geography.exeter.ac.uk/staff/index.php?web_id=Rachel_Turner"><strong>Dr Rachel Turner</strong></a> (project lead and social scientist) - <em><a href="mailto:R.Turner@exeter.ac.uk">R.Turner@exeter.ac.uk</a></em></p>
 <p>Rachel is a Lecturer in Environmental Social Science focusing on coupled human-natural systems and their governance, in particular relating to fisheries and marine conservation. Her research explores issues such as how resource users respond to change, what drives spatial behaviour at sea, and how governance practices influence the social wellbeing of coastal communities. Rachel will co-manage the project and lead on all social science aspects of the project.</p>
 <p><br> <br> <br></p>
 <p><img align="right" src="images/profile_Stephen.jpg" width="160px"> <strong>Dr Stephen Pikesley</strong> (post-doctoral research associate) - <em><a href="mailto:S.K.Pikesley@exeter.ac.uk">S.K.Pikesley@exeter.ac.uk</a></em></p>

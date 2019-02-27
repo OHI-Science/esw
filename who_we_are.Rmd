@@ -11,8 +11,8 @@ output:
 
 ----
 
-<img align="right" src="images/profile_matt.jpg" width="160px">
-<font size="3">**Dr Matthew Witt** (project lead and geoinformatician) - _M.J.Witt@exeter.ac.uk_
+<img align="right" src="images/profile_Matt.jpg" width="160px">
+<font size="3">[**Dr Matthew Witt**](https://biosciences.exeter.ac.uk/staff/index.php?web_id=matthew_witt) (project lead and geoinformatician) - _M.J.Witt@exeter.ac.uk_
 
 Matthew is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment. 
 
@@ -22,7 +22,7 @@ Matthew is a Senior Lecturer in Natural Environment. He has 15 years’ experien
 <br>
 
 <img align="right" src="images/profile_Rachel2.jpg" width="160px">
-**Dr Rachel Turner** (project lead and social scientist) - _R.Turner@exeter.ac.uk_
+[**Dr Rachel Turner**](http://geography.exeter.ac.uk/staff/index.php?web_id=Rachel_Turner) (project lead and social scientist) - _R.Turner@exeter.ac.uk_
 
 Rachel is a Lecturer in Environmental Social Science focusing on coupled human-natural systems and their governance, in particular relating to fisheries and marine conservation. Her research explores issues such as how resource users respond to change, what drives spatial behaviour at sea, and how governance practices influence the social wellbeing of coastal communities.
 Rachel will co-manage the project and lead on all social science aspects of the project. 
