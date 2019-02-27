@@ -11,7 +11,7 @@ output:
 
 ----
 
-<img align="right" src="images/profile_Matt.jpg" width="160px">
+<img align="right" src="images/profile_Matt2.jpg" width="160px">
 <font size="3">[**Dr Matthew Witt**](https://biosciences.exeter.ac.uk/staff/index.php?web_id=matthew_witt) (project lead and geoinformatician) - _M.J.Witt@exeter.ac.uk_
 
 Matthew is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment. 
