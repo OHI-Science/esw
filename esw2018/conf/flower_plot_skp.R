@@ -2,12 +2,12 @@
 library(tidyverse)
 library(stringr)
 library(RColorBrewer)
+library(rgdal)
 
 PlotFlower <- function(region_plot     = NA,
                        year_plot       = NA,
                        assessment_name = "OHI Assessment",
                        dir_fig_save    = "reports/figures") {
-
 
   ## scores data ----
   scores <- read.csv("scores.csv") %>%
@@ -157,11 +157,10 @@ PlotFlower <- function(region_plot     = NA,
   ## Mel's color palette ----
   reds <-  grDevices::colorRampPalette(
     c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"),
-    space="Lab")(65)
+    space="Lab")(50) #65
   blues <-  grDevices::colorRampPalette(
-    c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+    c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(50) #35
   myPalette <-   c(reds, blues)
-
 
   ## filenaming for labeling and saving ----
   region_names_all <- bind_rows(
@@ -199,13 +198,23 @@ PlotFlower <- function(region_plot     = NA,
     region_name <- region_names %>%
       filter(region_id == region) %>%
       dplyr::select(region_name)
-
+      #SKP: reverse plot labels from e.g. 3 Cornwall to Cornwall (3)
+      txt <- gsub("[[:digit:]] ", "", region_name)
+      int <- gsub("[^0-9.-]", "", region_name)
+      if(int >= 1) {region_name <- paste(txt, " ", "(Rgn. ", int, ")",sep = "")}
 
     ## inject weights for FIS vs. MAR ----
+    #source code
+    #if ( length(w_fn) > 0 ) {
+      ## inject FIS/MAR weights
+      #plot_df$weight[plot_df$goal == "FIS"] <- w$w_fis[w$rgn_id == region]
+      #plot_df$weight[plot_df$goal == "MAR"] <- 1 - w$w_fis[w$rgn_id == region]
+
+    #SKP hack to assign 90/10 split for graphical plot
     if ( length(w_fn) > 0 ) {
       ## inject FIS/MAR weights
-      plot_df$weight[plot_df$goal == "FIS"] <- w$w_fis[w$rgn_id == region]
-      plot_df$weight[plot_df$goal == "MAR"] <- 1 - w$w_fis[w$rgn_id == region]
+      plot_df$weight[plot_df$goal == "FIS"] <- 0.9
+      plot_df$weight[plot_df$goal == "MAR"] <- 0.1
 
       ## recalculate pos with injected weights arrange by pos for proper ordering
       plot_df <- plot_df %>%
@@ -235,11 +244,11 @@ PlotFlower <- function(region_plot     = NA,
     ## establish the basics of the flower plot
     plot_obj <- plot_obj +
       ## plot the actual scores on top of background/borders:
-      #petal sides - #>> source size = .2
-      geom_bar(stat = 'identity', color = dark_line, size = .5) +
+      #SKP: petal sides - source size = .2
+      geom_bar(stat = 'identity', color = dark_line, size = .5) + #color = dark_line or light_line
       ## emphasize (outer) edge of petal
       geom_errorbar(aes(x = pos, ymin = score, ymax = score),
-                    size = 0.5, color = dark_line, show.legend = NA) +
+                    size = 0.5, color = dark_line, show.legend = NA) + #color = dark_line or light_line
       ## plot zero as a baseline:
       geom_errorbar(aes(x = pos, ymin = 0, ymax = 0),
                     size = 0.5, color = dark_line, show.legend = NA) +
@@ -268,6 +277,7 @@ PlotFlower <- function(region_plot     = NA,
       labs(title = str_replace_all(region_name, '-', ' - '))
 
 
+
     ### clean up the theme
     plot_obj <- plot_obj +
       ggtheme_plot() +
@@ -278,14 +288,21 @@ PlotFlower <- function(region_plot     = NA,
 
     ## add goal names
     plot_obj <- plot_obj +
-      geom_text(aes(label = name_flower, x = pos, y = 125), #>>>>source code - y=120 125 works
-                hjust = .5, vjust = .5,
-                size = 2.9, #>>>>source code - size=3
+      geom_text(aes(label = name_flower, x = pos, y = 125), #SKP: source y = 120 NB >125 does not plot
+                hjust = .5, vjust = .3, #SKP: source vjust = .5
+                size = 2.9, #SKP: source code size = 3
                 color = dark_line)
-
-
+########
+    ## SKP add goal scores
+    #round score data
+    plot_obj <- plot_obj +
+      geom_text(aes(label = paste("(",round(score),")",sep=""), x = pos, y = 125),
+                hjust = .5, vjust = 3,
+                size = 2.5,
+                color = dark_line)
+########
     ## position supra arc and names. x is angle, y is distance from center
-    supra_rad  <- 150  ## supra goal radius from center #>>>>source code - #145
+    supra_rad  <- 150  ## supra goal radius from center #SKP: source supra_rad  <- 145
 
     plot_obj <- plot_obj +
       ## add supragoal arcs
@@ -295,9 +312,8 @@ PlotFlower <- function(region_plot     = NA,
       geom_text(data = supra_df, inherit.aes = FALSE,
                 aes(label = name_supra, x = pos_supra, y = supra_rad, angle = myAng),
                 hjust = .5, vjust = .5,
-                size = 3, #>>>>source code - size=3
+                size = 3, #SKP: source size = 3
                 color = dark_line)
-
 
     ### display/save options: print to graphics, save to file
     print(plot_obj)
@@ -306,7 +322,7 @@ PlotFlower <- function(region_plot     = NA,
     ggsave(filename = fig_save,
            plot = plot_obj,
            device = "png",
-           height = 6, width = 8, units = 'in', dpi = 300) #>>>>source code - height=6 width=8 dpi=300
+           height = 6, width = 8, units = 'in', dpi = 300)
 
 
     ### ...then return the plot object for further use
@@ -319,9 +335,11 @@ PlotFlower <- function(region_plot     = NA,
 ggtheme_plot <- function(base_size = 9) {
   theme(axis.ticks = element_blank(),
         text             = element_text(family = 'Helvetica', color = 'gray30', size = base_size),
-        plot.title       = element_text(size = rel(3), hjust = 0.5, vjust=-2, face = 'bold'),
+        plot.title       = element_text(size = rel(2.5), hjust = 0.5, vjust=-2, face = 'bold'), #SKP source size = rel(3) hjust = 0.5
         panel.background = element_blank(),
         legend.position  = 'right',
+        #legend.position = c(1.1, 0.7), #SKP shift legend position up and right
+        #plot.margin = margin(0, 4, 0, 0, unit = "cm"), #SKP shift plot to left
         panel.border     = element_blank(),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_line(colour = 'grey90', size = .25),

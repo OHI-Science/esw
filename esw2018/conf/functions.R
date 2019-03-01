@@ -696,89 +696,109 @@ CP <- function(layers) {
 
 
 TR <- function(layers) {
-  ## formula:
-  ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
-  ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
-  ##  Xtr = E * S
-
-  pct_ref <- 90
-
+  
   scen_year <- layers$data$scenario_year
 
+#tourism
+  #read in layers
+  #note data not available after 2014 (scenario year 2015) - so trend needs to be calculated 2011 - 2015
+  tourism <- AlignDataYears(layer_nm = "tr_ons_1km", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, tr_ons = ons, scenario_year)
+  tourism <- tourism[order(tourism$region_id, tourism$scenario_year),]
 
-  ## read in layers
-
-  tourism <-
-    AlignDataYears(layer_nm = "tr_jobs_pct_tourism", layers_obj = layers) %>%
-    select(-layer_name)
-  sustain <-
-    AlignDataYears(layer_nm = "tr_sustainability", layers_obj = layers) %>%
-    select(-layer_name)
-
-  tr_data  <-
-    full_join(tourism, sustain, by = c('rgn_id', 'scenario_year'))
-
+  sustain <- AlignDataYears(layer_nm = "tr_ttci", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, TTCI, scenario_year)
+  sustain <- sustain[order(sustain$region_id, sustain$scenario_year),]
+  
+  tr_data  <- full_join(tourism, sustain, by = c('region_id', 'scenario_year'))
+  
   tr_model <- tr_data %>%
-    mutate(E   = Ep,
-           S   = (S_score - 1) / (7 - 1),
-           # scale score from 1 to 7.
-           Xtr = E * S)
+    mutate(tr = tr_ons,
+           s = (TTCI) / (6),
+           #scale TTCI score 0 - 1
+           str = tr * s)
 
+  #read in viewshed data
+  rgn_sv <- AlignDataYears(layer_nm = "tr_viewshed", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, perc_sv, scenario_year)
 
-  # regions with Travel Warnings
-  rgn_travel_warnings <-
-    AlignDataYears(layer_nm = "tr_travelwarnings", layers_obj = layers) %>%
-    select(-layer_name)
-
-  ## incorporate Travel Warnings
+  #incorporate viewshed data to model 
+  #remove NAs
   tr_model <- tr_model %>%
-    left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
-    mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
-    select(-multiplier)
+    left_join(rgn_sv, by = c('region_id', 'scenario_year')) %>%
+    na.omit()
+  tr_model$str_vs <- tr_model$str * (tr_model$perc_sv /100)
 
+  #Calculate status based on quantile reference (see function call for pct_ref)
+  #NB: DATA GROUPED BY SCENARIO YEAR AND QUANTILE CALCULATED ACROSS THIS GROUPING
+  #rescale data 0-1 using 99th quantile of regional data by year
+  #pct_ref <- 99
+  #tr_model <- tr_model %>%
+    #group_by(scenario_year) %>%
+    #mutate(str_vs_q = quantile(str_vs, probs = pct_ref / 100, na.rm = TRUE)) %>%
+    #mutate(status = ifelse(str_vs / str_vs_q > 1, 1, str_vs / str_vs_q)) %>% # rescale to qth percentile, cap at 1
+    #ungroup()
 
-  ### Calculate status based on quantile reference (see function call for pct_ref)
-  tr_model <- tr_model %>%
-    group_by(scenario_year) %>%
-    mutate(Xtr_q = quantile(Xtr, probs = pct_ref / 100, na.rm = TRUE)) %>%
-    mutate(status  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) %>% # rescale to qth percentile, cap at 1
-    ungroup()
-
-  # get status
-  tr_status <- tr_model %>%
-    filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, score = status) %>%
+  #rescale data 0-1 using 99th quantile of all data - as per China and Global model
+  q <- quantile(tr_model$str_vs, 0.99, na.rm = T)
+  fun = function(x){ifelse(x>q, 1, x/q)}
+  tr_model$status <- as.numeric(lapply(tr_model$str_vs, fun))
+  
+  #get status - select senario year 2015 as most current data values (data not updated after 2014)
+  status_1 <- tr_model %>%
+    filter(scenario_year == 2015) %>% 
+    select(region_id = region_id, score = status) %>%
     mutate(score = score * 100) %>%
     mutate(dimension = 'status')
 
+  #calculate trend
+  trend_years <- 2011:2015
+  trend_1 <- CalculateTrend(status_data = tr_model, trend_years = trend_years)
 
-  # calculate trend
-
-  trend_data <- tr_model %>%
-    filter(!is.na(status))
-
+#recreation
+  #read in modelled recreation data (status)
+  status_2 <- AlignDataYears(layer_nm = "tr_rec", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, score = mean_tscore, scenario_year) %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(dimension = "status") %>%
+    select(-scenario_year)
+  
+  #read in tourism and population data (ONS) calculate trend and aggregate (mean)
+  tour <- AlignDataYears(layer_nm = "tr_ons_all_LA", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = o_night_k, scenario_year) 
+  tour <- tour[order(tour$region_id, tour$scenario_year),]
+  
+  popn <- AlignDataYears(layer_nm = "tr_popn_LA", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = pop_n, scenario_year) 
+  popn <- popn[order(popn$region_id, popn$scenario_year),]
+  
+  trend_years <- 2011:2015
+  tour_trend <- CalculateTrend(status_data = tour, trend_years = trend_years)
+  
   trend_years <- (scen_year - 4):(scen_year)
+  popn_trend <- CalculateTrend(status_data = popn, trend_years = trend_years)
+  
+  trend_2 <- left_join(tour_trend, popn_trend, by = "region_id")
+  trend_2$score <- apply(cbind(trend_2$score.x, trend_2$score.y), 1, mean,  na.rm = T)
+  trend_2 <- dplyr::select(trend_2, "region_id", "score") %>%
+    mutate(dimension = "trend")
 
-  tr_trend <-
-    CalculateTrend(status_data = trend_data, trend_years = trend_years)
-
-
+  #aggregate status_1 and status_2
+  tr_status <- left_join(status_1, status_2, by = "region_id")
+  tr_status$score <- apply(cbind(tr_status$score.x, tr_status$score.y), 1, mean,  na.rm = T)
+  tr_status <- dplyr::select(tr_status, "region_id", "score") %>%
+    mutate(dimension = "status")
+  
+  #aggregate trend_1 and trend_2
+  tr_trend <- left_join(trend_1, trend_2, by = "region_id")
+  tr_trend$score <- apply(cbind(tr_trend$score.x, tr_trend$score.y), 1, mean,  na.rm = T)
+  tr_trend <- dplyr::select(tr_trend, "region_id", "score") %>%
+    mutate(dimension = "trend")
+  
   # bind status and trend by rows
   tr_score <- bind_rows(tr_status, tr_trend) %>%
     mutate(goal = 'TR')
-
-
-  # assign NA for uninhabitated islands
-  #if (conf$config$layer_region_labels == 'rgn_global') {
-    #unpopulated = layers$data$le_popn %>%
-      #group_by(rgn_id) %>%
-      #filter(count == 0) %>%
-      #select(region_id = rgn_id)
-    #tr_score$score = ifelse(tr_score$region_id %in% unpopulated$region_id,
-                            #NA,
-                            #tr_score$score)
-  #}
-
+  
   # return final scores
   scores <- tr_score %>%
     select(region_id, goal, dimension, score)
@@ -829,8 +849,8 @@ LIV <- function(layers){
       mutate(dimension = 'status', goal = 'LIV')
 
   # LIV trend
-  #trend_years <- (scen_year - 4):(scen_year) #2018 function - calculate trend over 5 years
-  trend_years <- (scen_year - 3):(scen_year) #due to data limitations trend for 2017 calculated over 4 years 
+  if (scen_year == 2018) {trend_years <- (scen_year - 4):(scen_year)} #2018 function - calculate trend over 5 years
+  if (scen_year == 2017) {trend_years <- (scen_year - 3):(scen_year)} #due to data limitations trend for 2017 calculated over 4 years 
   trend <- CalculateTrend(status_data = liv_status, trend_years = trend_years)
   trend <- trend %>%
     mutate(goal = "LIV")
