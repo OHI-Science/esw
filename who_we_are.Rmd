@@ -12,7 +12,7 @@ output:
 ----
 
 <img align="right" src="images/profile_Matt2.jpg" width="160px">
-<font size="3">[**Dr Matthew Witt**](https://biosciences.exeter.ac.uk/staff/index.php?web_id=matthew_witt) (project lead and geoinformatician) - _M.J.Witt@exeter.ac.uk_
+<font size="3">[**Dr Matthew Witt**](https://biosciences.exeter.ac.uk/staff/index.php?web_id=matthew_witt) (project lead and spatial ecologist) - _M.J.Witt@exeter.ac.uk_
 
 Matthew is a Senior Lecturer in Natural Environment. He has 15 years’ experience in marine vertebrate ecology and conservation, computational biology, spatial ecology, ecological modelling and satellite remote sensing. His research group works on issues of human-wildlife spatio-temporal conflict and marine sustainability with a strong focus on “big data” in the marine environment. 
 
@@ -39,17 +39,17 @@ Stephen is a marine spatial ecologist with expertise in dataset integration and 
 <br>
 <br>
 <img align="right" src="images/profile_Chris.JPG" width="160px">
-**Christopher Kerry** - (project officer) - _C.Kerry@exeter.ac.uk_
+**Christopher Kerry**  (project officer) - _C.Kerry@exeter.ac.uk_
 
-Chris is an experienced GIS specialist, he routinely works with geospatial data, dataset processing and the challenges of transposing data from aspatial to spatial formats. He is interested in utilising emerging technologies to study the spatial ecology of marine vertebrates and as a tool for fisheries management. Chris will be responsible for managing all datasets for the project. Chris and Stephen will also develop multiple iterations of OHI+ outputs for varying stakeholder-informed scenarios of targets and thresholds.
+Chris is an experienced GIS specialist, he routinely works with geospatial data, dataset processing and the challenges of transposing data from aspatial to spatial formats. He is interested in utilising emerging technologies to study the spatial ecology of marine vertebrates and as a tool for fisheries management. <br /> Chris will be responsible for managing all datasets for the project. Chris and Stephen will also develop <br /> multiple iterations of OHI+ outputs for varying stakeholder-informed scenarios of targets and thresholds.
 
 <br>
 <br>
 <br>
 <img align="right" src="images/profile_Owen.jpg" width="160px">
-**Owen Exeter** - (project officer) – _O.Exeter@exeter.ac.uk_
+**Owen Exeter** (project officer) – _O.Exeter@exeter.ac.uk_
 
-Owen has an interdisciplinary research background with experience in GIS, decision support software and stakeholder engagement. His previous research focused on combining socioeconomic and ecological data to inform marine spatial planning in data poor regions. Owen will be responsible for sourcing and processing data, eliciting stakeholder input and ensuring iterative developments of OHI+ indicators are tailored to the southwest region.
+Owen has an interdisciplinary research background with experience in GIS, decision support software and stakeholder engagement. His previous research focused on combining socioeconomic and ecological data <br /> to inform marine spatial planning in data poor regions. Owen will be responsible for sourcing and processing data, eliciting stakeholder input and ensuring iterative developments of OHI+ indicators are tailored to the southwest region.
 
 
 
