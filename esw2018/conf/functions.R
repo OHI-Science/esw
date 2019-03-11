@@ -7,13 +7,13 @@ FIS <- function(layers) {
   scen_year <- layers$data$scenario_year
   
   #catch data
-  c <- AlignDataYears(layer_nm = "fis_ICESCatchDataset2006_2016", layers_obj = layers) %>%
+  c <- AlignDataYears(layer_nm = "fis_ICESCatchDataset2006_2016_mean_catch", layers_obj = layers) %>%
     select(
       region_id = rgn_id,
       year = scenario_year,
       stock_id,
       taxon_penalty_code,
-      catch = rgn_catch_T
+      catch = mean_catch
     )
   
   #  b_bmsy data
@@ -382,43 +382,62 @@ FP <- function(layers, scores) {
 
 
 AO <- function(layers) {
-  Sustainability <- 1.0
-
+  
   scen_year <- layers$data$scenario_year
+  
+  ao_status <- AlignDataYears(layer_nm = "ao_status", layers_obj = layers) %>%
+    filter(scenario_year == scen_year) %>%
+    select(region_id = rgn_id, score = status) %>%
+    mutate(dimension = 'status', goal = 'AO')
+  
+  ao_trend <- AlignDataYears(layer_nm = "ao_trend", layers_obj = layers) %>%
+    filter(scenario_year == scen_year) %>%
+    select(region_id = rgn_id, score = trend) %>%
+    mutate(dimension = 'trend', goal = 'AO')
+  
+  # return scores
+  ao_scores <- rbind(ao_status, ao_trend)
+  return(ao_scores)
+  
+  #########SOURCE CODE
+  #Sustainability <- 1.0
 
-  r <- AlignDataYears(layer_nm = "ao_access", layers_obj = layers) %>%
-    rename(region_id = rgn_id, access = value) %>%
-    na.omit()
+  #scen_year <- layers$data$scenario_year
 
-  ry <-
-    AlignDataYears(layer_nm = "ao_need", layers_obj = layers) %>%
-    rename(region_id = rgn_id, need = value) %>%
-    left_join(r, by = c("region_id", "scenario_year"))
+  #r <- AlignDataYears(layer_nm = "ao_access", layers_obj = layers) %>%
+    #rename(region_id = rgn_id, access = value) %>%
+    #na.omit()
+
+  #ry <-
+    #AlignDataYears(layer_nm = "ao_need", layers_obj = layers) %>%
+    #rename(region_id = rgn_id, need = value) %>%
+    #left_join(r, by = c("region_id", "scenario_year"))
 
   # model
-  ry <- ry %>%
-    mutate(Du = (1 - need) * (1 - access)) %>%
-    mutate(status = (1 - Du) * Sustainability)
+  #ry <- ry %>%
+    #mutate(Du = (1 - need) * (1 - access)) %>%
+    #mutate(status = (1 - Du) * Sustainability)
 
   # status
-  r.status <- ry %>%
-    filter(scenario_year == scen_year) %>%
-    select(region_id, status) %>%
-    mutate(status = status * 100) %>%
-    select(region_id, score = status) %>%
-    mutate(dimension = 'status')
+  #r.status <- ry %>%
+    #filter(scenario_year == scen_year) %>%
+    #select(region_id, status) %>%
+    #mutate(status = status * 100) %>%
+    #select(region_id, score = status) %>%
+    #mutate(dimension = 'status')
 
   # trend
 
-  trend_years <- (scen_year - 4):(scen_year)
+  #trend_years <- (scen_year - 4):(scen_year)
 
-  r.trend <- CalculateTrend(status_data = ry, trend_years = trend_years)
+  #r.trend <- CalculateTrend(status_data = ry, trend_years = trend_years)
 
   # return scores
-  scores <- rbind(r.status, r.trend) %>%
-    mutate(goal = 'AO')
+  #scores <- rbind(r.status, r.trend) %>%
+    #mutate(goal = 'AO')
 
-  return(scores)
+  #return(scores)
+  #########END
 }
 
 
@@ -446,84 +465,81 @@ CS <- function(layers) {
 
   # layers for carbon storage
   extent_lyrs <-
-    c('hab_mangrove_extent',
+    c(
       'hab_seagrass_extent',
-      'hab_saltmarsh_extent')
-  
-health_lyrs <-
-    c('hab_mangrove_health',
+      'hab_saltmarsh_extent'
+    )
+  health_lyrs <-
+    c(
       'hab_seagrass_health',
-      'hab_saltmarsh_health')
-  trend_lyrs <-
-    c('hab_mangrove_trend',
-      'hab_seagrass_trend',
-      'hab_saltmarsh_trend')
-  # get data together:
+      'hab_saltmarsh_health'
+    )
+  
+  #get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
-    filter(!(habitat %in% c(
-      "mangrove_inland1km", "mangrove_offshore"
-    ))) %>%
     filter(scenario_year == scen_year) %>%
     select(region_id = rgn_id, habitat, extent = km2) %>%
     mutate(habitat = as.character(habitat))
-
+  
   health <- AlignManyDataYears(health_lyrs) %>%
-    filter(!(habitat %in% c(
-      "mangrove_inland1km", "mangrove_offshore"
-    ))) %>%
     filter(scenario_year == scen_year) %>%
     select(region_id = rgn_id, habitat, health) %>%
     mutate(habitat = as.character(habitat))
-
-  trend <- AlignManyDataYears(trend_lyrs) %>%
-    filter(!(habitat %in% c(
-      "mangrove_inland1km", "mangrove_offshore"
-    ))) %>%
-    filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, habitat, trend) %>%
-    mutate(habitat = as.character(habitat))
-
-  ## join layer data
+  
+  #join extent and health
   d <-  extent %>%
-    full_join(health, by = c("region_id", "habitat")) %>%
-    full_join(trend, by = c("region_id", "habitat"))
+    full_join(health, by = c("region_id", "habitat")) 
+  
+  #set ranks for each habitat
+  habitat.rank <- c('saltmarsh' = 210,
+                    'seagrass' = 83)  
 
-  ## set ranks for each habitat
-  habitat.rank <- c('mangrove'         = 139,
-                    'saltmarsh'        = 210,
-                    'seagrass'         = 83)
-
-  ## limit to CS habitats and add rank
+  #add rank
   d <- d %>%
     mutate(rank = habitat.rank[habitat],
            extent = ifelse(extent == 0, NA, extent))
-
-  # status
-  status <- d %>%
-    filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
+  
+  #status
+  status_CS <- d %>%
+    filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>% 
     group_by(region_id) %>%
-    summarize(score = pmin(1, sum(rank * health * extent, na.rm = TRUE) / (sum(
-      extent * rank, na.rm = TRUE
-    ))) * 100,
-    dimension = 'status') %>%
-    ungroup()
+    summarize(score = pmin(1, sum(rank * health * extent, na.rm = TRUE) /(sum(extent * rank, na.rm = TRUE))) * 100) %>%
+    mutate(dimension = 'status')
 
-  # trend
-
-  trend <- d %>%
-    filter(!is.na(rank) & !is.na(trend) & !is.na(extent)) %>%
+  #trend
+  #trend calculation for saltmarsh
+  #trend read in for seagrass (this should be updated)
+  
+  sm_health <- AlignDataYears(layer_nm = "hab_saltmarsh_health", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = health, scenario_year)
+  sm_health <- sm_health[order(sm_health$region_id, sm_health$scenario_year),]
+  trend_years <- (scen_year-4):(scen_year)
+  sm_trend <- CalculateTrend(status_data = sm_health, trend_years = trend_years)
+  sm_trend <- sm_trend %>% 
+    mutate(habitat = "saltmarsh") %>% 
+    select(region_id, habitat, trend = score)
+  
+  sg_trend <- AlignDataYears(layer_nm = "hab_seagrass_trend", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, trend, scenario_year) %>% 
+    filter(scenario_year == scen_year) %>% 
+    mutate(habitat = "seagrass") %>% 
+    select(region_id, habitat, trend)
+  
+  hab_trend <- rbind(sm_trend, sg_trend)
+  d <- left_join(d, hab_trend, c("region_id", "habitat"))
+  
+  #trend
+  trend_CS <- d %>%
     group_by(region_id) %>%
-    summarize(score = sum(rank * trend * extent, na.rm = TRUE) / (sum(extent *
-                                                                        rank, na.rm = TRUE)),
-              dimension = 'trend') %>%
-    ungroup()
-
-
-  scores_CS <- rbind(status, trend)  %>%
+    summarize(score = sum(rank * trend * extent, na.rm = TRUE) / (sum(extent * rank, na.rm = TRUE))) %>% 
+    mutate(dimension = "trend") 
+  
+  #finalize scores_CS
+  scores_CS <- rbind(status_CS, trend_CS) %>%
     mutate(goal = 'CS') %>%
-    select(goal, dimension, region_id, score)
+    select(region_id, goal, dimension, score)
 
-  ## create weights file for pressures/resilience calculations
+  #create weights file for pressures/resilience calculations
   weights <- extent %>%
     filter(extent > 0) %>%
     mutate(rank = habitat.rank[habitat]) %>%
@@ -539,141 +555,105 @@ health_lyrs <-
 
   layers$data$element_wts_cs_km2_x_storage <- weights
 
-
   # return scores
   return(scores_CS)
 }
 
 
 CP <- function(layers) {
-  ## read in layers
-  scen_year <- layers$data$scenario_year
+  
+scen_year <- layers$data$scenario_year
 
-  # layers for coastal protection
+  #layers for coastal protection
   extent_lyrs <-
     c(
-      'hab_mangrove_extent',
       'hab_seagrass_extent',
       'hab_saltmarsh_extent',
-      'hab_coral_extent',
-      'hab_seaice_extent'
+      'hab_sand_dune_extent'
     )
   health_lyrs <-
     c(
-      'hab_mangrove_health',
       'hab_seagrass_health',
       'hab_saltmarsh_health',
-      'hab_coral_health',
-      'hab_seaice_health'
-    )
-  trend_lyrs <-
-    c(
-      'hab_mangrove_trend',
-      'hab_seagrass_trend',
-      'hab_saltmarsh_trend',
-      'hab_coral_trend',
-      'hab_seaice_trend'
+      'hab_sand_dune_health'
     )
 
-  # get data together:
+  #get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
-    filter(!(habitat %in% "seaice_edge")) %>%
     filter(scenario_year == scen_year) %>%
     select(region_id = rgn_id, habitat, extent = km2) %>%
     mutate(habitat = as.character(habitat))
 
   health <- AlignManyDataYears(health_lyrs) %>%
-    filter(!(habitat %in% "seaice_edge")) %>%
     filter(scenario_year == scen_year) %>%
     select(region_id = rgn_id, habitat, health) %>%
     mutate(habitat = as.character(habitat))
 
-  trend <- AlignManyDataYears(trend_lyrs) %>%
-    filter(!(habitat %in% "seaice_edge")) %>%
-    filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, habitat, trend) %>%
-    mutate(habitat = as.character(habitat))
-
-  ## sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend
-  mangrove_extent <- extent %>%
-    filter(habitat %in% c('mangrove_inland1km', 'mangrove_offshore'))
-
-  if (nrow(mangrove_extent) > 0) {
-    mangrove_extent <- mangrove_extent %>%
-      group_by(region_id) %>%
-      summarize(extent = sum(extent, na.rm = TRUE)) %>%
-      mutate(habitat = 'mangrove') %>%
-      ungroup()
-  }
-
-  extent <- extent %>%
-    filter(!habitat %in% c('mangrove', 'mangrove_inland1km', 'mangrove_offshore')) %>%  #do not use all mangrove
-    rbind(mangrove_extent)  #just the inland 1km and offshore
-
-  ## join layer data
+  #join extent and health
   d <-  extent %>%
-    full_join(health, by = c("region_id", "habitat")) %>%
-    full_join(trend, by = c("region_id", "habitat"))
+    full_join(health, by = c("region_id", "habitat")) 
 
-  ## set ranks for each habitat
+  #set ranks for each habitat
   habitat.rank <- c(
-    'coral'            = 4,
-    'mangrove'         = 4,
-    'saltmarsh'        = 3,
-    'seagrass'         = 1,
-    'seaice_shoreline' = 4
+    'sand dune' = 3,
+    'saltmarsh' = 3,
+    'seagrass' = 1
   )
 
-  ## limit to CP habitats and add rank
+  #add rank
   d <- d %>%
-    filter(habitat %in% names(habitat.rank)) %>%
     mutate(rank = habitat.rank[habitat],
            extent = ifelse(extent == 0, NA, extent))
 
-
-  # status
-  scores_CP <- d %>%
-    filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
+  #status
+  status_CP <- d %>%
+    filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>% 
     group_by(region_id) %>%
-    summarize(score = pmin(1, sum(rank * health * extent, na.rm = TRUE) /
-                             (sum(
-                               extent * rank, na.rm = TRUE
-                             ))) * 100) %>%
-    mutate(dimension = 'status') %>%
-    ungroup()
-
-  # trend
-  d_trend <- d %>%
-    filter(!is.na(rank) & !is.na(trend) & !is.na(extent))
-
-  if (nrow(d_trend) > 0) {
-    scores_CP <- dplyr::bind_rows(
-      scores_CP,
-      d_trend %>%
-        group_by(region_id) %>%
-        summarize(
-          score = sum(rank * trend * extent, na.rm = TRUE) / (sum(extent * rank, na.rm =
-                                                                    TRUE)),
-          dimension = 'trend'
-        )
-    )
-  } else {
-    # if no trend score, assign NA
-    scores_CP <- dplyr::bind_rows(scores_CP,
-                                  d %>%
-                                    group_by(rgn_id) %>%
-                                    summarize(score = NA,
-                                              dimension = 'trend'))
-  }
-
-  ## finalize scores_CP
-  scores_CP <- scores_CP %>%
+    summarize(score = pmin(1, sum(rank * health * extent, na.rm = TRUE) /(sum(extent * rank, na.rm = TRUE))) * 100) %>%
+    mutate(dimension = 'status')
+  
+  #trend calculation for saltmarsh and sand dune condition
+  #trend read in for seagrass (this should be updated)
+  
+  sm_health <- AlignDataYears(layer_nm = "hab_saltmarsh_health", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = health, scenario_year)
+  sm_health <- sm_health[order(sm_health$region_id, sm_health$scenario_year),]
+  trend_years <- (scen_year-4):(scen_year)
+  sm_trend <- CalculateTrend(status_data = sm_health, trend_years = trend_years)
+  sm_trend <- sm_trend %>% 
+    mutate(habitat = "saltmarsh") %>% 
+    select(region_id, habitat, trend = score)
+  
+  sd_health <- AlignDataYears(layer_nm = "hab_sand_dune_health", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = health, scenario_year)
+  sd_health <- sd_health[order(sd_health$region_id, sd_health$scenario_year),]
+  trend_years <- (scen_year-4):(scen_year)
+  sd_trend <- CalculateTrend(status_data = sd_health, trend_years = trend_years)
+  sd_trend <- sd_trend %>% 
+    mutate(habitat = "sand dune") %>% 
+    select(region_id, habitat, trend = score)
+  
+  sg_trend <- AlignDataYears(layer_nm = "hab_seagrass_trend", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, trend, scenario_year) %>% 
+    filter(scenario_year == scen_year) %>% 
+    mutate(habitat = "seagrass") %>% 
+    select(region_id, habitat, trend)
+  
+  hab_trend <- rbind(sm_trend, sd_trend, sg_trend)
+  d <- left_join(d, hab_trend, c("region_id", "habitat"))
+  
+  #trend
+  trend_CP <- d %>%
+    group_by(region_id) %>%
+    summarize(score = sum(rank * trend * extent, na.rm = TRUE) / (sum(extent * rank, na.rm = TRUE))) %>% 
+    mutate(dimension = "trend") 
+  
+  #finalize scores_CP
+  scores_CP <- rbind(status_CP, trend_CP) %>%
     mutate(goal = 'CP') %>%
     select(region_id, goal, dimension, score)
 
-
-  ## create weights file for pressures/resilience calculations
-
+  #create weights file for pressures/resilience calculations
   weights <- extent %>%
     filter(extent > 0) %>%
     mutate(rank = habitat.rank[habitat]) %>%
@@ -689,7 +669,7 @@ CP <- function(layers) {
 
   layers$data$element_wts_cp_km2_x_protection <- weights
 
-  # return scores
+  #return scores
   return(scores_CP)
 
 }
@@ -1019,8 +999,8 @@ LSP <- function(layers) {
   
   scen_year <- layers$data$scenario_year
 
-  ref_pct_cmpa <- 30
-  ref_pct_cpa <- 30
+  ref_pct_cmpa <- 100
+  ref_pct_cpa <- 100
 
   # select data
   total_area <-
@@ -1240,38 +1220,25 @@ CW <- function(layers) {
 }
 
 HAB <- function(layers) {
+  
   scen_year <- layers$data$scenario_year
 
-
+  #note: extent not used to calculate HAB goal score - but used to determine if health is included by rgn
   extent_lyrs <-
     c(
-      'hab_mangrove_extent',
       'hab_seagrass_extent',
       'hab_saltmarsh_extent',
-      'hab_coral_extent',
-      'hab_seaice_extent',
-      'hab_softbottom_extent'
+      'hab_ccms_extent'
     )
+  
   health_lyrs <-
     c(
-      'hab_mangrove_health',
       'hab_seagrass_health',
       'hab_saltmarsh_health',
-      'hab_coral_health',
-      'hab_seaice_health',
-      'hab_softbottom_health'
-    )
-  trend_lyrs <-
-    c(
-      'hab_mangrove_trend',
-      'hab_seagrass_trend',
-      'hab_saltmarsh_trend',
-      'hab_coral_trend',
-      'hab_seaice_trend',
-      'hab_softbottom_trend'
+      'hab_ccms_trawl_int'
     )
 
-  # get data together:
+  #get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
     filter(scenario_year == scen_year) %>%
     select(region_id = rgn_id, habitat, extent = km2) %>%
@@ -1282,73 +1249,63 @@ HAB <- function(layers) {
     select(region_id = rgn_id, habitat, health) %>%
     mutate(habitat = as.character(habitat))
 
-  trend <- AlignManyDataYears(trend_lyrs) %>%
-    filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, habitat, trend) %>%
-    mutate(habitat = as.character(habitat))
-
-
-  # join and limit to HAB habitats
+  #join extent and health
   d <- health %>%
-    full_join(trend, by = c('region_id', 'habitat')) %>%
     full_join(extent, by = c('region_id', 'habitat')) %>%
-    filter(
-      habitat %in% c(
-        'coral',
-        'mangrove',
-        'saltmarsh',
-        'seaice_edge',
-        'seagrass',
-        'soft_bottom'
-      )
-    ) %>%
     mutate(w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
     filter(!is.na(w))
 
-  if (sum(d$w %in% 1 & is.na(d$trend)) > 0) {
-    warning(
-      "Some regions/habitats have extent data, but no trend data.  Consider estimating these values."
-    )
-  }
-
-  if (sum(d$w %in% 1 & is.na(d$health)) > 0) {
-    warning(
-      "Some regions/habitats have extent data, but no health data.  Consider estimating these values."
-    )
-  }
-
-
-  ## calculate scores
-  status <- d %>%
+  #calculate scores
+  status_HAB <- d %>%
     group_by(region_id) %>%
     filter(!is.na(health)) %>%
-    summarize(score = pmin(1, sum(health) / sum(w)) * 100,
-              dimension = 'status') %>%
-    ungroup()
-
-  trend <- d %>%
+    summarize(score = pmin(1, sum(health) / sum(w)) * 100, dimension = 'status')
+  
+  #trend calculation for saltmarsh and ccms
+  #trend read in for seagrass (this should be updated)
+  sm_health <- AlignDataYears(layer_nm = "hab_saltmarsh_health", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = health, scenario_year)
+  sm_health <- sm_health[order(sm_health$region_id, sm_health$scenario_year),]
+  trend_years <- (scen_year-4):(scen_year)
+  sm_trend <- CalculateTrend(status_data = sm_health, trend_years = trend_years)
+  sm_trend <- sm_trend %>% 
+    mutate(habitat = "saltmarsh") %>% 
+    select(region_id, habitat, trend = score)
+  
+  ccms_health <- AlignDataYears(layer_nm = "hab_ccms_trawl_int", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = health, scenario_year)
+  ccms_health <- ccms_health[order(ccms_health$region_id, ccms_health$scenario_year),]
+  trend_years <- (2013):(2017) # data limited to 2012 - 2016
+  ccms_trend <- CalculateTrend(status_data = ccms_health, trend_years = trend_years)
+  ccms_trend <- ccms_trend %>% 
+    mutate(habitat = "ccms") %>% 
+    select(region_id, habitat, trend = score)
+  
+  sg_trend <- AlignDataYears(layer_nm = "hab_seagrass_trend", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, trend, scenario_year) %>% 
+    filter(scenario_year == scen_year) %>% 
+    mutate(habitat = "seagrass") %>% 
+    select(region_id, habitat, trend)
+  
+  hab_trend <- rbind(sm_trend, ccms_trend, sg_trend)
+  d <- left_join(d, hab_trend, c("region_id", "habitat"))
+  
+  trend_HAB <- d %>%
     group_by(region_id) %>%
     filter(!is.na(trend)) %>%
-    summarize(score =  sum(trend) / sum(w),
-              dimension = 'trend')  %>%
-    ungroup()
+    summarize(score =  sum(trend) / sum(w), dimension = 'trend')  
 
-  scores_HAB <- rbind(status, trend) %>%
+  scores_HAB <- rbind(status_HAB, trend_HAB) %>%
     mutate(goal = "HAB") %>%
     select(region_id, goal, dimension, score)
-
-
-  ## create weights file for pressures/resilience calculations
-
+  
+  #create weights file for pressures/resilience calculations
   weights <- extent %>%
     filter(
       habitat %in% c(
         'seagrass',
         'saltmarsh',
-        'mangrove',
-        'coral',
-        'seaice_edge',
-        'soft_bottom'
+        'ccms'
       )
     ) %>%
     filter(extent > 0) %>%
@@ -1362,19 +1319,18 @@ HAB <- function(layers) {
 
   layers$data$element_wts_hab_pres_abs <- weights
 
-
-  # return scores
+  #return scores
   return(scores_HAB)
 }
 
 
 SPP <- function(layers) {
+  
   scores <- rbind(layers$data$spp_status, layers$data$spp_trend) %>%
     mutate(goal = 'SPP') %>%
     mutate(dimension = ifelse(layer == "spp_status", "status", "trend")) %>%
     mutate(score = ifelse(dimension == 'status', score * 100, score)) %>%
     select(region_id = rgn_id, goal, dimension, score)
-
 
   return(scores)
 }

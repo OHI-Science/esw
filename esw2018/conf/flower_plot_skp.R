@@ -154,13 +154,18 @@ PlotFlower <- function(region_plot     = NA,
   dark_fill  <- 'grey22'
 
 
-  ## Mel's color palette ----
+  #color palette
   reds <-  grDevices::colorRampPalette(
-    c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"),
-    space="Lab")(50) #65
+    c("#A50026", "#F46D43", "#FEE090"), space="Lab")(50) #source: #65 #c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090")
   blues <-  grDevices::colorRampPalette(
-    c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(50) #35
+    c("#E0F3F8", "#74ADD1", "#313695"))(50) #source: #35 #c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695")
   myPalette <-   c(reds, blues)
+  #reds <-  grDevices::colorRampPalette(c("#FEE090", "#F46D43", "#A50026"), space="Lab")(50)
+  #myPalette <- reds
+  #blues <-  grDevices::colorRampPalette(c("#E0F3F8", "#74ADD1", "#313695"))(50)
+  #myPalette <- blues
+  #grey <-  grDevices::colorRampPalette(c("grey90", "grey50", "grey10"))(50)
+  #myPalette <- grey
 
   ## filenaming for labeling and saving ----
   region_names_all <- bind_rows(
@@ -222,7 +227,6 @@ PlotFlower <- function(region_plot     = NA,
         arrange(pos)
     }
 
-
     ## set up basic plot parameters ----
     plot_obj <- ggplot(data = plot_df,
                        aes(x = pos, y = score, fill = score, width = weight))
@@ -264,7 +268,6 @@ PlotFlower <- function(region_plot     = NA,
                                              is.data.frame(goal_labels),
                                            150, 100)))
 
-
     ## add center number and title
     plot_obj <- plot_obj +
       geom_text(data = score_index,
@@ -275,8 +278,6 @@ PlotFlower <- function(region_plot     = NA,
                 size = 12,
                 color = dark_line) +
       labs(title = str_replace_all(region_name, '-', ' - '))
-
-
 
     ### clean up the theme
     plot_obj <- plot_obj +
@@ -323,7 +324,6 @@ PlotFlower <- function(region_plot     = NA,
            plot = plot_obj,
            device = "png",
            height = 6, width = 8, units = 'in', dpi = 300)
-
 
     ### ...then return the plot object for further use
     # return(invisible(plot_obj)) ## can't return with this for loop
