@@ -49,7 +49,7 @@ Chris is an experienced GIS specialist, he routinely works with geospatial data,
 <img align="right" src="images/profile_Owen.jpg" width="160px">
 **Owen Exeter** (project officer) – _O.Exeter@exeter.ac.uk_
 
-Owen has an interdisciplinary research background with experience in GIS, decision support software and stakeholder engagement. His previous research focused on combining socioeconomic and ecological data <br /> to inform marine spatial planning in data poor regions. Owen will be responsible for sourcing and processing data, eliciting stakeholder input and ensuring iterative developments of OHI+ indicators are tailored to the southwest region.
+Owen has an interdisciplinary research background with experience in GIS, decision support software and stakeholder engagement. His previous research focused on combining socioeconomic and ecological data <br /> to inform marine spatial planning in data poor regions. Owen will be responsible for sourcing and processing data, eliciting stakeholder input and ensuring iterative developments of OHI+ indicators are tailored to the South West region.
 
 
 
