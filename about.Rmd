@@ -40,5 +40,17 @@ There is the potential for OHI assessments to continue or expand to other region
 
 
 
+<font size="4"> **Project Governance**
 
+<font size="3">The project is advised by a group of regionally relevant organisations that are either data custodians or have mandates likely to facilitate the successful delivery of the project. Representatives have been identified from the following Government departments and Non-Government groups:
 
+Cornwall Council - https://www.cornwall.gov.uk/ <br /> 
+Cornwall Wildlife Trust - https://www.cornwallwildlifetrust.org.uk/ <br /> 
+Devon Wildlife Trust - https://www.devonwildlifetrust.org/  <br /> 
+Isles of Scilly Inshore Fisheries and Conservation Authority - https://www.scillyifca.gov.uk/ <br /> 
+Marine Management Organisation - https://www.gov.uk/government/organisations/marine-management-organisation <br /> 
+Natural England - https://www.gov.uk/government/organisations/natural-england <br /> 
+South West Marine Ecosystems - https://swmecosystems.co.uk/ 
+
+<br>
+<center><img src="images/logo_all.JPG" width="1000px"></center>

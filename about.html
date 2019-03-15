@@ -97,6 +97,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -111,7 +114,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -131,6 +133,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,18 +191,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -227,6 +325,13 @@ $(document).ready(function () {
 <p><font size="4"> <strong>Future assessments</strong></p>
 <p><font size="3">This study aims to provide an initial baseline characterisation of marine health for the South West region. Once operational, OHI assessments can be updated annually or on other management time frames with less effort than its initial development. This is because all analysis is done with open source collaborative software (R, RStudio, Git, GitHub) and can be updated with the most recent data.</p>
 <p>There is the potential for OHI assessments to continue or expand to other regions, with the ongoing support from marine management agencies and stakeholders.</p>
+<p><font size="4"> <strong>Project Governance</strong></p>
+<p><font size="3">The project is advised by a group of regionally relevant organisations that are either data custodians or have mandates likely to facilitate the successful delivery of the project. Representatives have been identified from the following Government departments and Non-Government groups:</p>
+<p>Cornwall Council - <a href="https://www.cornwall.gov.uk/" class="uri">https://www.cornwall.gov.uk/</a> <br /> Cornwall Wildlife Trust - <a href="https://www.cornwallwildlifetrust.org.uk/" class="uri">https://www.cornwallwildlifetrust.org.uk/</a> <br /> Devon Wildlife Trust - <a href="https://www.devonwildlifetrust.org/" class="uri">https://www.devonwildlifetrust.org/</a> <br /> Isles of Scilly Inshore Fisheries and Conservation Authority - <a href="https://www.scillyifca.gov.uk/" class="uri">https://www.scillyifca.gov.uk/</a> <br /> Marine Management Organisation - <a href="https://www.gov.uk/government/organisations/marine-management-organisation" class="uri">https://www.gov.uk/government/organisations/marine-management-organisation</a> <br /> Natural England - <a href="https://www.gov.uk/government/organisations/natural-england" class="uri">https://www.gov.uk/government/organisations/natural-england</a> <br /> South West Marine Ecosystems - <a href="https://swmecosystems.co.uk/" class="uri">https://swmecosystems.co.uk/</a></p>
+<br>
+<center>
+<img src="images/logo_all.jpg" width="1000px">
+</center>
 
 
 
