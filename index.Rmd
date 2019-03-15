@@ -23,8 +23,7 @@ For further information please visit our [FAQ](http://ohi-science.org/esw/faq.ht
 
 ----
 
+<img align="left" src="images/university.png" width="120px">
 
-<img align="left" src="images/ohi-logo.png" width="100px">
-
-<img align="right" src="images/UoE_logo.jpg" width="100px">
+<img align="right" src="images/emff_logo.png" width="80px">
 
