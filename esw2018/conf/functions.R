@@ -214,7 +214,7 @@ FIS <- function(layers) {
 
 
 MAR <- function(layers) {
-  #note - harvest data 1984 to 2010 - watch trend calculation
+  #note - harvest data 1984 to 2010
   scen_year <- layers$data$scenario_year
   
   harvest_tonnes <-
@@ -243,7 +243,7 @@ MAR <- function(layers) {
   m <- m %>%
     mutate(sust_tonnes = rgn_prod_T * wq_rg_sp)
   
-  # aggregate per region, and divide by region coastal length
+  #aggregate per region, and divide by region coastal length
   ry = m %>%
     group_by(rgn_id, scenario_year) %>%
     summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
@@ -251,16 +251,18 @@ MAR <- function(layers) {
     mutate(mar_cst = sust_tonnes_sum / c_lngth_km) %>%
     ungroup()
   
-  # get reference quantile based on argument years
+  #extract last 5 years of data (note: data not updated after 2010 so data years: 2006-2010)
+  ry <- ry %>% 
+    filter(scenario_year >= 2006 & scenario_year <= 2010)
   
-  ref_95pct <- quantile(ry$mar_cst, 0.95, na.rm = TRUE)
+  #get reference quantile based on max regional value for last 5 years data 
+  ref_99pct <- quantile(ry$mar_cst, 0.99, na.rm = TRUE)
   
   ry = ry %>%
-    mutate(status = ifelse(mar_cst / ref_95pct > 1,
-                           1,
-                           mar_cst / ref_95pct))
+    mutate(status = ifelse(mar_cst / ref_99pct > 1, 1, mar_cst / ref_99pct))
+  
   status <- ry %>%
-    filter(scenario_year == scen_year) %>%
+    filter(scenario_year == 2010) %>% #2010 - last year of data
     mutate(dimension = "status") %>%
     select(region_id = rgn_id, score = status, dimension) %>%
     mutate(score = round(score * 100, 2))
@@ -269,10 +271,8 @@ MAR <- function(layers) {
   status <- rbind(status, c(4, 0, "status"))
   status <- status[order(status$region_id),]
   
-  # calculate trend
-  #watch trend years here - need to calcculate trend on data prior to 2010
-  #no trend in data after 2010
-  #trend_years <- (scen_year - 4):(scen_year)
+  #calculate trend
+  #need to calculate trend on data prior to 2010
   trend_years <- (2010 - 4):(2010)
   
   trend <- CalculateTrend(status_data = ry, trend_years = trend_years)
@@ -383,61 +383,94 @@ FP <- function(layers, scores) {
 
 AO <- function(layers) {
   
+  #calculate status scores for 4 inputs
+  #effort - to add - trend?
+  #trend for fleet size and fuel
+  #tend 0 for access
+  
   scen_year <- layers$data$scenario_year
   
-  ao_status <- AlignDataYears(layer_nm = "ao_status", layers_obj = layers) %>%
+  #access - no need to rescale 0-1 (100) as already a percentage of accessible coast
+  access_status <- AlignDataYears(layer_nm = "ao_access", layers_obj = layers) %>%
     filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, score = status) %>%
-    mutate(dimension = 'status', goal = 'AO')
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id = rgn_id, score = access_perc, dimension)
   
-  ao_trend <- AlignDataYears(layer_nm = "ao_trend", layers_obj = layers) %>%
+  region_id <- c(1:6)
+  score <- 0
+  dimension <- "trend"
+  access_trend <- data.frame(region_id, score, dimension)
+  
+  #fleet size
+  fleet <- AlignDataYears(layer_nm = "ao_fleet_size", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = boats, scenario_year)
+  
+  #select last 5 years of data - rescale - select current year for status
+  fleet_status <- fleet %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4) %>%
+    mutate(dimension = "status") %>%
+    mutate(score = (status / max(status)) * 100) %>% 
+    filter(scenario_year == scen_year) %>% 
+    dplyr::select(region_id, score, dimension)
+  
+  trend_years <- (scen_year - 4):(scen_year)
+  fleet_trend <- CalculateTrend(status_data = fleet, trend_years = trend_years)
+  
+  #red diesel
+  red <- AlignDataYears(layer_nm = "ao_fuel_cost", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = cost_ppl, scenario_year)
+  
+  #select last 5 years of data - rescale and invert (high score = low fuel price) - select current year for status
+  red_status <- red %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4) %>%
+    mutate(status = (1 - status/max(status)) * 100) %>% 
     filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, score = trend) %>%
-    mutate(dimension = 'trend', goal = 'AO')
+    mutate(dimension = "status") %>%
+    dplyr::select(region_id, score = status, dimension)
   
-  # return scores
-  ao_scores <- rbind(ao_status, ao_trend)
-  return(ao_scores)
+  trend_years <- (scen_year - 4):(scen_year)
+  red_trend <- CalculateTrend(status_data = red, trend_years = trend_years)
   
-  #########SOURCE CODE
-  #Sustainability <- 1.0
-
-  #scen_year <- layers$data$scenario_year
-
-  #r <- AlignDataYears(layer_nm = "ao_access", layers_obj = layers) %>%
-    #rename(region_id = rgn_id, access = value) %>%
-    #na.omit()
-
-  #ry <-
-    #AlignDataYears(layer_nm = "ao_need", layers_obj = layers) %>%
-    #rename(region_id = rgn_id, need = value) %>%
-    #left_join(r, by = c("region_id", "scenario_year"))
-
-  # model
-  #ry <- ry %>%
-    #mutate(Du = (1 - need) * (1 - access)) %>%
-    #mutate(status = (1 - Du) * Sustainability)
-
-  # status
-  #r.status <- ry %>%
-    #filter(scenario_year == scen_year) %>%
-    #select(region_id, status) %>%
-    #mutate(status = status * 100) %>%
-    #select(region_id, score = status) %>%
-    #mutate(dimension = 'status')
-
-  # trend
-
+  #effort - restricted to data years 2012 - 2016
+  #higher value indicates less effort to catch more fish
+  effort <- AlignDataYears(layer_nm = "ao_effort_catch", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = effort_tph, scenario_year)
+  status2 <- na.omit(effort$status) #omit NAs
+  ref <- max(status2)
+   
+  #select last 5 years of data (all data as restricted to data years 2010-2016) - rescale - select current year for status
+  effort_status <- effort %>%
+    mutate(dimension = "status") %>%
+    mutate(score = (status / ref) * 100) %>%
+    filter(scenario_year == scen_year) %>% 
+    dplyr::select(region_id, score, dimension)
+  
   #trend_years <- (scen_year - 4):(scen_year)
+  effort_trend <- CalculateTrend(status_data = effort, trend_years = trend_years)
+  
+  #bring status and trend scores together
+  status <- rbind (access_status, fleet_status, red_status, effort_status) 
+  
+  status <- status %>%
+    group_by(region_id) %>%
+    summarize(score = mean(score, na.rm=TRUE)) %>% 
+    mutate(dimension = "status")%>%
+    ungroup()
+  
+  trend <- rbind(access_trend, fleet_trend, red_trend, effort_trend)
+  
+  trend <- trend %>%
+    group_by(region_id) %>%
+    summarize(score = mean(score, na.rm=TRUE)) %>% 
+    mutate(dimension = "trend") %>%
+    ungroup()
+  
+  ao_scores <-  rbind(status, trend) %>%
+    mutate('goal'='AO') %>%
+    select(goal, dimension, region_id, score) %>%
+    data.frame()
 
-  #r.trend <- CalculateTrend(status_data = ry, trend_years = trend_years)
-
-  # return scores
-  #scores <- rbind(r.status, r.trend) %>%
-    #mutate(goal = 'AO')
-
-  #return(scores)
-  #########END
+  return(ao_scores)
 }
 
 
@@ -469,12 +502,18 @@ CS <- function(layers) {
       'hab_seagrass_extent',
       'hab_saltmarsh_extent'
     )
+  #prop change analysis
+  #health_lyrs <-
+    #c(
+      #'hab_seagrass_health',
+      #'hab_saltmarsh_health_prop_chng'
+    #)
+  #current year only analysis
   health_lyrs <-
     c(
       'hab_seagrass_health',
       'hab_saltmarsh_health'
     )
-  
   #get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
     filter(scenario_year == scen_year) %>%
@@ -490,25 +529,31 @@ CS <- function(layers) {
   d <-  extent %>%
     full_join(health, by = c("region_id", "habitat")) 
   
+  #assigning ranks penalises regions that naturally lack one habitat 
+  #(ie rgn 1 - no seagrass meadows due to natural water turbidity, rgn 4 limited saltmarsh extent due to restrictive area of islands)
+  
   #set ranks for each habitat
+  #only used for pressure layer
   habitat.rank <- c('saltmarsh' = 210,
                     'seagrass' = 83)  
-
-  #add rank
-  d <- d %>%
-    mutate(rank = habitat.rank[habitat],
-           extent = ifelse(extent == 0, NA, extent))
+  
+  #proportionalise habitat health scores by relative area of habitat extent (seagrass, saltmarsh) and sum
+  d <- d %>% 
+    group_by(region_id) %>% 
+    mutate(extent_tot = sum(extent, na.rm = T)) %>% 
+    ungroup() %>% 
+    mutate(extent_prop = extent / extent_tot) %>%
+    mutate(health_prop = health * extent_prop)
   
   #status
   status_CS <- d %>%
-    filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>% 
     group_by(region_id) %>%
-    summarize(score = pmin(1, sum(rank * health * extent, na.rm = TRUE) /(sum(extent * rank, na.rm = TRUE))) * 100) %>%
+    summarize(score = sum(health_prop, na.rm = TRUE) * 100) %>%
     mutate(dimension = 'status')
 
   #trend
   #trend calculation for saltmarsh
-  #trend read in for seagrass (this should be updated)
+  #trend read in for seagrass
   
   sm_health <- AlignDataYears(layer_nm = "hab_saltmarsh_health", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = health, scenario_year)
@@ -527,11 +572,12 @@ CS <- function(layers) {
   
   hab_trend <- rbind(sm_trend, sg_trend)
   d <- left_join(d, hab_trend, c("region_id", "habitat"))
-  
+  d$trend_prop <- d$trend * d$extent_prop
+
   #trend
   trend_CS <- d %>%
     group_by(region_id) %>%
-    summarize(score = sum(rank * trend * extent, na.rm = TRUE) / (sum(extent * rank, na.rm = TRUE))) %>% 
+    summarize(score = sum(trend_prop, na.rm = TRUE)) %>%
     mutate(dimension = "trend") 
   
   #finalize scores_CS
@@ -571,13 +617,20 @@ scen_year <- layers$data$scenario_year
       'hab_saltmarsh_extent',
       'hab_sand_dune_extent'
     )
+  #prop change analysis
+  #health_lyrs <-
+    #c(
+      #'hab_seagrass_health',
+      #'hab_saltmarsh_health_prop_chng',
+      #'hab_sand_dune_health_prop_chng'
+    #)
+  #current year only analysis
   health_lyrs <-
     c(
       'hab_seagrass_health',
       'hab_saltmarsh_health',
       'hab_sand_dune_health'
     )
-
   #get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
     filter(scenario_year == scen_year) %>%
@@ -594,24 +647,28 @@ scen_year <- layers$data$scenario_year
     full_join(health, by = c("region_id", "habitat")) 
 
   #set ranks for each habitat
+  #only used for pressure layer
   habitat.rank <- c(
     'sand dune' = 3,
     'saltmarsh' = 3,
     'seagrass' = 1
   )
 
-  #add rank
-  d <- d %>%
-    mutate(rank = habitat.rank[habitat],
-           extent = ifelse(extent == 0, NA, extent))
-
+  #proportionalise habitat health scores by relative area of habitat extent (seagrass, saltmarsh) and sum
+  d <- d %>% 
+    group_by(region_id) %>% 
+    mutate(extent_tot = sum(extent, na.rm = T)) %>% 
+    ungroup() %>% 
+    mutate(extent_prop = extent / extent_tot) %>%
+    mutate(health_prop = health * extent_prop)
+  
   #status
   status_CP <- d %>%
-    filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>% 
     group_by(region_id) %>%
-    summarize(score = pmin(1, sum(rank * health * extent, na.rm = TRUE) /(sum(extent * rank, na.rm = TRUE))) * 100) %>%
+    summarize(score = round(sum(health_prop, na.rm = TRUE) * 100)) %>%
     mutate(dimension = 'status')
   
+  #trend
   #trend calculation for saltmarsh and sand dune condition
   #trend read in for seagrass (this should be updated)
   
@@ -641,12 +698,13 @@ scen_year <- layers$data$scenario_year
   
   hab_trend <- rbind(sm_trend, sd_trend, sg_trend)
   d <- left_join(d, hab_trend, c("region_id", "habitat"))
+  d$trend_prop <- d$trend * d$extent_prop
   
   #trend
   trend_CP <- d %>%
     group_by(region_id) %>%
-    summarize(score = sum(rank * trend * extent, na.rm = TRUE) / (sum(extent * rank, na.rm = TRUE))) %>% 
-    mutate(dimension = "trend") 
+    summarize(score = sum(trend_prop, na.rm = TRUE)) %>%
+    mutate(dimension = "trend")  
   
   #finalize scores_CP
   scores_CP <- rbind(status_CP, trend_CP) %>%
@@ -690,13 +748,17 @@ TR <- function(layers) {
     dplyr::select(region_id = rgn_id, TTCI, scenario_year)
   sustain <- sustain[order(sustain$region_id, sustain$scenario_year),]
   
+  #disable TTCI score
+  #set sustainabilty score to 1 for all regions
+  
   tr_data  <- full_join(tourism, sustain, by = c('region_id', 'scenario_year'))
   
   tr_model <- tr_data %>%
     mutate(tr = tr_ons,
            s = (TTCI) / (6),
            #scale TTCI score 0 - 1
-           str = tr * s)
+           #str = tr * s) #disable sustainability calculation
+           str = tr)
 
   #read in viewshed data
   rgn_sv <- AlignDataYears(layer_nm = "tr_viewshed", layers_obj = layers) %>%
@@ -708,16 +770,10 @@ TR <- function(layers) {
     left_join(rgn_sv, by = c('region_id', 'scenario_year')) %>%
     na.omit()
   tr_model$str_vs <- tr_model$str * (tr_model$perc_sv /100)
-
-  #Calculate status based on quantile reference (see function call for pct_ref)
-  #NB: DATA GROUPED BY SCENARIO YEAR AND QUANTILE CALCULATED ACROSS THIS GROUPING
-  #rescale data 0-1 using 99th quantile of regional data by year
-  #pct_ref <- 99
-  #tr_model <- tr_model %>%
-    #group_by(scenario_year) %>%
-    #mutate(str_vs_q = quantile(str_vs, probs = pct_ref / 100, na.rm = TRUE)) %>%
-    #mutate(status = ifelse(str_vs / str_vs_q > 1, 1, str_vs / str_vs_q)) %>% # rescale to qth percentile, cap at 1
-    #ungroup()
+  
+  #select data for last 5 years of data (2011 to 2015 (data years 2010 to 2014))
+  tr_model <- tr_model %>% 
+    filter(scenario_year >= 2011 & scenario_year <= 2015)
 
   #rescale data 0-1 using 99th quantile of all data - as per China and Global model
   q <- quantile(tr_model$str_vs, 0.99, na.rm = T)
@@ -752,7 +808,7 @@ TR <- function(layers) {
     dplyr::select(region_id = rgn_id, status = pop_n, scenario_year) 
   popn <- popn[order(popn$region_id, popn$scenario_year),]
   
-  trend_years <- 2011:2015
+  trend_years <- 2011:2015 #tourism data limited to 2015
   tour_trend <- CalculateTrend(status_data = tour, trend_years = trend_years)
   
   trend_years <- (scen_year - 4):(scen_year)
@@ -999,8 +1055,8 @@ LSP <- function(layers) {
   
   scen_year <- layers$data$scenario_year
 
-  ref_pct_cmpa <- 100
-  ref_pct_cpa <- 100
+  ref_pct_cmpa <- 100 #re-scaling factor - 100% of coast
+  ref_pct_cpa <- 100 #re-scaling factor - 100% of coast
 
   # select data
   total_area <-
@@ -1084,24 +1140,37 @@ CW <- function(layers) {
   #cw_pesticides
   #cw_sus_material
   #cw_trash
+  #cw_vessel_pol
   
   #cw_trash_trend
   
   scen_year <- layers$data$scenario_year
 
   ### function to calculate geometric mean:
-  geometric.mean2 <- function (x, na.rm = TRUE) {
-    if (is.null(nrow(x))) {
-      exp(mean(log(x), na.rm = TRUE))
-    }
-    else {
-      exp(apply(log(x), 2, mean, na.rm = na.rm))
-    }
-  }
+  #geometric.mean2 <- function (x, na.rm = TRUE) {
+    #if (is.null(nrow(x))) {
+      #exp(mean(log(x), na.rm = TRUE))
+    #}
+    #else {
+      #exp(apply(log(x), 2, mean, na.rm = na.rm))
+    #}
+  #}
   
   #pesticides
   pest <- AlignDataYears(layer_nm = "cw_pesticides", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = pesticides, scenario_year)
+  
+  pest <- pest %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
+  #rescale data 0-1 using 99th quantile of all data
+  q <- quantile(pest$status, 0.99, na.rm = T)
+  fun = function(x){ifelse(x>q, 1, x/q)}
+  pest$status <- as.numeric(lapply(pest$status, fun))
+  
+  #high pesticide use = 1 low pesticide use = 0
+  #needs inverting so
+  #low pesticide = 1 high pesticide = 0
+  pest$status <- 1 - pest$status
   
   pest_status <- pest %>%
     filter(scenario_year == scen_year) %>%
@@ -1109,13 +1178,25 @@ CW <- function(layers) {
     mutate(dimension = "status") %>%
     dplyr::select(region_id, score, dimension)
   
-  trend_years <- (scen_year - 9):(scen_year)
+  trend_years <- (scen_year - 4):(scen_year)
   pest_trend <- CalculateTrend(status_data = pest, trend_years = trend_years)
   
   #inorganic run-off
-  #update this section with built areas and monthly rainfall data
   run_off <- AlignDataYears(layer_nm = "cw_inorganic_run_off2", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = inorg_run_off, scenario_year)
+  
+  run_off <- run_off %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
+  
+  #rescale data 0-1 using 99th quantile of all data
+  q <- quantile(run_off$status, 0.99, na.rm=T)
+  fun = function(x){ifelse(x>q, 1, x/q)}
+  run_off$status <- as.numeric(lapply(run_off$status, fun))
+  
+  #high rain fall (run-off) = 1 low = 0
+  #needs inverting
+  #low  = 1 high  = 0
+  run_off$status <- 1 - run_off$status
   
   run_off_status <- run_off %>%
     filter(scenario_year == scen_year) %>%
@@ -1123,21 +1204,33 @@ CW <- function(layers) {
     mutate(dimension = "status") %>%
     dplyr::select(region_id, score, dimension)
   
-  trend_years <- (scen_year - 9):(scen_year)
+  trend_years <- (scen_year - 4):(scen_year)
   run_off_trend <- CalculateTrend(status_data = run_off, trend_years = trend_years)
 
   #nutrients
   nut <- AlignDataYears(layer_nm = "cw_nutrients", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = nutrients, scenario_year)
   
+  nut <- nut %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
+  
+  #function to rescale SW coastal data 0-1 using 99th quantile of all data
+  q <- quantile(nut$status, 0.99, na.rm = T)
+  fun = function(x){ifelse(x>q, 1, x/q)}
+  nut$status <- as.numeric(lapply(nut$status, fun))
+  #high fertilizer use = 1 low fertilizer use = 0
+  #needs inverting
+  #low fertiliser = 1 high fertiliser = 0
+  nut$status <- 1 - nut$status
+
   nut_status <- nut %>%
     filter(scenario_year == scen_year) %>%
     mutate(score = status * 100) %>%
     mutate(dimension = "status") %>%
     dplyr::select(region_id, score, dimension)
   
-  trend_years <- (scen_year - 9):(scen_year)
-  nut_trend <- CalculateTrend(status_data=nut, trend_years = trend_years)
+  trend_years <- (scen_year - 4):(scen_year)
+  nut_trend <- CalculateTrend(status_data = nut, trend_years = trend_years)
   
   #bathing water classification
   #calculate mean beach status by region_id & year
@@ -1167,14 +1260,27 @@ CW <- function(layers) {
   #water quality - suspended material
   wq <- AlignDataYears(layer_nm = "cw_sus_material", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = sus_mat, scenario_year)
-
+  
+  wq <- wq %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
+  
+  #rescale data 0-1 using 99th quantile of all data
+  q <- quantile(wq$status,0.99, na.rm = T)
+  fun = function(x){ifelse(x>q, 1, x/q)}
+  wq$status <- as.numeric(lapply(wq$status, fun))
+  
+  #high suspended material = 1 low = 0
+  #needs inverting
+  #low = 1 high = 0
+  wq$status <- 1 - wq$status
+  
   wq_status <- wq %>%
     filter(scenario_year == scen_year) %>%
     mutate(score = status * 100) %>%
     mutate(dimension = "status") %>%
     dplyr::select(region_id, score, dimension)
   
-  trend_years <- (scen_year - 9):(scen_year)
+  trend_years <- (scen_year - 4):(scen_year)
   wq_trend <- CalculateTrend(status_data = wq, trend_years = trend_years)
   
   #plastics at sea 'trash'
@@ -1191,19 +1297,32 @@ CW <- function(layers) {
   trash_trend <- AlignDataYears(layer_nm = "cw_trash_trend", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, score = trend, scenario_year) %>%
     filter(scenario_year == scen_year)  %>%
+    mutate(dimension = "trend") %>%
+    dplyr::select(region_id, score, dimension)
+  
+  #pollution from vesels
+  ves <- AlignDataYears(layer_nm = "cw_vessel_pol", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, status = vessel_pol, scenario_year)
+  
+  ves_status <- ves %>%
+    filter(scenario_year == scen_year) %>%
+    mutate(score = status * 100) %>%
     mutate(dimension = "status") %>%
     dplyr::select(region_id, score, dimension)
+  
+  trend_years <- (2011:2015)
+  ves_trend <- CalculateTrend(status_data = ves, trend_years = trend_years)
 
   #bring status and trend scores together
-  status <- rbind (bw_status, nut_status, pest_status, run_off_status, trash_status, wq_status) 
+  status <- rbind (bw_status, nut_status, pest_status, run_off_status, trash_status, wq_status, ves_status) 
   
   status <- status %>%
     group_by(region_id) %>%
-    summarize(score = geometric.mean2 (score, na.rm=TRUE)) %>% # take geometric mean
+    summarize(score = mean(score, na.rm=TRUE)) %>% 
     mutate(dimension = "status")%>%
     ungroup()
   
-  trend <- rbind(bw_trend, nut_trend, pest_trend, run_off_trend, trash_trend, wq_trend)
+  trend <- rbind(bw_trend, nut_trend, pest_trend, run_off_trend, trash_trend, wq_trend, ves_trend)
   
   trend <- trend %>%
     group_by(region_id) %>%
@@ -1266,6 +1385,7 @@ HAB <- function(layers) {
   sm_health <- AlignDataYears(layer_nm = "hab_saltmarsh_health", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = health, scenario_year)
   sm_health <- sm_health[order(sm_health$region_id, sm_health$scenario_year),]
+  
   trend_years <- (scen_year-4):(scen_year)
   sm_trend <- CalculateTrend(status_data = sm_health, trend_years = trend_years)
   sm_trend <- sm_trend %>% 
@@ -1275,6 +1395,7 @@ HAB <- function(layers) {
   ccms_health <- AlignDataYears(layer_nm = "hab_ccms_trawl_int", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = health, scenario_year)
   ccms_health <- ccms_health[order(ccms_health$region_id, ccms_health$scenario_year),]
+  
   trend_years <- (2013):(2017) # data limited to 2012 - 2016
   ccms_trend <- CalculateTrend(status_data = ccms_health, trend_years = trend_years)
   ccms_trend <- ccms_trend %>% 
@@ -1326,6 +1447,7 @@ HAB <- function(layers) {
 
 SPP <- function(layers) {
   
+  #see SPP.R code for prep
   scores <- rbind(layers$data$spp_status, layers$data$spp_trend) %>%
     mutate(goal = 'SPP') %>%
     mutate(dimension = ifelse(layer == "spp_status", "status", "trend")) %>%

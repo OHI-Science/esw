@@ -204,9 +204,9 @@ PlotFlower <- function(region_plot     = NA,
       filter(region_id == region) %>%
       dplyr::select(region_name)
       #SKP: reverse plot labels from e.g. 3 Cornwall to Cornwall (3)
-      txt <- gsub("[[:digit:]] ", "", region_name)
-      int <- gsub("[^0-9.-]", "", region_name)
-      if(int >= 1) {region_name <- paste(txt, " ", "(Rgn. ", int, ")",sep = "")}
+      txt <- gsub("[[:digit:]] ", "", region_name) #SKp
+      int <- gsub("[^0-9.-]", "", region_name) #SKP
+      if(int >= 1) {region_name <- paste(txt, " ", "(Rgn. ", int, ")",sep = "")} #SKP
 
     ## inject weights for FIS vs. MAR ----
     #source code
@@ -227,9 +227,9 @@ PlotFlower <- function(region_plot     = NA,
         arrange(pos)
     }
 
-    ## set up basic plot parameters ----
+    ## set up basic plot parameters ---- #add individual colour here???
     plot_obj <- ggplot(data = plot_df,
-                       aes(x = pos, y = score, fill = score, width = weight))
+                       aes(x = pos, y = score, fill = score, width = weight)) #fill = score #color = darkkblue #and line 262 & 263 turned
 
     ## sets up the background/borders to the external boundary (100%) of plot
     plot_obj <- plot_obj +
@@ -258,9 +258,13 @@ PlotFlower <- function(region_plot     = NA,
                     size = 0.5, color = dark_line, show.legend = NA) +
       ## turn linear bar chart into polar coordinates start at 90 degrees (pi*.5)
       coord_polar(start = pi * 0.5) +
+
+
       ## set petal colors to the red-yellow-blue color scale:
       scale_fill_gradientn(colours=myPalette, na.value="black",
                            limits = c(0, 100)) +
+
+
       ## use weights to assign widths to petals:
       scale_x_continuous(labels = plot_df$goal, breaks = plot_df$pos, limits = p_limits) +
       scale_y_continuous(limits = c(-blank_circle_rad,

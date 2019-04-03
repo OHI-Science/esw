@@ -1,3 +1,15 @@
+
+#install.packages("rstudioapi")
+library(rstudioapi)
+
+#check source file path
+dirname(rstudioapi::getSourceEditorContext()$path)
+
+list.files()
+
+#######
+#######
+
 ---
 title: "Calculate OHI scores"
 output: html_document
@@ -28,6 +40,10 @@ devtools::install_github('ohi-science/ohicore')
 Run this every time you calculate scores so that you will have libraries available to you. This is like turning on the lights in a building. Additionally, you will set the working directory to your scenario folder. The syntax `::` identifies which library a function is from.
 
 ```{r setup, eval=FALSE}
+
+rm(list=ls())
+cat("\014")
+
 ## load package libraries
 library(tidyverse)
 library(stringr)
@@ -78,7 +94,7 @@ Run this to create flower plots for each region.
 
 ```{r plot, eval=FALSE}
 ## source script (to be incorporated into ohicore)
-#source('https://raw.githubusercontent.com/OHI-Science/arc/master/circle2016/plot_flower_local.R')
+source('https://raw.githubusercontent.com/OHI-Science/arc/master/circle2016/plot_flower_local.R')
 
 #or load function 'flower_plot_skp_20181114.R' in 'conf' folder
 #this amends position of 'supra goal radius from centre' and y location of 'goal names'
