@@ -6,8 +6,8 @@
 rm(list=ls()) #clear environment
 cat("\014") #clear plots and console
 
-#FP
-#FIS
+#FP####
+#FIS####
 
 #set working directory to local source
 setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/FP/FIS")
@@ -19,7 +19,7 @@ options(scipen=999)
 
 #source data edited in excel - columns appended for: scientific_name, stock_id and taxon_penalty (from taxon key data sourced above)
 #see ICESCatchDataset2006-2016_processed_stock_id.xlsx
-######
+####
 
 library(tidyverse)
 
@@ -159,8 +159,8 @@ write.csv(fc7, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/fis_ICESCatchD
 rm(list=ls())
 cat("\014")
 
-#FP
-#MAR
+#FP####
+#MAR####
 
 #set working directory to local source
 setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/FP/MAR")
@@ -261,7 +261,7 @@ write.csv(wm2, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/mar_sustainabi
 rm(list=ls())
 cat("\014")
 
-#AO
+#AO####
 
 #set working directory to local source
 setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/AO")
@@ -270,7 +270,7 @@ options(scipen=999)
 library(tidyverse)
 library(rgdal)
 
-######
+###
 
 access <- read.csv("source/Access.csv")
 access <- mutate(access, year = "2018") %>%
@@ -278,20 +278,20 @@ access <- mutate(access, year = "2018") %>%
 write.csv(access, "prep/ao_access_esw2018.csv", row.names = F)
 write.csv(access, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/ao_access_esw2018.csv", row.names = F) #to git
 
-######
+####
 
 boats <- read.csv("source/boats_by_year.csv")
 boats <- select(boats, rgn_id, year, boats)
 write.csv(boats, "prep/ao_fleet_size_esw2018.csv", row.names = F)
 write.csv(boats, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/ao_fleet_size_esw2018.csv", row.names = F) #to git
 
-######
+####
 
 red <- read.csv("source/fuel_cost_year.csv")
 write.csv(red, "prep/ao_fuel_cost_esw2018.csv", row.names = F)
 write.csv(red, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/ao_fuel_cost_esw2018.csv", row.names = F) #to git
 
-######
+####
 
 effort <- read.csv("source/effort.csv")
 effort <- select(effort, rgn_id, year, effort_tph)
@@ -309,7 +309,9 @@ write.csv(effort, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/ao_effort_c
 rm(list=ls())
 cat("\014")
 
-#CS and CP and BD:HAB
+#CS#### 
+#CP####
+#BD:HAB####
 
 #set working directory to local source
 setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/BD/HAB")
@@ -318,7 +320,7 @@ options(scipen=999)
 library(tidyverse)
 library(rgdal)
 
-#######
+###
 
 #saltmash extent
 sm_ex <- read.csv("source/hab_littoral_extent.csv")
@@ -330,7 +332,7 @@ sm_ex <- mutate(sm_ex, year = "2017") %>%
 write.csv(sm_ex, "prep/hab_saltmarsh_extent_esw2018.csv", row.names = F)
 write.csv(sm_ex, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_saltmarsh_extent_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #saltmash condition
 sm_cnd <- read.csv("source/hab_littoral_condition.csv")
@@ -385,7 +387,7 @@ sm_cnd <- sm_cnd %>%
 write.csv(sm_cnd, "prep/hab_saltmarsh_health_esw2018.csv", row.names = F)
 write.csv(sm_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_saltmarsh_health_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #sand dune extent
 d_ex <- read.csv("source/hab_dune_extent.csv")
@@ -397,7 +399,7 @@ d_ex <- mutate(d_ex, year = "2017") %>%
 write.csv(d_ex, "prep/hab_sand_dune_extent_esw2018.csv", row.names = F)
 write.csv(d_ex, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_sand_dune_extent_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #sand dune condition
 d_cnd <- read.csv("source/hab_dune_condition.csv")
@@ -452,7 +454,7 @@ d_cnd <- d_cnd %>%
 write.csv(d_cnd, "prep/hab_sand_dune_health_esw2018.csv", row.names = F)
 write.csv(d_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_sand_dune_health_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #seagrass extent
 sg_ex <- read.csv("source/seagrass_extent.csv")
@@ -464,7 +466,7 @@ sg_ex <- mutate(sg_ex, year = "2017") %>%
 write.csv(sg_ex, "prep/hab_seagrass_extent_esw2018.csv", row.names = F)
 write.csv(sg_ex, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_seagrass_extent_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #seagrass condition
 sg_cnd <- read.csv("source/seagrass_condition.csv")
@@ -478,7 +480,7 @@ sg_cnd[is.na(sg_cnd)] <- 0
 write.csv(sg_cnd, "prep/hab_seagrass_health_esw2018.csv", row.names = F)
 write.csv(sg_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_seagrass_health_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #seagrass trend (from literature)
 sg_trnd <- read.csv("source/seagrass_trend.csv")
@@ -490,7 +492,7 @@ sg_trnd <- mutate(sg_trnd, year = "2017") %>%
 write.csv(sg_trnd, "prep/hab_seagrass_trend_esw2018.csv", row.names = F)
 write.csv(sg_trnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_seagrass_trend_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #softbottom
 
@@ -502,8 +504,9 @@ options(scipen=999)
 
 library(rgdal)
 library(raster)
+library(tidyverse)
 
-#######
+###
 
 #softbottom extent
 sb <- read.csv("source/hab_trawl.csv")
@@ -516,7 +519,7 @@ sb_extent <- sb %>%
 write.csv(sb_extent, "prep/hab_ccms_extent_esw2018.csv", row.names = F)
 write.csv(sb_extent, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_ccms_extent_esw2018.csv", row.names = F) #to git
 
-#######
+###
 
 #read in region poly (all)
 shp <- readOGR(dsn = "source/shapefiles", layer = "ESW_regions_20190122_BNG")
@@ -543,17 +546,27 @@ for (i in 1:length(r_list)){
 
 t1 <- z
 
-#rescale data 0-1 using 99th quantile of all data
+#rescale data 0-1 #rescale (intra regional)
+#group by region
 #this is OK here as only 5 years of data
 #if any more data become available move to functions code
-q <- quantile(t1$trwl_int,0.99, na.rm = T)
-fun = function(x){ifelse(x>q, 1, x/q)}
-t1$trwl_int_rs <- as.numeric(lapply(t1$trwl_int,fun))
-t1$trwl_int_rs_inv <- 1 - t1$trwl_int_rs
-t1$habitat <- "ccms"
+
+t1 <- t1 %>% 
+  group_by(rgn_id) %>% 
+  mutate(max_trwl_int = max(trwl_int)) %>% 
+  mutate(trwl_int_rs = trwl_int / max_trwl_int) %>% 
+  arrange(rgn_id) %>% 
+  as.data.frame
+ 
+#replace NaNs with 0
+t1$trwl_int_rs[is.nan(t1$trwl_int_rs)] <- 0 
+ 
+t1 <- t1 %>% 
+  mutate(trwl_int_rs_inv = 1 - trwl_int_rs) %>% 
+  mutate(habitat = "ccms")
 
 sb_trwl_int <- t1 %>%
-  select(rgn_id, habitat, year, health = trwl_int_rs_inv)
+  dplyr::select(rgn_id, habitat, year, health = trwl_int_rs_inv)
 
 write.csv(sb_trwl_int, "prep/hab_ccms_trawl_int_esw2018.csv", row.names = F)
 write.csv(sb_trwl_int, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_ccms_trawl_int_esw2018.csv", row.names = F) #to git
@@ -565,7 +578,7 @@ write.csv(sb_trwl_int, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_cc
 rm(list=ls())
 cat("\014")
 
-#TR
+#TR####
 
 #captures the 'value' that people have from experiencing and enjoying coastal areas. 
 #A score of 100 means a region utilizes its full recreational potential
@@ -577,8 +590,8 @@ options(scipen=999)
 library(tidyverse)
 library(rgdal)
 
-###############
-###############
+###
+###
 
 #tourism
 
@@ -641,7 +654,7 @@ t3 <- select(t3, c("rgn_id", "year", "ons"))
 write.csv(t3, "prep/tr_ons_1km_esw2018.csv", row.names = F)
 write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/tr_ons_1km_esw2018.csv", row.names = F) #to git
 
-######
+###
 
 #read in viewshed data add year - write to prep folder
 #source: https://environment.data.gov.uk/DefraDataDownload/?mapService=MMO/LandWithSeaViews&Mode=spatial
@@ -653,7 +666,7 @@ sv <- sv %>%
 write.csv(sv, "prep/tr_viewshed_esw2018.csv", row.names = F)
 write.csv(sv, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/tr_viewshed_esw2018.csv", row.names = F) #to git
 
-#####
+###
 
 #not used in OHI calculation
 #read in yearly TTCI scores for UK
@@ -677,8 +690,8 @@ TTCI3 <- TTCI3[order(TTCI3$rgn_id, TTCI3$year),]
 write.csv(TTCI3, "prep/tr_ttci_esw2018.csv", row.names = F)
 write.csv(TTCI3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/tr_ttci_esw2018.csv", row.names = F) #to git
 
-###############
-###############
+###
+###
 
 #recreation
 
@@ -690,7 +703,7 @@ rec <- read.csv("source/recreation_all.csv")
 write.csv(rec, "prep/tr_rec_esw2018.csv", row.names = F)
 write.csv(rec, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/tr_rec_esw2018.csv", row.names = F) #to git
 
-######
+###
 
 #read in tourism and population data to calculate receational trend in functions
 #this does not need to be corrected for coastal length
@@ -721,7 +734,7 @@ t3 <- t2 %>%
 write.csv(t3, "prep/tr_ons_all_LA_esw2018.csv", row.names = F)
 write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/tr_ons_all_LA_esw2018.csv", row.names = F) #to git
 
-######
+###
 
 #read in population by LA by year
 #data source: -	https://www.ons.gov.uk/economy/grossvalueaddedgva/datasets/regionalgvaibylocalauthorityintheuk
@@ -755,7 +768,7 @@ write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/tr_popn_LA_esw2
 rm(list=ls())
 cat("\014")
 
-#LE LIV
+#LE:LIV####
 
 #data
 #wages_median.csv - median wage per employee - all industries by local authority
@@ -867,7 +880,7 @@ write.csv(rgn_jobs, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/le_jobs_e
 rm(list=ls())
 cat("\014")
 
-#LE ECO
+#LE:ECO####
 
 #data
 #revenue_GVA_all_ind.csv - revenue data for all industries by local authority
@@ -937,7 +950,7 @@ write.csv(t5, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/le_gva_esw2018.
 rm(list=ls())
 cat("\014")
 
-#SP ICO
+#SP:ICO####
 
 #set working directory to local source
 setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/SP")
@@ -990,13 +1003,192 @@ write.csv(ico5, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/ico_spp_iucn_
 rm(list=ls())
 cat("\014")
 
-#CW
+#SP:LSP####
+
+#set working directory to local source
+setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/SP")
+options(scipen=999)
+
+###
+
+library(tidyverse)
+library(maptools) #unionSpatialPolygons
+library(rgdal) #readOGR / writeOGR
+library(raster) #intersect #area
+library(tmap) #append_data
+
+#protected areas by year prepared in ArcMap as follows:
+#data: Heritage Coast, AONB, RSPB reserves, SSSIs, Protected wrecks, SACs, SPAs, RAMSAR sites, MCZs
+#data for cSACs and proposed MCZs excluded
+#clipped to SW region to minimise file size
+#designation years checked and where necessary added to shapefile attribute tables (i.e. SSSIs)
+#clipped to merged and dissolved 1km terrestrial and 3nm marine coastal buffer - then unioned
+#in ArcMap attribute table field added for earliest designation year (where multiple designaions apply to a geographic area)
+#data extracted by progressive cumulative years (e.g. 1957, 1957 to 1959, 1957 to 1960, 1957 to 1963 etc)
+#these data are read in as "list" - (line 32)
+
+shp1km <- readOGR(dsn = "LSP/source/shapefiles", layer = "ESW_regions_1km_intbuf_20190122_BNG") #coast inland to 1km
+t1 <- shp1km@data
+plot(shp1km)
+
+shp3nm <- readOGR(dsn = "LSP/source/shapefiles", layer = "ESW_regions_3nm_buf_20190122_BNG") #coastal waters to 3nm
+t2 <- shp3nm@data
+plot(shp3nm)
+
+list <- list.files("LSP/source/shapefiles/protected_areas_1km_3nm/protected_areas_1km_3nm_by_year", pattern = ".shp$")
+
+zzt <- NULL
+zzm <- NULL
+
+#sequentialy read in year specific protected area shapefiles
+
+#i = 3
+for(i in 1:length(list)){
+  zt <- data.frame(rgn_id = seq(c(1:6)))
+  zm <- data.frame(rgn_id = seq(c(1:6)))
+  shp <- sub(".shp","",list[i])
+  p1 <- readOGR(dsn = "LSP/source/shapefiles/protected_areas_1km_3nm/protected_areas_1km_3nm_by_year", layer = shp)
+  ID <- rep(1,nrow(p1@data)) #ID for defining output polygon objects 
+  #?unionSpatialPolygons - aggregate (dissolve) polygons based on ID vecor
+  p2 <- unionSpatialPolygons(p1, ID = ID) #creates SpatialPolygons object
+  #SpatialPolygons to SpatialPolygonsDataFrame
+  ID2 <- data.frame(id = seq(1, length(p2@polygons)))
+  p3 <- SpatialPolygonsDataFrame(p2, ID2)
+  
+  #write dissolved shapefiles to sense check
+  #writeOGR(p3, dsn = "LSP/source/shapefiles/protected_areas_1km_3nm/protected_areas_1km_3nm_by_year_dis",
+  #layer = paste(shp, "_d", sep = ""), driver = "ESRI Shapefile", overwrite_layer = T)
+  
+  #calculate areas of region intersects and overwrite poly slot data (this has been double checke aand is OK!)
+  ter <- raster::intersect(shp1km, p3)
+  ter@data$area_km2 <- area(ter) / 1000000 #area in km2 per region
+  
+  #write shapefiles to sense check
+  #writeOGR(ter, dsn = "LSP/source/shapefiles/protected_areas_1km_3nm/protected_areas_1km_3nm_by_year_T_M",
+  #layer = paste(shp, "_t_rgn", sep = ""), driver = "ESRI Shapefile", overwrite_layer = T)
+  
+  mar <- raster::intersect(shp3nm, p3)
+  mar@data$area_km2 <- area(mar) / 1000000 #area in km2 per region
+  #write shapefiles to sense check
+  #writeOGR(mar, dsn = "LSP/source/shapefiles/protected_areas_1km_3nm/protected_areas_1km_3nm_by_year_T_M",
+  #layer = paste(shp, "_m_rgn", sep = ""), driver = "ESRI Shapefile", overwrite_layer = T)
+  
+  dt <- data.frame(ter@data)
+  dt$rgn_id <- as.numeric(dt$rgn_id)
+  dt <- dplyr::select(dt, rgn_id , area_km2_t = area_km2)
+  zt <- left_join(zt, dt, by = "rgn_id")
+  zt$year <- substring(shp, nchar(shp)-4+1)
+  
+  dm <- data.frame(mar@data)
+  dm$rgn_id <- as.numeric(dm$rgn_id)
+  dm <- dplyr::select(dm, rgn_id , area_km2_m = area_km2)
+  zm <- left_join(zm, dm, by = "rgn_id")
+  zm$year <- substring(shp, nchar(shp)-4+1)
+  
+  zzt <- rbind(zzt, zt)
+  zzm <- rbind(zzm, zm)
+  print(unique(zt$year))
+  print(unique(zm$year))
+  
+}
+
+zzt <- dplyr::select(zzt, rgn_id, year, area_km2_t)
+zzt[is.na(zzt)] <- 0
+zzm <- dplyr::select(zzm, rgn_id, year, area_km2_m)
+zzm[is.na(zzm)] <- 0
+
+#>>>>>>#
+
+#terrestrial data
+zzt <- read.csv("LSP/prep/lsp_prot_area_inland1km_esw2018.csv")
+
+#create blank data frame with rgn ids and all years
+years <- seq(min(zzt$year),max(zzt$year))
+rgns <- data.frame(rgn_id = c(1:6))
+zz <- NULL
+
+for(i in 1:length(years)){
+  z <- NULL
+  z <- rbind(z,rgns)
+  z$year <- years[i]
+  zz <- rbind(zz,z)
+}
+
+#join protected area data (specific years) to blank data frame (all years)
+zzt <- left_join(zz, zzt, by = c("rgn_id", "year"))
+rgnids <- unique(zzt$rgn_id)
+
+#extract data by rgn and gap fill missing years
+ay <- NULL
+for(i in 1:length(rgnids)){
+  rgn <- dplyr::filter(zzt, rgn_id == rgnids[i])
+  colnames(rgn)[3] <- "area_km2_t_gf"
+  q = 0
+  for(j in 1:nrow(rgn)){
+    if(is.na(rgn[j,3])){rgn[j,3] = q}
+    if(rgn[j,3] > 0) {q = rgn[j,3]}
+  }
+  ay <- rbind(ay, rgn)
+}
+
+#and join to source data
+zzt <- left_join(zzt, ay, by = c("rgn_id", "year"))
+write.csv(zzt, "LSP/prep/lsp_prot_area_inland1km_esw2018.csv", row.names = F)
+write.csv(zzt, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/lsp_prot_area_inland1km_esw2018.csv", row.names = F) #to git
+
+#>>>>>>#
+
+#marine data
+zzm <- read.csv("LSP/prep/lsp_prot_area_offshore3nm_esw2018.csv")
+
+#create blank data frame with rgn ids and all years
+years <- seq(min(zzm$year),max(zzm$year))
+rgns <- data.frame(rgn_id = c(1:6))
+zz <- NULL
+
+for(i in 1:length(years)){
+  z <- NULL
+  z <- rbind(z,rgns)
+  z$year <- years[i]
+  zz <- rbind(zz,z)
+}
+
+#join protected area data (specific years) to blank data frame (all years)
+zzm <- left_join(zz, zzm, by = c("rgn_id", "year"))
+rgnids <- unique(zzm$rgn_id)
+
+#extract data by rgn and gap fill missing years
+ay <- NULL
+for(i in 1:length(rgnids)){
+  rgn <- dplyr::filter(zzm, rgn_id == rgnids[i])
+  colnames(rgn)[3] <- "area_km2_m_gf"
+  q = 0
+  for(j in 1:nrow(rgn)){
+    if(is.na(rgn[j,3])){rgn[j,3] = q}
+    if(rgn[j,3] > 0) {q = rgn[j,3]}
+  }
+  ay <- rbind(ay, rgn)
+}
+
+#and join to source data
+zzm <- left_join(zzm, ay, by = c("rgn_id", "year"))
+write.csv(zzm, "LSP/prep/lsp_prot_area_offshore3nm_esw2018.csv", row.names = F)
+write.csv(zzm, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/lsp_prot_area_offshore3nm_esw2018.csv", row.names = F) #to git
+
+
+
+#-------------#
+
+rm(list=ls())
+cat("\014")
+
+#CW####
 
 #set working directory to local source
 setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/CW")
 options(scipen=999)
 
-######
+###
 
 library(tidyverse)
 library(rgdal)
@@ -1056,7 +1248,7 @@ colnames(tn5) <- c("year", "rgn_id", "nutrients")
 write.csv(tn5, "prep/cw_nutrients_esw2018.csv", row.names = F)
 write.csv(tn5, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_nutrients_esw2018.csv", row.names = F) #to git
 
-#####
+###
 
 library(tidyverse)
 library(rgdal)
@@ -1113,8 +1305,8 @@ colnames(pest5) <- c("year", "rgn_id", "pesticides")
 write.csv(pest5, "prep/cw_pesticides_esw2018.csv", row.names = F)
 write.csv(pest5, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_pesticides_esw2018.csv", row.names = F) #to git
 
-################
-################
+###
+###
 
 library(tidyverse)
 
@@ -1143,8 +1335,8 @@ t4 <- select(t3, year, rgn_id, beach_status_score)
 write.csv(t4, "prep/cw_bathing_water_class_esw2018.csv", row.names = F)
 write.csv(t4, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_bathing_water_class_esw2018.csv", row.names = F) #to git
 
-################
-################
+###
+###
 
 library(rgdal)
 library(raster)
@@ -1190,8 +1382,8 @@ write.csv(t4, "prep/cw_sus_material_esw2018.csv", row.names = F)
 write.csv(t4, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_sus_material_esw2018.csv", row.names = F) #to git
 
 
-################
-################
+###
+###
 
 library(raster)
 library(rgdal)
@@ -1221,6 +1413,7 @@ colnames(t2) <- c("rgn_id", "area_km2", "trash")
 t2["year"] <- 2014
 #invert
 t2$trash <- 1 - t2$trash
+
 #rescale to 1 again
 q <- quantile(t2$trash, 1, na.rm = T)
 fun = function(x){ifelse(x>q, 1, x/q)}
@@ -1230,13 +1423,13 @@ t3 <- t2[,c("year", "rgn_id", "trash")]
 write.csv(t3, "prep/cw_trash_esw2018.csv", row.names = F)
 write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_trash_esw2018.csv", row.names = F) #to git
 
-################
-################
+###
+###
 
 library(raster)
 library(rgdal)
 
-#nt sed in ohi calculation
+#not used in ohi calculation
 #chemical polution - inorganic run-off
 
 #import global raster (ohi global data: rescaled)
@@ -1270,8 +1463,8 @@ colnames(t3) <- c("year", "rgn_id", "inorg_run_off")
 write.csv(t3,"prep/cw_inorganic_run_off_esw2018.csv", row.names = F)
 write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_inorganic_run_off_esw2018.csv", row.names = F) #to git
 
-################
-################
+###
+###
 
 library(rgdal)
 library(raster)
@@ -1330,8 +1523,8 @@ write.csv(t4, "prep/cw_inorganic_run_off2_esw2018.csv", row.names = F)
 write.csv(t4, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_inorganic_run_off2_esw2018.csv", row.names = F) #to git
 
 
-################
-################
+###
+###
 
 #AIS
 
@@ -1395,25 +1588,24 @@ write.csv(t1, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_vessel_pol_e
 rm(list=ls())
 cat("\014")
 
-#BD SPP
+#BD:SPP####
 #NOTE: for BD HAB see earlier code
 
 #Species status - mean species 'risk' weighted by proportion of area:
-
 #The reference point is to have the risk status of all iconic species at lowest risk of extinction - ie 1 - least concern (LC)
 
-########
+###
 #Risk is a scaled value representing the species extinction risk category:
 #'LC' = 0.0, 'NT' = 0.2, 'VU' = 0.4, 'EN' = 0.6, 'CR' = 0.8, 'EX' = 1.0
 #The regional risk values are converted to species status scores by subtracting the risk values from 1
-########
+###
 
 #trend average of population trend assessments (latest IUCN data) for all species within a region
 #0.5 increasing
 #0 stable
 #-0.5 decreasing
 
-########
+###
 
 #set working directory to local source
 setwd("C:/Folders/Dropbox/Projects/OHI/Data/Goals/BD/SPP")
@@ -1422,7 +1614,7 @@ options(scipen=999)
 library(tidyverse)
 library(rgdal)
 
-#######
+###
 
 sp <- read.csv("source/BD_SPP_marLIN.csv")
 shp <- readOGR(dsn = "source/shapefiles", layer = "ESW_regions_20190122_BNG")

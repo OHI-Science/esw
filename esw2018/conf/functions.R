@@ -207,7 +207,7 @@ FIS <- function(layers) {
   
   scores <- rbind(status, trend) %>%
     mutate(goal = 'FIS') %>%
-    data.frame()
+    as.data.frame()
   
   return(scores)
 }
@@ -223,60 +223,55 @@ MAR <- function(layers) {
   sustainability_score <-
     AlignDataYears(layer_nm = "mar_sustainability_score", layers_obj = layers)
   
-  coastal_length <-
-    AlignDataYears(layer_nm = "mar_coastal_length", layers_obj = layers)
+  #not used
+  #coastal_length <-
+    #AlignDataYears(layer_nm = "mar_coastal_length", layers_obj = layers)
   
-  rky <-  harvest_tonnes %>%
+  mar_prod <-  harvest_tonnes %>%
     left_join(sustainability_score,
               by = c('rgn_id', 'taxa_code', 'scenario_year')) %>%
     select(rgn_id, scenario_year, taxa_code, rgn_prod_T, wq_rg_sp)
-  
   #remove nas
-  rky <- na.omit(rky)
-  
+  mar_prod <- na.omit(mar_prod)
   #remove zero harvest
-  rky <- rky[rky$rgn_prod_T > 0,]
+  mar_prod <- mar_prod [mar_prod$rgn_prod_T > 0,]
+  #apply sustainability coeficient derived from water quality monitoring at mariculture sites (but only 1 years data) 
+  mar_prod <- mar_prod %>%
+    mutate(sust_tonnes = rgn_prod_T * wq_rg_sp) %>% 
+    select(region_id = rgn_id, sust_tonnes, scenario_year)
 
-  m <- rky
-
-  #apply sustainability coeficient derived from water quality monitoring at mariculture sites 
-  m <- m %>%
-    mutate(sust_tonnes = rgn_prod_T * wq_rg_sp)
-  
-  #aggregate per region, and divide by region coastal length
-  ry = m %>%
-    group_by(rgn_id, scenario_year) %>%
-    summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
-    left_join(coastal_length, by = c('rgn_id', 'scenario_year')) %>%
-    mutate(mar_cst = sust_tonnes_sum / c_lngth_km) %>%
-    ungroup()
-  
+  #aggregate production by region
   #extract last 5 years of data (note: data not updated after 2010 so data years: 2006-2010)
-  ry <- ry %>% 
-    filter(scenario_year >= 2006 & scenario_year <= 2010)
+  #rescale (intra-regional ref - maximum MAR prod in last 5 year)
+  #select current year for status
   
-  #get reference quantile based on max regional value for last 5 years data 
-  ref_99pct <- quantile(ry$mar_cst, 0.99, na.rm = TRUE)
-  
-  ry = ry %>%
-    mutate(status = ifelse(mar_cst / ref_99pct > 1, 1, mar_cst / ref_99pct))
-  
-  status <- ry %>%
+  mar_prod <- mar_prod %>%
+    group_by(region_id, scenario_year) %>%
+    summarize(sum_sus_tonnes = sum(sust_tonnes, na.rm = TRUE)) %>% 
+    filter(scenario_year >= 2006 & scenario_year <= 2010) %>% 
+    group_by(region_id) %>%
+    mutate(max_sum_sus_tonnes = max(sum_sus_tonnes)) %>% 
+    mutate(status = (sum_sus_tonnes / max_sum_sus_tonnes) * 100) %>% 
+    mutate(dimension = "status") %>% 
+    ungroup()
+
+  status <- mar_prod %>%
     filter(scenario_year == 2010) %>% #2010 - last year of data
-    mutate(dimension = "status") %>%
-    select(region_id = rgn_id, score = status, dimension) %>%
-    mutate(score = round(score * 100, 2))
+    select(region_id, score =  status, dimension) %>% 
+    as.data.frame()
   
   #add zero for IOS region 4 - no mariculture
-  status <- rbind(status, c(4, 0, "status"))
+  region_id <- 4
+  score <- 0
+  dimension <- "status"
+  IOS <- data.frame(region_id, score, dimension)
+  status <- rbind(status, IOS)
   status <- status[order(status$region_id),]
   
   #calculate trend
   #need to calculate trend on data prior to 2010
   trend_years <- (2010 - 4):(2010)
-  
-  trend <- CalculateTrend(status_data = ry, trend_years = trend_years)
-  
+  trend <- CalculateTrend(status_data = mar_prod, trend_years = trend_years)
   #add zero for IOS region 4 - no mariculture
   trend <- rbind(trend, c(4, 0, "trend"))
   trend <- trend[order(trend$region_id),]
@@ -290,7 +285,7 @@ MAR <- function(layers) {
   # return scores
   scores = rbind(status, trend) %>%
     mutate(goal = 'MAR') %>%
-    data.frame()
+    as.data.frame()
 
   return(scores)
 }
@@ -374,7 +369,7 @@ FP <- function(layers, scores) {
     mutate(goal = "FP") %>%
     ungroup() %>%
     select(region_id, goal, dimension, score) %>%
-    data.frame()
+    as.data.frame()
   
   # return all scores
   return(rbind(scores, s))
@@ -384,11 +379,52 @@ FP <- function(layers, scores) {
 AO <- function(layers) {
   
   #calculate status scores for 4 inputs
-  #effort - to add - trend?
-  #trend for fleet size and fuel
-  #tend 0 for access
+  #trend for fleet size, fuel, effort
+  #trend NA for access
   
   scen_year <- layers$data$scenario_year
+  
+  #fleet size
+  fleet <- AlignDataYears(layer_nm = "ao_fleet_size", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, boats, scenario_year)
+
+  #select last 5 years of data - rescale (intra-regional with maximum fleet size in last 5 year) - select current year for status
+  fleet <- fleet %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4) %>%
+    mutate(dimension = "status") %>%
+    group_by(region_id) %>%
+    mutate(max_boats = max(boats)) %>% 
+    mutate(status = (boats / max_boats) * 100) %>% 
+    ungroup() 
+  
+  fleet_status <- fleet %>% 
+    arrange(region_id) %>% 
+    filter(scenario_year == scen_year) %>% 
+    dplyr::select(region_id, score = status, dimension)
+  
+  trend_years <- (scen_year - 4):(scen_year)
+  fleet_trend <- CalculateTrend(status_data = fleet, trend_years = trend_years)
+  
+  #effort - restricted to data years 2012 - 2016
+  #higher value indicates less effort to catch more fish
+  #rescale (intra-regional with maximum effort/catch size in last 5 year) - select current year for status
+  effort <- AlignDataYears(layer_nm = "ao_effort_catch", layers_obj = layers) %>%
+    dplyr::select(region_id = rgn_id, effort_tph, scenario_year)  
+  
+  effort <- effort %>% 
+      arrange(region_id) %>% 
+      group_by(region_id) %>% 
+      mutate(max_effort_tph = max(effort_tph, na.rm = TRUE)) %>% 
+      mutate(status = (effort_tph / max_effort_tph) * 100) %>%
+      ungroup() 
+  
+   effort_status <- effort %>% 
+      filter(scenario_year == scen_year) %>% 
+      mutate(dimension = "status") %>% 
+      dplyr::select(region_id, score = status, dimension) 
+    
+  trend_years <- (scen_year - 4):(scen_year)
+  effort_trend <- CalculateTrend(status_data = effort, trend_years = trend_years)
   
   #access - no need to rescale 0-1 (100) as already a percentage of accessible coast
   access_status <- AlignDataYears(layer_nm = "ao_access", layers_obj = layers) %>%
@@ -397,59 +433,30 @@ AO <- function(layers) {
     dplyr::select(region_id = rgn_id, score = access_perc, dimension)
   
   region_id <- c(1:6)
-  score <- 0
+  score <- NA
   dimension <- "trend"
   access_trend <- data.frame(region_id, score, dimension)
-  
-  #fleet size
-  fleet <- AlignDataYears(layer_nm = "ao_fleet_size", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, status = boats, scenario_year)
-  
-  #select last 5 years of data - rescale - select current year for status
-  fleet_status <- fleet %>%
-    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4) %>%
-    mutate(dimension = "status") %>%
-    mutate(score = (status / max(status)) * 100) %>% 
-    filter(scenario_year == scen_year) %>% 
-    dplyr::select(region_id, score, dimension)
-  
-  trend_years <- (scen_year - 4):(scen_year)
-  fleet_trend <- CalculateTrend(status_data = fleet, trend_years = trend_years)
-  
+ 
   #red diesel
   red <- AlignDataYears(layer_nm = "ao_fuel_cost", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, status = cost_ppl, scenario_year)
+    dplyr::select(region_id = rgn_id, cost_ppl, scenario_year)
   
-  #select last 5 years of data - rescale and invert (high score = low fuel price) - select current year for status
-  red_status <- red %>%
+  #select last 5 years of data - rescale and invert (high score = low fuel price)
+  #note: same price across regions
+  red <- red %>%
     filter(scenario_year <= scen_year & scenario_year >= scen_year - 4) %>%
-    mutate(status = (1 - status/max(status)) * 100) %>% 
+    mutate(status = (1 - cost_ppl/max(cost_ppl)) * 100) 
+  
+  red_status <- red %>% 
     filter(scenario_year == scen_year) %>%
     mutate(dimension = "status") %>%
     dplyr::select(region_id, score = status, dimension)
-  
+
   trend_years <- (scen_year - 4):(scen_year)
   red_trend <- CalculateTrend(status_data = red, trend_years = trend_years)
   
-  #effort - restricted to data years 2012 - 2016
-  #higher value indicates less effort to catch more fish
-  effort <- AlignDataYears(layer_nm = "ao_effort_catch", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, status = effort_tph, scenario_year)
-  status2 <- na.omit(effort$status) #omit NAs
-  ref <- max(status2)
-   
-  #select last 5 years of data (all data as restricted to data years 2010-2016) - rescale - select current year for status
-  effort_status <- effort %>%
-    mutate(dimension = "status") %>%
-    mutate(score = (status / ref) * 100) %>%
-    filter(scenario_year == scen_year) %>% 
-    dplyr::select(region_id, score, dimension)
-  
-  #trend_years <- (scen_year - 4):(scen_year)
-  effort_trend <- CalculateTrend(status_data = effort, trend_years = trend_years)
-  
   #bring status and trend scores together
-  status <- rbind (access_status, fleet_status, red_status, effort_status) 
+  status <- rbind (effort_status, fleet_status, access_status, red_status) 
   
   status <- status %>%
     group_by(region_id) %>%
@@ -468,7 +475,7 @@ AO <- function(layers) {
   ao_scores <-  rbind(status, trend) %>%
     mutate('goal'='AO') %>%
     select(goal, dimension, region_id, score) %>%
-    data.frame()
+    as.data.frame()
 
   return(ao_scores)
 }
@@ -494,6 +501,7 @@ NP <- function(scores, layers) {
 
 
 CS <- function(layers) {
+  
   scen_year <- layers$data$scenario_year
 
   # layers for carbon storage
@@ -558,6 +566,7 @@ CS <- function(layers) {
   sm_health <- AlignDataYears(layer_nm = "hab_saltmarsh_health", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, status = health, scenario_year)
   sm_health <- sm_health[order(sm_health$region_id, sm_health$scenario_year),]
+  
   trend_years <- (scen_year-4):(scen_year)
   sm_trend <- CalculateTrend(status_data = sm_health, trend_years = trend_years)
   sm_trend <- sm_trend %>% 
@@ -583,7 +592,8 @@ CS <- function(layers) {
   #finalize scores_CS
   scores_CS <- rbind(status_CS, trend_CS) %>%
     mutate(goal = 'CS') %>%
-    select(region_id, goal, dimension, score)
+    select(region_id, goal, dimension, score) %>% 
+    as.data.frame()
 
   #create weights file for pressures/resilience calculations
   weights <- extent %>%
@@ -709,7 +719,8 @@ scen_year <- layers$data$scenario_year
   #finalize scores_CP
   scores_CP <- rbind(status_CP, trend_CP) %>%
     mutate(goal = 'CP') %>%
-    select(region_id, goal, dimension, score)
+    select(region_id, goal, dimension, score) %>% 
+    as.data.frame()
 
   #create weights file for pressures/resilience calculations
   weights <- extent %>%
@@ -744,42 +755,50 @@ TR <- function(layers) {
     dplyr::select(region_id = rgn_id, tr_ons = ons, scenario_year)
   tourism <- tourism[order(tourism$region_id, tourism$scenario_year),]
 
-  sustain <- AlignDataYears(layer_nm = "tr_ttci", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, TTCI, scenario_year)
-  sustain <- sustain[order(sustain$region_id, sustain$scenario_year),]
+  #sustain <- AlignDataYears(layer_nm = "tr_ttci", layers_obj = layers) %>%
+    #dplyr::select(region_id = rgn_id, TTCI, scenario_year)
+  #sustain <- sustain[order(sustain$region_id, sustain$scenario_year),]
   
   #disable TTCI score
-  #set sustainabilty score to 1 for all regions
   
-  tr_data  <- full_join(tourism, sustain, by = c('region_id', 'scenario_year'))
+  #tr_data  <- full_join(tourism, sustain, by = c('region_id', 'scenario_year'))
   
-  tr_model <- tr_data %>%
-    mutate(tr = tr_ons,
-           s = (TTCI) / (6),
+  #disable sustainability calculation
+  #tr_model <- tr_data %>%
+    #mutate(tr = tr_ons,
+           #s = (TTCI) / (6),
            #scale TTCI score 0 - 1
-           #str = tr * s) #disable sustainability calculation
-           str = tr)
+           #str = tr * s) 
 
   #read in viewshed data
   rgn_sv <- AlignDataYears(layer_nm = "tr_viewshed", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, perc_sv, scenario_year)
 
+  #disable
   #incorporate viewshed data to model 
   #remove NAs
-  tr_model <- tr_model %>%
-    left_join(rgn_sv, by = c('region_id', 'scenario_year')) %>%
-    na.omit()
-  tr_model$str_vs <- tr_model$str * (tr_model$perc_sv /100)
+  #tr_model <- tr_model %>%
+    #left_join(rgn_sv, by = c('region_id', 'scenario_year')) %>%
+    #na.omit()
+  #tr_model$str_vs <- tr_model$str * (tr_model$perc_sv /100)
   
   #select data for last 5 years of data (2011 to 2015 (data years 2010 to 2014))
-  tr_model <- tr_model %>% 
+  tr_model <- tourism %>% 
     filter(scenario_year >= 2011 & scenario_year <= 2015)
-
-  #rescale data 0-1 using 99th quantile of all data - as per China and Global model
-  q <- quantile(tr_model$str_vs, 0.99, na.rm = T)
-  fun = function(x){ifelse(x>q, 1, x/q)}
-  tr_model$status <- as.numeric(lapply(tr_model$str_vs, fun))
   
+  #INTER comparison: rescale data 0-1 using max value of all data - (as per China and Global model)
+  #q <- quantile(tr_model$tr_ons, 1, na.rm = T)
+  #fun = function(x){ifelse(x>q, 1, x/q)}
+  #tr_model$status <- as.numeric(lapply(tr_model$tr_ons, fun))
+  
+  #INTRA-region comparison
+  tr_model <- tr_model %>% 
+    group_by(region_id) %>% 
+    mutate(max_tr_ons = max(tr_ons)) %>% 
+    mutate(status = tr_ons / max_tr_ons) %>% 
+    ungroup() %>% 
+    arrange(region_id)
+
   #get status - select senario year 2015 as most current data values (data not updated after 2014)
   status_1 <- tr_model %>%
     filter(scenario_year == 2015) %>% 
@@ -790,10 +809,17 @@ TR <- function(layers) {
   #calculate trend
   trend_years <- 2011:2015
   trend_1 <- CalculateTrend(status_data = tr_model, trend_years = trend_years)
-
+  
+  #sea view - no time series
+  status_2 <- rgn_sv %>% 
+    filter(scenario_year == scen_year) %>% 
+    select(region_id = region_id, score = perc_sv) %>%
+    mutate(dimension = 'status')
+  
 #recreation
   #read in modelled recreation data (status)
-  status_2 <- AlignDataYears(layer_nm = "tr_rec", layers_obj = layers) %>%
+  #no time series
+  status_3 <- AlignDataYears(layer_nm = "tr_rec", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, score = mean_tscore, scenario_year) %>%
     filter(scenario_year == scen_year) %>%
     mutate(dimension = "status") %>%
@@ -819,12 +845,14 @@ TR <- function(layers) {
   trend_2 <- dplyr::select(trend_2, "region_id", "score") %>%
     mutate(dimension = "trend")
 
-  #aggregate status_1 and status_2
-  tr_status <- left_join(status_1, status_2, by = "region_id")
-  tr_status$score <- apply(cbind(tr_status$score.x, tr_status$score.y), 1, mean,  na.rm = T)
-  tr_status <- dplyr::select(tr_status, "region_id", "score") %>%
+  #aggregate status scores
+  tr_status <- rbind(status_1, status_2, status_3)
+  tr_status <- tr_status %>% 
+    group_by(region_id) %>% 
+    summarise(score = mean(score, na.rm = T)) %>% 
+    ungroup() %>% 
     mutate(dimension = "status")
-  
+
   #aggregate trend_1 and trend_2
   tr_trend <- left_join(trend_1, trend_2, by = "region_id")
   tr_trend$score <- apply(cbind(tr_trend$score.x, tr_trend$score.y), 1, mean,  na.rm = T)
@@ -837,10 +865,12 @@ TR <- function(layers) {
   
   # return final scores
   scores <- tr_score %>%
-    select(region_id, goal, dimension, score)
+    select(region_id, goal, dimension, score) %>% 
+    as.data.frame()
 
   return(scores)
 }
+
 
 
 LIV <- function(layers){
@@ -861,19 +891,21 @@ LIV <- function(layers){
   #jobs reference: temporal comparison (by region) using a 4 year (due to data restrictions) moving window
   #value in the current year (scenario year) relative to the value in a recent moving reference period
   #a score of 100 would indicate no loss of jobs relative to 4 years previous
-  #wages reference: moving temporal reference: max regional wages per year
+  #wages reference: intra-regional temporal comparison - maximum wage in last 5 year) 
+  #a score of 100 would indicate no reduction in wages over lat 5 years
 
   liv_status <- liv %>%
     arrange(region_id, scenario_year) %>%
     group_by(region_id) %>%
-      mutate(mar_jobs_ref  = dplyr::lag(mar_jobs, 4)) %>%
-      ungroup() %>%
-      group_by(scenario_year) %>%
-      mutate(wages_gbp_ref = max(wages_gbp)) %>%
-      ungroup() %>%
-      mutate(
-        x_jobs  = pmax(-1, pmin(1, mar_jobs / mar_jobs_ref)),
-        x_wages = pmax(-1, pmin(1, wages_gbp / wages_gbp_ref)))
+    mutate(mar_jobs_ref  = dplyr::lag(mar_jobs, 4)) %>%
+    ungroup() %>%
+    filter(scenario_year <= scen_year & scenario_year >= scen_year - 4) %>% 
+    group_by(region_id) %>%
+    mutate(wages_gbp_ref = max(wages_gbp)) %>%
+    ungroup() %>%
+    mutate(
+      x_jobs  = pmax(-1, pmin(1, mar_jobs / mar_jobs_ref)),
+      x_wages = pmax(-1, pmin(1, wages_gbp / wages_gbp_ref)))
         
   #calculate mean status score (jobs and wages) - by year and region
   liv_status$status <- apply(cbind(liv_status$x_jobs, liv_status$x_wages), 1, mean, na.rm = T) * 100 
@@ -893,7 +925,8 @@ LIV <- function(layers){
 
   ## create scores and rbind to other goal scores
   scores = rbind(status, trend) %>%
-    dplyr::select(region_id, score, dimension, goal)
+    dplyr::select(region_id, score, dimension, goal) %>% 
+    as.data.frame()
 
   return(scores)
 
@@ -919,15 +952,25 @@ ECO <- function(layers){
   rev_cap$gva_per_cap <- rev_cap$gva / rev_cap$mar_jobs
   
   #ECO status
-  #assess economic productivity (per capita) by year across regions
+  #assess economic productivity (per capita) by YEAR ACROSS ALL REGIONS
   #moving temporal reference: reference point max regional gva per capita per year
-  rev_cap <- rev_cap %>%
-    group_by(scenario_year) %>%
+  #rev_cap <- rev_cap %>%
+    #group_by(scenario_year) %>%
+    #mutate(ref = max(gva_per_cap)) %>%
+    #ungroup() %>%
+    #mutate(status = (gva_per_cap / ref) * 100) %>%
+    #arrange(region_id, scenario_year)
+  
+  #ECO status
+  #assess economic productivity (GVA per capita) (intra-regional - maximum GVA per capita in last 5 year)
+  rev_cap <- rev_cap %>% 
+    arrange(region_id) %>% 
+    group_by(region_id) %>% 
     mutate(ref = max(gva_per_cap)) %>%
-    ungroup() %>%
     mutate(status = (gva_per_cap / ref) * 100) %>%
+    ungroup() %>% 
     arrange(region_id, scenario_year)
-
+  
   #filter for most recent year
   status <- rev_cap %>%
     filter(scenario_year == max(scenario_year)) %>%
@@ -943,7 +986,8 @@ ECO <- function(layers){
   
   #rbind status and trend
   scores = rbind(status, trend) %>%
-    dplyr::select(region_id, score, dimension, goal)
+    dplyr::select(region_id, score, dimension, goal) %>% 
+    as.data.frame()
 
   return(scores)
 
@@ -1044,7 +1088,7 @@ ICO <- function(layers){
   scores <-  rbind(status, trend) %>%
     mutate('goal'='ICO') %>%
     select(region_id, score, goal, dimension) %>%
-    data.frame()
+    as.data.frame()
   
   return(scores)
 
@@ -1082,7 +1126,7 @@ LSP <- function(layers) {
 
   lsp_data <- full_join(offshore, inland, by = c("region_id", "year"))
 
-  # get percent of total area that is protected for inland1km (cp) and offshore3nm (cmpa) per year
+  # get percent of total area that is protected for inland1km (cp) and offshore3nm (cmpa) per year - by region
   # and calculate status score
   status_data <- lsp_data %>%
     full_join(total_area, by = "region_id") %>%
@@ -1107,7 +1151,7 @@ LSP <- function(layers) {
   # return scores
   scores <- bind_rows(status, trend) %>%
     mutate(goal = "LSP") %>%
-    data.frame()
+    as.data.frame()
   
   return(scores)
   #return(scores[, c('region_id', 'goal', 'dimension', 'score')])
@@ -1158,76 +1202,137 @@ CW <- function(layers) {
   
   #pesticides
   pest <- AlignDataYears(layer_nm = "cw_pesticides", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, status = pesticides, scenario_year)
+    dplyr::select(region_id = rgn_id, pst = pesticides, scenario_year)
   
   pest <- pest %>%
     filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
-  #rescale data 0-1 using 99th quantile of all data
-  q <- quantile(pest$status, 0.99, na.rm = T)
-  fun = function(x){ifelse(x>q, 1, x/q)}
-  pest$status <- as.numeric(lapply(pest$status, fun))
+  
+  #inter-regional comparison
+  #rescale data 0-1 using max value of all data
+  #q <- quantile(pest$pst, 1, na.rm = T)
+  #fun = function(x){ifelse(x>q, 1, x/q)}
+  #pest$status <- as.numeric(lapply(pest$pst, fun))
+  
+  #range standardise
+  #rescale data 0-1 (intra-region)
+  pest <- pest %>% 
+    mutate(dimension = "status") %>%
+    arrange(region_id) %>% 
+    group_by(region_id) %>%
+    mutate(status = (pst-min(pst))/(max(pst)-min(pst))) %>% 
+    ungroup() 
+  
+  #rescale data 0-1 (intra-region)
+  #pest <- pest %>% 
+    #mutate(dimension = "status") %>%
+    #arrange(region_id) %>% 
+    #group_by(region_id) %>%
+    #mutate(max_pst = max(pst)) %>% 
+    #mutate(status = pst / max_pst) %>% 
+    #ungroup() 
   
   #high pesticide use = 1 low pesticide use = 0
   #needs inverting so
   #low pesticide = 1 high pesticide = 0
-  pest$status <- 1 - pest$status
+  pest <- pest %>% 
+    mutate(status = 1 - status)
   
   pest_status <- pest %>%
     filter(scenario_year == scen_year) %>%
-    mutate(score = status * 100) %>%
+    mutate(status = status * 100) %>%
     mutate(dimension = "status") %>%
-    dplyr::select(region_id, score, dimension)
+    dplyr::select(region_id, score = status, dimension)
   
   trend_years <- (scen_year - 4):(scen_year)
   pest_trend <- CalculateTrend(status_data = pest, trend_years = trend_years)
   
   #inorganic run-off
   run_off <- AlignDataYears(layer_nm = "cw_inorganic_run_off2", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, status = inorg_run_off, scenario_year)
+    dplyr::select(region_id = rgn_id, iro = inorg_run_off, scenario_year)
   
   run_off <- run_off %>%
     filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
   
-  #rescale data 0-1 using 99th quantile of all data
-  q <- quantile(run_off$status, 0.99, na.rm=T)
-  fun = function(x){ifelse(x>q, 1, x/q)}
-  run_off$status <- as.numeric(lapply(run_off$status, fun))
+  #inter-regional comparison
+  #rescale data 0-1 using max quantile of all data
+  #q <- quantile(run_off$iro, 1, na.rm=T)
+  #fun = function(x){ifelse(x>q, 1, x/q)}
+  #run_off$status <- as.numeric(lapply(run_off$iro, fun))
+  
+  #range standardise
+  #rescale data 0-1 (intra-region)
+  run_off <- run_off %>% 
+    mutate(dimension = "status") %>%
+    arrange(region_id) %>% 
+    group_by(region_id) %>%
+    mutate(status = (iro-min(iro))/(max(iro)-min(iro))) %>% 
+    ungroup()
+  
+  #rescale data 0-1 (intra-region)
+  #run_off <- run_off %>%
+    #arrange(region_id) %>% 
+    #mutate(dimension = "status") %>%
+    #group_by(region_id) %>%
+    #mutate(max_iro = max(iro)) %>% 
+    #mutate(status = iro / max_iro) %>% 
+    #ungroup() 
   
   #high rain fall (run-off) = 1 low = 0
   #needs inverting
   #low  = 1 high  = 0
-  run_off$status <- 1 - run_off$status
-  
+  run_off <- run_off %>% 
+    mutate(status = 1 - status)
+
   run_off_status <- run_off %>%
     filter(scenario_year == scen_year) %>%
-    mutate(score = status * 100) %>%
-    mutate(dimension = "status") %>%
-    dplyr::select(region_id, score, dimension)
+    mutate(dimension = "status") %>% 
+    mutate(status = status * 100) %>%
+    dplyr::select(region_id, score = status, dimension)
   
   trend_years <- (scen_year - 4):(scen_year)
   run_off_trend <- CalculateTrend(status_data = run_off, trend_years = trend_years)
 
   #nutrients
   nut <- AlignDataYears(layer_nm = "cw_nutrients", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, status = nutrients, scenario_year)
+    dplyr::select(region_id = rgn_id, nt = nutrients, scenario_year)
   
   nut <- nut %>%
     filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
   
-  #function to rescale SW coastal data 0-1 using 99th quantile of all data
-  q <- quantile(nut$status, 0.99, na.rm = T)
-  fun = function(x){ifelse(x>q, 1, x/q)}
-  nut$status <- as.numeric(lapply(nut$status, fun))
+  #inter-regional comparison
+  #function to rescale SW coastal data 0-1 using max value of all data
+  #q <- quantile(nut$nt, 1, na.rm = T)
+  #fun = function(x){ifelse(x>q, 1, x/q)}
+  #nut$status <- as.numeric(lapply(nut$nt, fun))
+  
+  #range standardise
+  #rescale data 0-1 (intra-region)
+  nut <- nut %>% 
+    mutate(dimension = "status") %>%
+    arrange(region_id) %>% 
+    group_by(region_id) %>%
+    mutate(status = (nt-min(nt))/(max(nt)-min(nt))) %>% 
+    ungroup()
+  
+  #rescale data 0-1 (intra-region)
+  #nut <- nut %>% 
+    #mutate(dimension = "status") %>%
+    #group_by(region_id) %>%
+    #mutate(max_nt = max(nt)) %>% 
+    #mutate(status = nt / max_nt) %>% 
+    #ungroup() 
+  
   #high fertilizer use = 1 low fertilizer use = 0
   #needs inverting
   #low fertiliser = 1 high fertiliser = 0
-  nut$status <- 1 - nut$status
+  nut <- nut %>% 
+    mutate(status = 1 - status)
 
   nut_status <- nut %>%
     filter(scenario_year == scen_year) %>%
     mutate(score = status * 100) %>%
     mutate(dimension = "status") %>%
-    dplyr::select(region_id, score, dimension)
+    dplyr::select(region_id, score = status, dimension)
   
   trend_years <- (scen_year - 4):(scen_year)
   nut_trend <- CalculateTrend(status_data = nut, trend_years = trend_years)
@@ -1254,31 +1359,50 @@ CW <- function(layers) {
     mutate(dimension = "status") %>%
     dplyr::select(region_id, score, dimension)
   
-  trend_years <- (scen_year - 9):(scen_year)
+  trend_years <- (scen_year - 4):(scen_year)
   bw_trend <- CalculateTrend(status_data = bw, trend_years = trend_years)
   
   #water quality - suspended material
   wq <- AlignDataYears(layer_nm = "cw_sus_material", layers_obj = layers) %>%
-    dplyr::select(region_id = rgn_id, status = sus_mat, scenario_year)
+    dplyr::select(region_id = rgn_id, sus_mat, scenario_year)
   
   wq <- wq %>%
     filter(scenario_year <= scen_year & scenario_year >= scen_year - 4)
   
-  #rescale data 0-1 using 99th quantile of all data
-  q <- quantile(wq$status,0.99, na.rm = T)
-  fun = function(x){ifelse(x>q, 1, x/q)}
-  wq$status <- as.numeric(lapply(wq$status, fun))
+  #inter-regional comparison
+  #rescale data 0-1 using max value of all data
+  #q <- quantile(wq$sus_mat, 1, na.rm = T)
+  #fun = function(x){ifelse(x>q, 1, x/q)}
+  #wq$status <- as.numeric(lapply(wq$sus_mat, fun))
+  
+  #range standardise
+  #rescale data 0-1 (intra-region)
+  wq <- wq %>% 
+    mutate(dimension = "status") %>%
+    arrange(region_id) %>% 
+    group_by(region_id) %>%
+    mutate(status = (sus_mat-min(sus_mat))/(max(sus_mat)-min(sus_mat))) %>% 
+    ungroup()
+  
+  #rescale data 0-1 (intra-region)
+  #wq <- wq %>% 
+    #mutate(dimension = "status") %>%
+    #group_by(region_id) %>%
+    #mutate(max_sus_mat = max(sus_mat)) %>% 
+    #mutate(status = sus_mat / max_sus_mat) %>% 
+    #ungroup() 
   
   #high suspended material = 1 low = 0
   #needs inverting
   #low = 1 high = 0
-  wq$status <- 1 - wq$status
+  wq <- wq %>% 
+    mutate(status = 1 - status)
   
   wq_status <- wq %>%
     filter(scenario_year == scen_year) %>%
     mutate(score = status * 100) %>%
     mutate(dimension = "status") %>%
-    dplyr::select(region_id, score, dimension)
+    dplyr::select(region_id, score = status, dimension)
   
   trend_years <- (scen_year - 4):(scen_year)
   wq_trend <- CalculateTrend(status_data = wq, trend_years = trend_years)
@@ -1333,7 +1457,7 @@ CW <- function(layers) {
   scores <-  rbind(status, trend) %>%
     mutate('goal'='CW') %>%
     select(goal, dimension, region_id, score) %>%
-    data.frame()
+    as.data.frame()
 
   return(scores)
 }
@@ -1418,7 +1542,8 @@ HAB <- function(layers) {
 
   scores_HAB <- rbind(status_HAB, trend_HAB) %>%
     mutate(goal = "HAB") %>%
-    select(region_id, goal, dimension, score)
+    select(region_id, goal, dimension, score) %>% 
+    as.data.frame()
   
   #create weights file for pressures/resilience calculations
   weights <- extent %>%
