@@ -1,19 +1,19 @@
 "taxa_code","species","rgn_id","year","wq_rg_sp"
-"blue_mussel_01","Mussels",2,2017,0.7
-"blue_mussel_01","Mussels",3,2017,0.625
-"blue_mussel_01","Mussels",5,2017,0.333333333333333
-"blue_mussel_01","Mussels",6,2017,0.678571428571429
-"common_cockle_02","Cockles",3,2017,0.25
-"common_cockle_02","Cockles",5,2017,0.25
-"common_cockle_02","Cockles",6,2017,0.25
-"japanese_carpet_shell_03","Tapes spp",3,2017,0.25
-"japanese_carpet_shell_03","Tapes spp",5,2017,0.25
-"japanese_carpet_shell_03","Tapes spp",6,2017,0.25
-"northern_quahog_04","M mercenaria",3,2017,0.25
-"northern_quahog_04","M mercenaria",5,2017,0.25
-"northern_quahog_04","M mercenaria",6,2017,0.25
-"pacific_cupped_oyster_05","P oysters",1,2017,1
-"pacific_cupped_oyster_05","P oysters",2,2017,0.75
-"pacific_cupped_oyster_05","P oysters",3,2017,0.666666666666667
-"pacific_cupped_oyster_05","P oysters",5,2017,0.571428571428571
-"pacific_cupped_oyster_05","P oysters",6,2017,0.666666666666667
+"blue_mussel_01","Mussels",2,2018,0.45
+"blue_mussel_01","Mussels",3,2018,0.375
+"blue_mussel_01","Mussels",5,2018,0.0833333333333333
+"blue_mussel_01","Mussels",6,2018,0.428571428571429
+"common_cockle_02","Cockles",3,2018,0
+"common_cockle_02","Cockles",5,2018,0
+"common_cockle_02","Cockles",6,2018,0
+"japanese_carpet_shell_03","Tapes spp",3,2018,0
+"japanese_carpet_shell_03","Tapes spp",5,2018,0
+"japanese_carpet_shell_03","Tapes spp",6,2018,0
+"northern_quahog_04","M mercenaria",3,2018,0
+"northern_quahog_04","M mercenaria",5,2018,0
+"northern_quahog_04","M mercenaria",6,2018,0
+"pacific_cupped_oyster_05","P oysters",1,2018,0.75
+"pacific_cupped_oyster_05","P oysters",2,2018,0.5
+"pacific_cupped_oyster_05","P oysters",3,2018,0.416666666666667
+"pacific_cupped_oyster_05","P oysters",5,2018,0.321428571428571
+"pacific_cupped_oyster_05","P oysters",6,2018,0.416666666666667

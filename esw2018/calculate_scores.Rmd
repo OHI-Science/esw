@@ -94,13 +94,14 @@ Run this to create flower plots for each region.
 
 ```{r plot, eval=FALSE}
 ## source script (to be incorporated into ohicore)
-source('https://raw.githubusercontent.com/OHI-Science/arc/master/circle2016/plot_flower_local.R')
+#source('https://raw.githubusercontent.com/OHI-Science/arc/master/circle2016/plot_flower_local.R')
 
-#or load function 'flower_plot_skp_20181114.R' in 'conf' folder
-#this amends position of 'supra goal radius from centre' and y location of 'goal names'
+#load function 'flower_plot_esw.R' in 'conf' folder
 
 PlotFlower(assessment_name = "South West England",
-dir_fig_save    = "reports/figures")
+dir_fig_save    = "reports/figures",
+scale_fill = TRUE)
+
 ```
 
 

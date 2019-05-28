@@ -29,10 +29,7 @@ resilience_element = list('CS'  = 'element_wts_cs_km2_x_storage',      # populat
 
 pressures_element  = list('CS'  = 'element_wts_cs_km2_x_storage',      # populated in CS() in functions.R
                           'CP'  = 'element_wts_cp_km2_x_protection',   # populated in CS() in functions.R
-                          'LIV' = 'le_sector_weight',
-                          'ECO' = 'le_sector_weight',
                           'HAB' = 'element_wts_hab_pres_abs')          # populated in CS() in functions.R
-
 
 # constants
 pressures_gamma = 0.5  # The relative importance of social vs. ecological pressures (pressure = gamma * ecological + (1-gamma) * social)

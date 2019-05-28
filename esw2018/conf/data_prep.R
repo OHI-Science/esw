@@ -202,8 +202,8 @@ rp <- dplyr::select(rgn_prop, "rgn_id", "species", "rgn_prop_prod")
 rp$species <- as.character(rp$species)
 total_harvest$species <- as.character(total_harvest$species)
 
-#unique(rp$species)
-#unique(total_harvest$species)
+unique(rp$species)
+unique(total_harvest$species)
 
 #subset regional prop data (rp)
 rp2 <- rp[rp$species == "Mussels" | rp$species == "Cockles"| rp$species == "Tapes spp" |
@@ -235,7 +235,11 @@ water_q <- dplyr::select(site_data, "species", "rgn_id", "water_class")
 #names(water_q)
 #look up table for water quality/status score
 wq_category <- data.frame(water_class = c('1', '2', '5', '6', '3', '4', '7'),
-                          wq_status_score = c(1,  0.75,  0.75,  NA, 0.5, 0.25, NA))
+                          wq_status_score = c(0.75,  0.5,  0.5,  NA, 0.25, 0, NA))
+
+#look up table for water quality/status score
+#wq_category <- data.frame(water_class = c('1', '2', '5', '6', '3', '4', '7'),
+                          #wq_status_score = c(1,  0.75,  0.75,  NA, 0.5, 0.25, NA))
 #join status score to table
 water_q <- water_q %>% left_join(wq_category, by = 'water_class')
 
@@ -245,9 +249,9 @@ water_q <- na.omit(water_q)
 wm <- water_q %>%
   group_by(rgn_id, species) %>%
   summarise(wq_rg_sp = mean(wq_status_score))
-wm["year"] <- 2017
+wm["year"] <- 2018
 
-wm2 <- select(wm, "rgn_id", "year",  "species", "wq_rg_sp")
+wm2 <- dplyr::select(wm, "rgn_id", "year",  "species", "wq_rg_sp")
 sp_taxa_code <- unique(total_harvest[,c("taxa_code", "species")])
 wm2 <- left_join(sp_taxa_code, wm2, "species")
 
@@ -386,6 +390,9 @@ sm_cnd <- sm_cnd %>%
 
 write.csv(sm_cnd, "prep/hab_saltmarsh_health_esw2018.csv", row.names = F)
 write.csv(sm_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_saltmarsh_health_esw2018.csv", row.names = F) #to git
+sm_cnd <- sm_cnd %>%
+  mutate(status = health * 100, data_year = year, region_id = rgn_id) 
+write.csv(sm_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/status_data/cat/HAB_saltmarsh_status.csv", row.names = F)
 
 ###
 
@@ -453,6 +460,9 @@ d_cnd <- d_cnd %>%
 
 write.csv(d_cnd, "prep/hab_sand_dune_health_esw2018.csv", row.names = F)
 write.csv(d_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_sand_dune_health_esw2018.csv", row.names = F) #to git
+d_cnd <- d_cnd %>%
+  mutate(status = health * 100, data_year = year, region_id = rgn_id)
+write.csv(d_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/status_data/cat/HAB_sand_dune_status.csv", row.names = F)
 
 ###
 
@@ -479,6 +489,9 @@ sg_cnd$health <- as.numeric(as.character(sg_cnd$health))
 sg_cnd[is.na(sg_cnd)] <- 0
 write.csv(sg_cnd, "prep/hab_seagrass_health_esw2018.csv", row.names = F)
 write.csv(sg_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_seagrass_health_esw2018.csv", row.names = F) #to git
+sg_cnd <- sg_cnd %>%
+  mutate(status = health * 100, data_year = year, region_id = rgn_id)
+write.csv(sg_cnd, "C:/Folders/Dropbox/github/esw_copy/esw2018/status_data/hist/HAB_seagrass_status.csv", row.names = F)
 
 ###
 
@@ -514,7 +527,7 @@ sb_extent <- sb %>%
   group_by(rgn_id = Region, year = Year) %>%
   summarise(km2 = sum(Habitat_Area)) %>%
   mutate(habitat = "ccms") %>%
-  select(rgn_id, habitat, year, km2)
+  dplyr::select(rgn_id, habitat, year, km2)
 
 write.csv(sb_extent, "prep/hab_ccms_extent_esw2018.csv", row.names = F)
 write.csv(sb_extent, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_ccms_extent_esw2018.csv", row.names = F) #to git
@@ -546,30 +559,34 @@ for (i in 1:length(r_list)){
 
 t1 <- z
 
-#rescale data 0-1 #rescale (intra regional)
 #group by region
+#rescale data 0-1 #rescale (intra regional)
+#and invert so low trawl intensity = 1, high tawl intensity = 0
 #this is OK here as only 5 years of data
 #if any more data become available move to functions code
 
-t1 <- t1 %>% 
+t2 <- t1 %>% 
+  arrange(rgn_id) %>% 
   group_by(rgn_id) %>% 
   mutate(max_trwl_int = max(trwl_int)) %>% 
-  mutate(trwl_int_rs = trwl_int / max_trwl_int) %>% 
-  arrange(rgn_id) %>% 
-  as.data.frame
+  mutate(status_inv = 1 - (trwl_int / max_trwl_int)) %>% 
+  mutate(max_status_inv = max(status_inv)) %>% 
+  mutate(status = status_inv + (1 - max_status_inv)) %>% 
+  mutate(habitat = "ccms") %>% 
+  ungroup() 
+
  
 #replace NaNs with 0
-t1$trwl_int_rs[is.nan(t1$trwl_int_rs)] <- 0 
+t2$status[is.nan(t2$status)] <- 1 
  
-t1 <- t1 %>% 
-  mutate(trwl_int_rs_inv = 1 - trwl_int_rs) %>% 
-  mutate(habitat = "ccms")
-
-sb_trwl_int <- t1 %>%
-  dplyr::select(rgn_id, habitat, year, health = trwl_int_rs_inv)
+sb_trwl_int <- t2 %>%
+  dplyr::select(rgn_id, habitat, year, health = status)
 
 write.csv(sb_trwl_int, "prep/hab_ccms_trawl_int_esw2018.csv", row.names = F)
 write.csv(sb_trwl_int, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/hab_ccms_trawl_int_esw2018.csv", row.names = F) #to git
+sb_trwl_int <- sb_trwl_int %>%
+  mutate(status = health * 100, data_year = year, region_id = rgn_id)
+write.csv(sb_trwl_int, "C:/Folders/Dropbox/github/esw_copy/esw2018/status_data/rescale/HAB_ccms_trawl_int_status.csv", row.names = F)
 
 
 #-------------#
@@ -1409,19 +1426,17 @@ ext_wgs84 <- spTransform(ext, wgs84)
 d <- raster::extract(r, ext_wgs84, fun = mean, na.rm = T, sp = T)
 t <- d@data
 t2 <- t[order(t$rgn_id),]
-colnames(t2) <- c("rgn_id", "area_km2", "trash")
-t2["year"] <- 2014
-#invert
-t2$trash <- 1 - t2$trash
 
-#rescale to 1 again
-q <- quantile(t2$trash, 1, na.rm = T)
-fun = function(x){ifelse(x>q, 1, x/q)}
-t2$trash <- as.numeric(lapply(t2$trash, fun))
-t3 <- t2[,c("year", "rgn_id", "trash")]
+t2 <- t2 %>% 
+  dplyr::select(rgn_id, trash = plastics_wgs84) %>% 
+  mutate(trash_inv = 1 - trash) %>% 
+  mutate(max_trash_inv = max(trash_inv)) %>% 
+  mutate(status = trash_inv + (1 - max_trash_inv)) %>% 
+  mutate(year = 2014) %>% 
+  dplyr::select(rgn_id, year, trash = status)
 
-write.csv(t3, "prep/cw_trash_esw2018.csv", row.names = F)
-write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_trash_esw2018.csv", row.names = F) #to git
+write.csv(t2, "prep/cw_trash_esw2018.csv", row.names = F)
+write.csv(t2, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_trash_esw2018.csv", row.names = F) #to git
 
 ###
 ###
@@ -1460,8 +1475,8 @@ t2["inv_inorg_run_off"] <- 1 - t2$inorg_run_off
 t3 <- t2[,c("year", "rgn_id", "inv_inorg_run_off")]
 colnames(t3) <- c("year", "rgn_id", "inorg_run_off")
 
-write.csv(t3,"prep/cw_inorganic_run_off_esw2018.csv", row.names = F)
-write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_inorganic_run_off_esw2018.csv", row.names = F) #to git
+#write.csv(t3,"prep/cw_inorganic_run_off_esw2018.csv", row.names = F)
+#write.csv(t3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_inorganic_run_off_esw2018.csv", row.names = F) #to git
 
 ###
 ###
@@ -1566,21 +1581,28 @@ for (i in 1:length(r_list)){
 }
 
 t1 <- z
-#rescale data 0-1 using 99th quantile of all data
+
+#rescale data 0-1
 #this is ok here - only 5 years of data available
-q <- quantile(t1$vessels,0.99, na.rm = T)
-fun = function(x){ifelse(x>q, 1, x/q)}
-t1$vessels2 <- as.numeric(lapply(t1$vessels,fun))
 
 #high vessel movements = 1 low = 0
 #needs inverting
 #so low  = 1 high  = 0
-t1$vessels_inv <- 1 - t1$vessels2
-t1 <- t1 %>%
-  dplyr::select(year = year, rgn_id = rgn_id, vessel_pol = vessels_inv)
 
-write.csv(t1, "prep/cw_vessel_pol_esw2018.csv", row.names = F)
-write.csv(t1, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_vessel_pol_esw2018.csv", row.names = F) #to git
+t2 <- t1 %>% 
+  arrange(rgn_id) %>% 
+  group_by(rgn_id) %>% 
+  mutate(max_vessels = max(vessels)) %>% 
+  mutate(status_inv = 1 - (vessels / max_vessels)) %>% 
+  mutate(max_status_inv = max(status_inv)) %>% 
+  mutate(status = status_inv + (1 - max_status_inv)) %>% 
+  ungroup() 
+  
+t2 <- t2 %>%
+  dplyr::select(year = year, rgn_id = rgn_id, vessel_pol = status)
+
+write.csv(t2, "prep/cw_vessel_pol_esw2018.csv", row.names = F)
+write.csv(t2, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/cw_vessel_pol_esw2018.csv", row.names = F) #to git
 
 
 #-------------#
@@ -1590,6 +1612,7 @@ cat("\014")
 
 #BD:SPP####
 #NOTE: for BD HAB see earlier code
+#code also used to calculate resilience layers: species_diversity_3nm_esw2018.csv & species_diversity_eez_esw2018.csv
 
 #Species status - mean species 'risk' weighted by proportion of area:
 #The reference point is to have the risk status of all iconic species at lowest risk of extinction - ie 1 - least concern (LC)
@@ -1617,7 +1640,13 @@ library(rgdal)
 ###
 
 sp <- read.csv("source/BD_SPP_marLIN.csv")
+#for goal status ... and  for EEZ resilience.csv
 shp <- readOGR(dsn = "source/shapefiles", layer = "ESW_regions_20190122_BNG")
+
+#add 3nm here for resilience.csv
+#shp <- readOGR(dsn = "source/shapefiles", layer = "ESW_regions_3nm_buf_20190122_BNG")
+
+plot(shp)
 rgn_km2 <- shp@data
 rgn_km2$rgn_id <- as.numeric(rgn_km2$rgn_id)
 
@@ -1653,10 +1682,23 @@ sp2 <- sp2 %>%
 #group by rgn_id and calculate mean regional status score
 sp3 <- sp2 %>% 
   group_by(rgn_id) %>% 
-  summarise(score = mean(IUCN_status_prop, na.rm = T))
+  summarise(score = mean(IUCN_status_prop, na.rm = T)) %>% 
+  ungroup()
 
 write.csv(sp3, "prep/spp_status_esw2018.csv", row.names = F)
 write.csv(sp3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/spp_status_esw2018.csv", row.names = F) #to git
+
+sp3 <- sp3 %>%
+  mutate(status = score * 100, data_year = 2018, region_id = rgn_id) %>%
+  select(region_id, status, data_year)
+
+write.csv(sp3, "C:/Folders/Dropbox/github/esw_copy/esw2018/status_data/hist/SPP_status.csv", row.names = F)
+#resilience: species_diversity_eez
+#write.csv(sp3, "C:/Folders/Dropbox/Projects/OHI/Data/Resilience/prep/species_diversity_eez_esw2018.csv", row.names = F)
+#write.csv(sp3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/species_diversity_eez_esw2018.csv", row.names = F) #to git
+#resilience: species_diversity_3nm
+#write.csv(sp3, "C:/Folders/Dropbox/Projects/OHI/Data/Resilience/prep/species_diversity_3nm_esw2018.csv", row.names = F)
+#write.csv(sp3, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/species_diversity_3nm_esw2018.csv", row.names = F) #to git
 
 #calculate trend  
 sp4 <- sp2 %>% 
@@ -1665,16 +1707,5 @@ sp4 <- sp2 %>%
 
 write.csv(sp4, "prep/spp_trend_esw2018.csv", row.names = F)
 write.csv(sp4, "C:/Folders/Dropbox/github/esw_copy/esw2018/layers/spp_trend_esw2018.csv", row.names = F) #to git
-
-
-
-
-
-
-
-
-
-
-
 
 
