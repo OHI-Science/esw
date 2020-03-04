@@ -1,0 +1,14 @@
+goal,name,weight1,preservationist,extractive
+FIS,Fisheries,0.5,0.2,1.5
+MAR,Mariculture,0.5,0.2,1.5
+AO,Artisanal Fisheries,1,0.2,1.5
+CS,Carbon Storage,1,1.5,0.2
+CP,Coastal Protection,1,1.5,0.2
+TR,Tourism & Recreation,1,0.2,1.8
+LIV,Livelihoods,0.5,0.3,0.6
+ECO,Economies,0.5,0.3,0.6
+ICO,Iconic Species,0.5,0.8,0.1
+LSP,Lasting Special Places,0.5,0.8,0.1
+CW,Clean Waters,1,1.5,0.4
+HAB,Habitats,0.5,0.75,0.25
+SPP,Species,0.5,0.75,0.25

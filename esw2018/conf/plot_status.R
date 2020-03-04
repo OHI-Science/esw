@@ -10,9 +10,9 @@ setwd("C:/Folders/Dropbox/github/esw_copy/esw2018")
 library(tidyverse)
 
 #rescale data
-n = 1
+n = 1 
 #cat data
-#n = 2
+n = 2
 
 if(n == 1) {f <- list.files("status_data/rescale", full.names = T)}
 if(n == 2) {f <- list.files("status_data/cat", full.names = T)}

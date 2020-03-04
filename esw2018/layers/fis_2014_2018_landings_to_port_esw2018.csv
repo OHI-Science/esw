@@ -1,0 +1,906 @@
+"rgn_id","year","stock_id","species","SumCatch","taxon_penalty_code"
+1,"2014","Crustacea_crabs","Crabs",0,7
+1,"2015","Crustacea_crabs","Crabs",0,7
+1,"2016","Crustacea_crabs","Crabs",0,7
+1,"2017","Crustacea_crabs","Crabs",0.06,7
+1,"2018","Crustacea_crabs","Crabs",0.28,7
+1,"2014","Homarus gammarus","Lobsters",0,0
+1,"2015","Homarus gammarus","Lobsters",0,0
+1,"2016","Homarus gammarus","Lobsters",0,0
+1,"2017","Homarus gammarus","Lobsters",0.01,0
+1,"2018","Homarus gammarus","Lobsters",0.15,0
+2,"2014","Buccinidae","Whelks",768.09,5
+2,"2015","Buccinidae","Whelks",943.9,5
+2,"2016","Buccinidae","Whelks",603.24,5
+2,"2017","Buccinidae","Whelks",282.05,5
+2,"2018","Buccinidae","Whelks",319.73,5
+2,"2014","Cephalopoda","Squid",66.42,7
+2,"2015","Cephalopoda","Squid",0.48,7
+2,"2016","Cephalopoda","Squid",0.39,7
+2,"2017","Cephalopoda","Squid",0.06,7
+2,"2018","Cephalopoda","Squid",5.66,7
+2,"2014","Clupea harengus","Herring",1.22,0
+2,"2015","Clupea harengus","Herring",0.19,0
+2,"2016","Clupea harengus","Herring",0.08,0
+2,"2017","Clupea harengus","Herring",0.19,0
+2,"2018","Clupea harengus","Herring",0.2,0
+2,"2014","Crustacea_crabs","Crabs",95.25,7
+2,"2015","Crustacea_crabs","Crabs",49.57,7
+2,"2016","Crustacea_crabs","Crabs",47.72,7
+2,"2017","Crustacea_crabs","Crabs",40.81,7
+2,"2018","Crustacea_crabs","Crabs",52.72,7
+2,"2014","Dicentrarchus labrax","Bass",10.56,0
+2,"2015","Dicentrarchus labrax","Bass",20.22,0
+2,"2016","Dicentrarchus labrax","Bass",10.74,0
+2,"2017","Dicentrarchus labrax","Bass",3.69,0
+2,"2018","Dicentrarchus labrax","Bass",2.24,0
+2,"2014","Gadus Morhua","Cod",12.62,0
+2,"2015","Gadus Morhua","Cod",3.69,0
+2,"2016","Gadus Morhua","Cod",1.85,0
+2,"2017","Gadus Morhua","Cod",2.49,0
+2,"2018","Gadus Morhua","Cod",3.83,0
+2,"2014","Glyptocephalus cynoglossus","Witch",0.01,0
+2,"2015","Glyptocephalus cynoglossus","Witch",0,0
+2,"2016","Glyptocephalus cynoglossus","Witch",0,0
+2,"2017","Glyptocephalus cynoglossus","Witch",0,0
+2,"2018","Glyptocephalus cynoglossus","Witch",0,0
+2,"2014","Homarus gammarus","Lobsters",30.82,0
+2,"2015","Homarus gammarus","Lobsters",26.41,0
+2,"2016","Homarus gammarus","Lobsters",25.96,0
+2,"2017","Homarus gammarus","Lobsters",22.81,0
+2,"2018","Homarus gammarus","Lobsters",22.03,0
+2,"2014","Lepidorhombus whiffiagonis","Megrim",0.01,0
+2,"2015","Lepidorhombus whiffiagonis","Megrim",0.34,0
+2,"2016","Lepidorhombus whiffiagonis","Megrim",0,0
+2,"2017","Lepidorhombus whiffiagonis","Megrim",0,0
+2,"2018","Lepidorhombus whiffiagonis","Megrim",0,0
+2,"2014","Lophiidae","Monks or Anglers",0.35,5
+2,"2015","Lophiidae","Monks or Anglers",0.31,5
+2,"2016","Lophiidae","Monks or Anglers",0.13,5
+2,"2017","Lophiidae","Monks or Anglers",0.16,5
+2,"2018","Lophiidae","Monks or Anglers",0.42,5
+2,"2014","Melanogrammus aeglefinus","Haddock",4.28,0
+2,"2015","Melanogrammus aeglefinus","Haddock",3.42,0
+2,"2016","Melanogrammus aeglefinus","Haddock",1.92,0
+2,"2017","Melanogrammus aeglefinus","Haddock",1.12,0
+2,"2018","Melanogrammus aeglefinus","Haddock",0.95,0
+2,"2014","Merlangius merlangus","Whiting",5.55,0
+2,"2015","Merlangius merlangus","Whiting",0.89,0
+2,"2016","Merlangius merlangus","Whiting",0.85,0
+2,"2017","Merlangius merlangus","Whiting",0.05,0
+2,"2018","Merlangius merlangus","Whiting",0.21,0
+2,"2014","Merluccius merluccius","Hake",0.12,0
+2,"2015","Merluccius merluccius","Hake",0.02,0
+2,"2016","Merluccius merluccius","Hake",0,0
+2,"2017","Merluccius merluccius","Hake",0,0
+2,"2018","Merluccius merluccius","Hake",0.18,0
+2,"2014","Microstomus kitt","Lemon Sole",0.85,0
+2,"2015","Microstomus kitt","Lemon Sole",0.3,0
+2,"2016","Microstomus kitt","Lemon Sole",0.14,0
+2,"2017","Microstomus kitt","Lemon Sole",0.13,0
+2,"2018","Microstomus kitt","Lemon Sole",0.06,0
+2,"2014","Molva molva","Ling",1.23,0
+2,"2015","Molva molva","Ling",0.15,0
+2,"2016","Molva molva","Ling",0.05,0
+2,"2017","Molva molva","Ling",0.05,0
+2,"2018","Molva molva","Ling",0.38,0
+2,"2014","Mugilidae","Mullet",6.13,5
+2,"2015","Mugilidae","Mullet",3.02,5
+2,"2016","Mugilidae","Mullet",5.91,5
+2,"2017","Mugilidae","Mullet",2.71,5
+2,"2018","Mugilidae","Mullet",0.43,5
+2,"2014","Pectinidae","Scallops",8.31,5
+2,"2015","Pectinidae","Scallops",50.51,5
+2,"2016","Pectinidae","Scallops",9.48,5
+2,"2017","Pectinidae","Scallops",8.05,5
+2,"2018","Pectinidae","Scallops",0.45,5
+2,"2014","Pleuronectes platessa","Plaice",3.12,0
+2,"2015","Pleuronectes platessa","Plaice",4.42,0
+2,"2016","Pleuronectes platessa","Plaice",3.59,0
+2,"2017","Pleuronectes platessa","Plaice",3.55,0
+2,"2018","Pleuronectes platessa","Plaice",2.84,0
+2,"2014","Pollachius pollachius","Pollack (Lythe)",1.79,0
+2,"2015","Pollachius pollachius","Pollack (Lythe)",0.42,0
+2,"2016","Pollachius pollachius","Pollack (Lythe)",0.74,0
+2,"2017","Pollachius pollachius","Pollack (Lythe)",0.35,0
+2,"2018","Pollachius pollachius","Pollack (Lythe)",2.31,0
+2,"2014","Pollachius virens","Saithe",0.03,0
+2,"2015","Pollachius virens","Saithe",0,0
+2,"2016","Pollachius virens","Saithe",0.01,0
+2,"2017","Pollachius virens","Saithe",0,0
+2,"2018","Pollachius virens","Saithe",0.68,0
+2,"2014","Rajiformes","Skates and Rays",118.15,7
+2,"2015","Rajiformes","Skates and Rays",120.72,7
+2,"2016","Rajiformes","Skates and Rays",142.96,7
+2,"2017","Rajiformes","Skates and Rays",147.44,7
+2,"2018","Rajiformes","Skates and Rays",146.97,7
+2,"2014","Scomber scombrus","Mackerel",0.16,0
+2,"2015","Scomber scombrus","Mackerel",0.06,0
+2,"2016","Scomber scombrus","Mackerel",0.16,0
+2,"2017","Scomber scombrus","Mackerel",0.03,0
+2,"2018","Scomber scombrus","Mackerel",0.04,0
+2,"2014","Scophthalmus maximus","Turbot",1.93,0
+2,"2015","Scophthalmus maximus","Turbot",1.15,0
+2,"2016","Scophthalmus maximus","Turbot",0.93,0
+2,"2017","Scophthalmus maximus","Turbot",0.5,0
+2,"2018","Scophthalmus maximus","Turbot",0.94,0
+2,"2014","Scophthalmus rhombus","Brill",0.84,0
+2,"2015","Scophthalmus rhombus","Brill",0.5,0
+2,"2016","Scophthalmus rhombus","Brill",0.4,0
+2,"2017","Scophthalmus rhombus","Brill",0.28,0
+2,"2018","Scophthalmus rhombus","Brill",0.42,0
+2,"2014","Sepia officinalis","Cuttlefish",0.59,0
+2,"2015","Sepia officinalis","Cuttlefish",0.89,0
+2,"2016","Sepia officinalis","Cuttlefish",0.09,0
+2,"2017","Sepia officinalis","Cuttlefish",0.1,0
+2,"2018","Sepia officinalis","Cuttlefish",0.21,0
+2,"2014","Soleidae","Sole",3.11,5
+2,"2015","Soleidae","Sole",8.79,5
+2,"2016","Soleidae","Sole",4.1,5
+2,"2017","Soleidae","Sole",4.92,5
+2,"2018","Soleidae","Sole",10.11,5
+2,"2014","Sparidae","Bream",0.03,5
+2,"2015","Sparidae","Bream",0,5
+2,"2016","Sparidae","Bream",0,5
+2,"2017","Sparidae","Bream",0.02,5
+2,"2018","Sparidae","Bream",0.02,5
+2,"2014","Squalidae","Dogfish",6.6,5
+2,"2015","Squalidae","Dogfish",26.01,5
+2,"2016","Squalidae","Dogfish",63.63,5
+2,"2017","Squalidae","Dogfish",79.25,5
+2,"2018","Squalidae","Dogfish",170.69,5
+2,"2014","Triglidae","Gurnard",1.1,5
+2,"2015","Triglidae","Gurnard",0.81,5
+2,"2016","Triglidae","Gurnard",1.15,5
+2,"2017","Triglidae","Gurnard",1.1,5
+2,"2018","Triglidae","Gurnard",0.89,5
+2,"2014","Unidentified Demersal","Other Demersal",24.74,7
+2,"2015","Unidentified Demersal","Other Demersal",13.91,7
+2,"2016","Unidentified Demersal","Other Demersal",19.29,7
+2,"2017","Unidentified Demersal","Other Demersal",20.82,7
+2,"2018","Unidentified Demersal","Other Demersal",42.89,7
+2,"2014","Unidentified Shellfish","Other Shellfish",0.01,7
+2,"2015","Unidentified Shellfish","Other Shellfish",0,7
+2,"2016","Unidentified Shellfish","Other Shellfish",0,7
+2,"2017","Unidentified Shellfish","Other Shellfish",0,7
+2,"2018","Unidentified Shellfish","Other Shellfish",0,7
+2,"2014","Trachurus trachurus","Horse Mackerel",0,0
+2,"2015","Trachurus trachurus","Horse Mackerel",0,0
+2,"2016","Trachurus trachurus","Horse Mackerel",0,0
+2,"2017","Trachurus trachurus","Horse Mackerel",0.04,0
+2,"2018","Trachurus trachurus","Horse Mackerel",0,0
+2,"2014","Unidentified Pelagic","Other Pelagic",0,7
+2,"2015","Unidentified Pelagic","Other Pelagic",0,7
+2,"2016","Unidentified Pelagic","Other Pelagic",0,7
+2,"2017","Unidentified Pelagic","Other Pelagic",0,7
+2,"2018","Unidentified Pelagic","Other Pelagic",0.08,7
+3,"2014","Ammodytidae","Sand Eels",12.51,5
+3,"2015","Ammodytidae","Sand Eels",16.37,5
+3,"2016","Ammodytidae","Sand Eels",20.93,5
+3,"2017","Ammodytidae","Sand Eels",6.46,5
+3,"2018","Ammodytidae","Sand Eels",14.39,5
+3,"2014","Buccinidae","Whelks",2.27,5
+3,"2015","Buccinidae","Whelks",28.46,5
+3,"2016","Buccinidae","Whelks",48.79,5
+3,"2017","Buccinidae","Whelks",17.86,5
+3,"2018","Buccinidae","Whelks",0.44,5
+3,"2014","Cephalopoda","Squid",173.68,7
+3,"2015","Cephalopoda","Squid",72.84,7
+3,"2016","Cephalopoda","Squid",51.16,7
+3,"2017","Cephalopoda","Squid",73.67,7
+3,"2018","Cephalopoda","Squid",37.99,7
+3,"2014","Clupea harengus","Herring",60.12,0
+3,"2015","Clupea harengus","Herring",127.1,0
+3,"2016","Clupea harengus","Herring",249.18,0
+3,"2017","Clupea harengus","Herring",37.92,0
+3,"2018","Clupea harengus","Herring",9.74,0
+3,"2014","Crustacea_crabs","Crabs",3421.13,7
+3,"2015","Crustacea_crabs","Crabs",2734.7,7
+3,"2016","Crustacea_crabs","Crabs",2911.28,7
+3,"2017","Crustacea_crabs","Crabs",2629.31,7
+3,"2018","Crustacea_crabs","Crabs",2548.94,7
+3,"2014","Crustacea_shrimps_prawns","Shrimps and Prawns",0.87,7
+3,"2015","Crustacea_shrimps_prawns","Shrimps and Prawns",2.13,7
+3,"2016","Crustacea_shrimps_prawns","Shrimps and Prawns",1.25,7
+3,"2017","Crustacea_shrimps_prawns","Shrimps and Prawns",0.74,7
+3,"2018","Crustacea_shrimps_prawns","Shrimps and Prawns",0.56,7
+3,"2014","Dicentrarchus labrax","Bass",46.38,0
+3,"2015","Dicentrarchus labrax","Bass",52.24,0
+3,"2016","Dicentrarchus labrax","Bass",39.21,0
+3,"2017","Dicentrarchus labrax","Bass",44.92,0
+3,"2018","Dicentrarchus labrax","Bass",57.08,0
+3,"2014","Gadus Morhua","Cod",206.01,0
+3,"2015","Gadus Morhua","Cod",224.04,0
+3,"2016","Gadus Morhua","Cod",208.52,0
+3,"2017","Gadus Morhua","Cod",102.58,0
+3,"2018","Gadus Morhua","Cod",70.1,0
+3,"2014","Glyptocephalus cynoglossus","Witch",17.49,0
+3,"2015","Glyptocephalus cynoglossus","Witch",17.59,0
+3,"2016","Glyptocephalus cynoglossus","Witch",31.76,0
+3,"2017","Glyptocephalus cynoglossus","Witch",25.43,0
+3,"2018","Glyptocephalus cynoglossus","Witch",35.06,0
+3,"2014","Hippoglossus hippoglossus","Halibut",0.02,0
+3,"2015","Hippoglossus hippoglossus","Halibut",0,0
+3,"2016","Hippoglossus hippoglossus","Halibut",0.05,0
+3,"2017","Hippoglossus hippoglossus","Halibut",0.03,0
+3,"2018","Hippoglossus hippoglossus","Halibut",0,0
+3,"2014","Homarus gammarus","Lobsters",191.14,0
+3,"2015","Homarus gammarus","Lobsters",206.87,0
+3,"2016","Homarus gammarus","Lobsters",205.68,0
+3,"2017","Homarus gammarus","Lobsters",192.08,0
+3,"2018","Homarus gammarus","Lobsters",205.53,0
+3,"2014","Lepidorhombus whiffiagonis","Megrim",893.17,0
+3,"2015","Lepidorhombus whiffiagonis","Megrim",882.51,0
+3,"2016","Lepidorhombus whiffiagonis","Megrim",812.84,0
+3,"2017","Lepidorhombus whiffiagonis","Megrim",800.79,0
+3,"2018","Lepidorhombus whiffiagonis","Megrim",745.61,0
+3,"2014","Lophiidae","Monks or Anglers",659.96,5
+3,"2015","Lophiidae","Monks or Anglers",712.26,5
+3,"2016","Lophiidae","Monks or Anglers",736.5,5
+3,"2017","Lophiidae","Monks or Anglers",634.21,5
+3,"2018","Lophiidae","Monks or Anglers",469.15,5
+3,"2014","Melanogrammus aeglefinus","Haddock",386.79,0
+3,"2015","Melanogrammus aeglefinus","Haddock",427.87,0
+3,"2016","Melanogrammus aeglefinus","Haddock",369.04,0
+3,"2017","Melanogrammus aeglefinus","Haddock",481.27,0
+3,"2018","Melanogrammus aeglefinus","Haddock",409.2,0
+3,"2014","Merlangius merlangus","Whiting",298.92,0
+3,"2015","Merlangius merlangus","Whiting",217.65,0
+3,"2016","Merlangius merlangus","Whiting",385.16,0
+3,"2017","Merlangius merlangus","Whiting",291.93,0
+3,"2018","Merlangius merlangus","Whiting",294.77,0
+3,"2014","Merluccius merluccius","Hake",812.05,0
+3,"2015","Merluccius merluccius","Hake",1015.55,0
+3,"2016","Merluccius merluccius","Hake",1141.33,0
+3,"2017","Merluccius merluccius","Hake",1321.14,0
+3,"2018","Merluccius merluccius","Hake",1692.09,0
+3,"2014","Microstomus kitt","Lemon Sole",605.5,0
+3,"2015","Microstomus kitt","Lemon Sole",368.26,0
+3,"2016","Microstomus kitt","Lemon Sole",421.62,0
+3,"2017","Microstomus kitt","Lemon Sole",365.15,0
+3,"2018","Microstomus kitt","Lemon Sole",363.02,0
+3,"2014","Molva molva","Ling",313.94,0
+3,"2015","Molva molva","Ling",153.37,0
+3,"2016","Molva molva","Ling",185.16,0
+3,"2017","Molva molva","Ling",113.65,0
+3,"2018","Molva molva","Ling",92.51,0
+3,"2014","Mugilidae","Mullet",30.38,5
+3,"2015","Mugilidae","Mullet",30.02,5
+3,"2016","Mugilidae","Mullet",40.98,5
+3,"2017","Mugilidae","Mullet",35.67,5
+3,"2018","Mugilidae","Mullet",22.19,5
+3,"2014","Nephropidae","Nephrops",0.28,5
+3,"2015","Nephropidae","Nephrops",90.04,5
+3,"2016","Nephropidae","Nephrops",298.27,5
+3,"2017","Nephropidae","Nephrops",317.5,5
+3,"2018","Nephropidae","Nephrops",258.35,5
+3,"2014","Pectinidae","Scallops",1061.38,5
+3,"2015","Pectinidae","Scallops",1069.45,5
+3,"2016","Pectinidae","Scallops",1221.88,5
+3,"2017","Pectinidae","Scallops",1490.97,5
+3,"2018","Pectinidae","Scallops",852.61,5
+3,"2014","Pleuronectes platessa","Plaice",169.01,0
+3,"2015","Pleuronectes platessa","Plaice",177.65,0
+3,"2016","Pleuronectes platessa","Plaice",211.8,0
+3,"2017","Pleuronectes platessa","Plaice",243.54,0
+3,"2018","Pleuronectes platessa","Plaice",183.24,0
+3,"2014","Pollachius pollachius","Pollack (Lythe)",1031.46,0
+3,"2015","Pollachius pollachius","Pollack (Lythe)",704.53,0
+3,"2016","Pollachius pollachius","Pollack (Lythe)",1022.22,0
+3,"2017","Pollachius pollachius","Pollack (Lythe)",624.28,0
+3,"2018","Pollachius pollachius","Pollack (Lythe)",563.83,0
+3,"2014","Pollachius virens","Saithe",101.47,0
+3,"2015","Pollachius virens","Saithe",63.05,0
+3,"2016","Pollachius virens","Saithe",67.1,0
+3,"2017","Pollachius virens","Saithe",27.14,0
+3,"2018","Pollachius virens","Saithe",31.76,0
+3,"2014","Rajiformes","Skates and Rays",259.77,7
+3,"2015","Rajiformes","Skates and Rays",284.33,7
+3,"2016","Rajiformes","Skates and Rays",332.99,7
+3,"2017","Rajiformes","Skates and Rays",281.15,7
+3,"2018","Rajiformes","Skates and Rays",282.65,7
+3,"2014","Sardina pilchardus","Sardines",3131.94,0
+3,"2015","Sardina pilchardus","Sardines",3483.8,0
+3,"2016","Sardina pilchardus","Sardines",5277.89,0
+3,"2017","Sardina pilchardus","Sardines",5505.84,0
+3,"2018","Sardina pilchardus","Sardines",6618.74,0
+3,"2014","Scomber scombrus","Mackerel",614.83,0
+3,"2015","Scomber scombrus","Mackerel",509.35,0
+3,"2016","Scomber scombrus","Mackerel",945.72,0
+3,"2017","Scomber scombrus","Mackerel",994.2,0
+3,"2018","Scomber scombrus","Mackerel",625.92,0
+3,"2014","Scophthalmus maximus","Turbot",162.48,0
+3,"2015","Scophthalmus maximus","Turbot",195.08,0
+3,"2016","Scophthalmus maximus","Turbot",168.82,0
+3,"2017","Scophthalmus maximus","Turbot",175.5,0
+3,"2018","Scophthalmus maximus","Turbot",113.46,0
+3,"2014","Scophthalmus rhombus","Brill",56.24,0
+3,"2015","Scophthalmus rhombus","Brill",58.88,0
+3,"2016","Scophthalmus rhombus","Brill",62.81,0
+3,"2017","Scophthalmus rhombus","Brill",62,0
+3,"2018","Scophthalmus rhombus","Brill",55.76,0
+3,"2014","Sepia officinalis","Cuttlefish",587.54,0
+3,"2015","Sepia officinalis","Cuttlefish",1158.62,0
+3,"2016","Sepia officinalis","Cuttlefish",646.42,0
+3,"2017","Sepia officinalis","Cuttlefish",1074.76,0
+3,"2018","Sepia officinalis","Cuttlefish",732.67,0
+3,"2014","Soleidae","Sole",371.75,5
+3,"2015","Soleidae","Sole",242.35,5
+3,"2016","Soleidae","Sole",387.06,5
+3,"2017","Soleidae","Sole",284.71,5
+3,"2018","Soleidae","Sole",312.94,5
+3,"2014","Sparidae","Bream",1.17,5
+3,"2015","Sparidae","Bream",0.62,5
+3,"2016","Sparidae","Bream",1.33,5
+3,"2017","Sparidae","Bream",0.98,5
+3,"2018","Sparidae","Bream",2.51,5
+3,"2014","Squalidae","Dogfish",68.82,5
+3,"2015","Squalidae","Dogfish",124.34,5
+3,"2016","Squalidae","Dogfish",187.3,5
+3,"2017","Squalidae","Dogfish",149.53,5
+3,"2018","Squalidae","Dogfish",198.62,5
+3,"2014","Trachurus trachurus","Horse Mackerel",7.64,0
+3,"2015","Trachurus trachurus","Horse Mackerel",1.83,0
+3,"2016","Trachurus trachurus","Horse Mackerel",6.71,0
+3,"2017","Trachurus trachurus","Horse Mackerel",8.05,0
+3,"2018","Trachurus trachurus","Horse Mackerel",25.39,0
+3,"2014","Triglidae","Gurnard",188.67,5
+3,"2015","Triglidae","Gurnard",190,5
+3,"2016","Triglidae","Gurnard",203.84,5
+3,"2017","Triglidae","Gurnard",175.18,5
+3,"2018","Triglidae","Gurnard",257.09,5
+3,"2014","Unidentified Demersal","Other Demersal",449.1,7
+3,"2015","Unidentified Demersal","Other Demersal",304.2,7
+3,"2016","Unidentified Demersal","Other Demersal",423.54,7
+3,"2017","Unidentified Demersal","Other Demersal",333.65,7
+3,"2018","Unidentified Demersal","Other Demersal",322.7,7
+3,"2014","Unidentified Pelagic","Other Pelagic",81.61,7
+3,"2015","Unidentified Pelagic","Other Pelagic",18.51,7
+3,"2016","Unidentified Pelagic","Other Pelagic",42.43,7
+3,"2017","Unidentified Pelagic","Other Pelagic",18.82,7
+3,"2018","Unidentified Pelagic","Other Pelagic",70.26,7
+3,"2014","Unidentified Shellfish","Other Shellfish",61.4,7
+3,"2015","Unidentified Shellfish","Other Shellfish",58.26,7
+3,"2016","Unidentified Shellfish","Other Shellfish",69.2,7
+3,"2017","Unidentified Shellfish","Other Shellfish",79.03,7
+3,"2018","Unidentified Shellfish","Other Shellfish",67.28,7
+3,"2014","Cardiidae","Cockles",0,5
+3,"2015","Cardiidae","Cockles",0.01,5
+3,"2016","Cardiidae","Cockles",0,5
+3,"2017","Cardiidae","Cockles",0,5
+3,"2018","Cardiidae","Cockles",0.27,5
+3,"2014","Mytilus edulis","Mussels",0,0
+3,"2015","Mytilus edulis","Mussels",0,0
+3,"2016","Mytilus edulis","Mussels",10.49,0
+3,"2017","Mytilus edulis","Mussels",13.85,0
+3,"2018","Mytilus edulis","Mussels",0.01,0
+3,"2014","Ostreidae","Oysters",0,5
+3,"2015","Ostreidae","Oysters",0,5
+3,"2016","Ostreidae","Oysters",0.75,5
+3,"2017","Ostreidae","Oysters",0.17,5
+3,"2018","Ostreidae","Oysters",0,5
+4,"2014","Cephalopoda","Squid",0.22,7
+4,"2015","Cephalopoda","Squid",0.04,7
+4,"2016","Cephalopoda","Squid",0.01,7
+4,"2017","Cephalopoda","Squid",0.06,7
+4,"2018","Cephalopoda","Squid",0.01,7
+4,"2014","Crustacea_crabs","Crabs",81.57,7
+4,"2015","Crustacea_crabs","Crabs",117.62,7
+4,"2016","Crustacea_crabs","Crabs",156.96,7
+4,"2017","Crustacea_crabs","Crabs",48.8,7
+4,"2018","Crustacea_crabs","Crabs",72.93,7
+4,"2014","Dicentrarchus labrax","Bass",0.02,0
+4,"2015","Dicentrarchus labrax","Bass",0.11,0
+4,"2016","Dicentrarchus labrax","Bass",0.06,0
+4,"2017","Dicentrarchus labrax","Bass",0.1,0
+4,"2018","Dicentrarchus labrax","Bass",0.29,0
+4,"2014","Homarus gammarus","Lobsters",18.42,0
+4,"2015","Homarus gammarus","Lobsters",19.05,0
+4,"2016","Homarus gammarus","Lobsters",23.04,0
+4,"2017","Homarus gammarus","Lobsters",19.1,0
+4,"2018","Homarus gammarus","Lobsters",24.05,0
+4,"2014","Lophiidae","Monks or Anglers",0.14,5
+4,"2015","Lophiidae","Monks or Anglers",0.07,5
+4,"2016","Lophiidae","Monks or Anglers",0.07,5
+4,"2017","Lophiidae","Monks or Anglers",0.06,5
+4,"2018","Lophiidae","Monks or Anglers",0.06,5
+4,"2014","Melanogrammus aeglefinus","Haddock",0.07,0
+4,"2015","Melanogrammus aeglefinus","Haddock",0.09,0
+4,"2016","Melanogrammus aeglefinus","Haddock",0.36,0
+4,"2017","Melanogrammus aeglefinus","Haddock",0.03,0
+4,"2018","Melanogrammus aeglefinus","Haddock",0.02,0
+4,"2014","Microstomus kitt","Lemon Sole",0.07,0
+4,"2015","Microstomus kitt","Lemon Sole",0.01,0
+4,"2016","Microstomus kitt","Lemon Sole",0.22,0
+4,"2017","Microstomus kitt","Lemon Sole",0.04,0
+4,"2018","Microstomus kitt","Lemon Sole",0.03,0
+4,"2014","Molva molva","Ling",0.11,0
+4,"2015","Molva molva","Ling",0.14,0
+4,"2016","Molva molva","Ling",0,0
+4,"2017","Molva molva","Ling",0.14,0
+4,"2018","Molva molva","Ling",0.01,0
+4,"2014","Mugilidae","Mullet",1.54,5
+4,"2015","Mugilidae","Mullet",0.34,5
+4,"2016","Mugilidae","Mullet",0.07,5
+4,"2017","Mugilidae","Mullet",0.05,5
+4,"2018","Mugilidae","Mullet",2.74,5
+4,"2014","Pectinidae","Scallops",0.15,5
+4,"2015","Pectinidae","Scallops",0.14,5
+4,"2016","Pectinidae","Scallops",0,5
+4,"2017","Pectinidae","Scallops",0.32,5
+4,"2018","Pectinidae","Scallops",0.68,5
+4,"2014","Pleuronectes platessa","Plaice",0.26,0
+4,"2015","Pleuronectes platessa","Plaice",0.05,0
+4,"2016","Pleuronectes platessa","Plaice",0.12,0
+4,"2017","Pleuronectes platessa","Plaice",0.08,0
+4,"2018","Pleuronectes platessa","Plaice",0.09,0
+4,"2014","Pollachius pollachius","Pollack (Lythe)",0.84,0
+4,"2015","Pollachius pollachius","Pollack (Lythe)",2.13,0
+4,"2016","Pollachius pollachius","Pollack (Lythe)",2.47,0
+4,"2017","Pollachius pollachius","Pollack (Lythe)",1.98,0
+4,"2018","Pollachius pollachius","Pollack (Lythe)",2.06,0
+4,"2014","Rajiformes","Skates and Rays",0.42,7
+4,"2015","Rajiformes","Skates and Rays",0,7
+4,"2016","Rajiformes","Skates and Rays",0.15,7
+4,"2017","Rajiformes","Skates and Rays",0.12,7
+4,"2018","Rajiformes","Skates and Rays",0.08,7
+4,"2014","Scomber scombrus","Mackerel",0.08,0
+4,"2015","Scomber scombrus","Mackerel",0.58,0
+4,"2016","Scomber scombrus","Mackerel",1.09,0
+4,"2017","Scomber scombrus","Mackerel",0.72,0
+4,"2018","Scomber scombrus","Mackerel",0.16,0
+4,"2014","Scophthalmus maximus","Turbot",0.09,0
+4,"2015","Scophthalmus maximus","Turbot",0.06,0
+4,"2016","Scophthalmus maximus","Turbot",0.09,0
+4,"2017","Scophthalmus maximus","Turbot",0.04,0
+4,"2018","Scophthalmus maximus","Turbot",0.08,0
+4,"2014","Scophthalmus rhombus","Brill",0.04,0
+4,"2015","Scophthalmus rhombus","Brill",0.07,0
+4,"2016","Scophthalmus rhombus","Brill",0.05,0
+4,"2017","Scophthalmus rhombus","Brill",0.01,0
+4,"2018","Scophthalmus rhombus","Brill",0.01,0
+4,"2014","Soleidae","Sole",0.14,5
+4,"2015","Soleidae","Sole",0.11,5
+4,"2016","Soleidae","Sole",0.08,5
+4,"2017","Soleidae","Sole",0.06,5
+4,"2018","Soleidae","Sole",0.04,5
+4,"2014","Triglidae","Gurnard",0.04,5
+4,"2015","Triglidae","Gurnard",0,5
+4,"2016","Triglidae","Gurnard",0.42,5
+4,"2017","Triglidae","Gurnard",0,5
+4,"2018","Triglidae","Gurnard",0,5
+4,"2014","Unidentified Demersal","Other Demersal",0.72,7
+4,"2015","Unidentified Demersal","Other Demersal",0.36,7
+4,"2016","Unidentified Demersal","Other Demersal",0.11,7
+4,"2017","Unidentified Demersal","Other Demersal",0.12,7
+4,"2018","Unidentified Demersal","Other Demersal",0.35,7
+4,"2014","Unidentified Pelagic","Other Pelagic",0.87,7
+4,"2015","Unidentified Pelagic","Other Pelagic",0,7
+4,"2016","Unidentified Pelagic","Other Pelagic",0,7
+4,"2017","Unidentified Pelagic","Other Pelagic",0,7
+4,"2018","Unidentified Pelagic","Other Pelagic",0,7
+4,"2014","Unidentified Shellfish","Other Shellfish",2.41,7
+4,"2015","Unidentified Shellfish","Other Shellfish",0.9,7
+4,"2016","Unidentified Shellfish","Other Shellfish",1.17,7
+4,"2017","Unidentified Shellfish","Other Shellfish",1.67,7
+4,"2018","Unidentified Shellfish","Other Shellfish",2.34,7
+4,"2014","Gadus Morhua","Cod",0,0
+4,"2015","Gadus Morhua","Cod",0.03,0
+4,"2016","Gadus Morhua","Cod",0,0
+4,"2017","Gadus Morhua","Cod",0,0
+4,"2018","Gadus Morhua","Cod",0,0
+4,"2014","Merlangius merlangus","Whiting",0,0
+4,"2015","Merlangius merlangus","Whiting",0.11,0
+4,"2016","Merlangius merlangus","Whiting",0.04,0
+4,"2017","Merlangius merlangus","Whiting",0,0
+4,"2018","Merlangius merlangus","Whiting",0,0
+4,"2014","Clupea harengus","Herring",0,0
+4,"2015","Clupea harengus","Herring",0,0
+4,"2016","Clupea harengus","Herring",0.28,0
+4,"2017","Clupea harengus","Herring",0,0
+4,"2018","Clupea harengus","Herring",0,0
+4,"2014","Lepidorhombus whiffiagonis","Megrim",0,0
+4,"2015","Lepidorhombus whiffiagonis","Megrim",0,0
+4,"2016","Lepidorhombus whiffiagonis","Megrim",0.32,0
+4,"2017","Lepidorhombus whiffiagonis","Megrim",0.08,0
+4,"2018","Lepidorhombus whiffiagonis","Megrim",0.04,0
+4,"2014","Merluccius merluccius","Hake",0,0
+4,"2015","Merluccius merluccius","Hake",0,0
+4,"2016","Merluccius merluccius","Hake",0.02,0
+4,"2017","Merluccius merluccius","Hake",0.01,0
+4,"2018","Merluccius merluccius","Hake",0,0
+4,"2014","Sepia officinalis","Cuttlefish",0,0
+4,"2015","Sepia officinalis","Cuttlefish",0,0
+4,"2016","Sepia officinalis","Cuttlefish",0,0
+4,"2017","Sepia officinalis","Cuttlefish",0.05,0
+4,"2018","Sepia officinalis","Cuttlefish",0,0
+4,"2014","Squalidae","Dogfish",0,5
+4,"2015","Squalidae","Dogfish",0,5
+4,"2016","Squalidae","Dogfish",0,5
+4,"2017","Squalidae","Dogfish",0,5
+4,"2018","Squalidae","Dogfish",0.05,5
+5,"2014","Buccinidae","Whelks",233,5
+5,"2015","Buccinidae","Whelks",88,5
+5,"2016","Buccinidae","Whelks",74.66,5
+5,"2017","Buccinidae","Whelks",85.93,5
+5,"2018","Buccinidae","Whelks",66.87,5
+5,"2014","Cephalopoda","Squid",121.26,7
+5,"2015","Cephalopoda","Squid",67.74,7
+5,"2016","Cephalopoda","Squid",41.31,7
+5,"2017","Cephalopoda","Squid",61.61,7
+5,"2018","Cephalopoda","Squid",24.8,7
+5,"2014","Clupea harengus","Herring",2474.91,0
+5,"2015","Clupea harengus","Herring",2764.17,0
+5,"2016","Clupea harengus","Herring",2038.33,0
+5,"2017","Clupea harengus","Herring",3555.72,0
+5,"2018","Clupea harengus","Herring",378.03,0
+5,"2014","Crustacea_crabs","Crabs",3061.81,7
+5,"2015","Crustacea_crabs","Crabs",2373.23,7
+5,"2016","Crustacea_crabs","Crabs",2615.06,7
+5,"2017","Crustacea_crabs","Crabs",2197.43,7
+5,"2018","Crustacea_crabs","Crabs",1880.22,7
+5,"2014","Dicentrarchus labrax","Bass",44.5,0
+5,"2015","Dicentrarchus labrax","Bass",51.26,0
+5,"2016","Dicentrarchus labrax","Bass",39.71,0
+5,"2017","Dicentrarchus labrax","Bass",42.47,0
+5,"2018","Dicentrarchus labrax","Bass",49.24,0
+5,"2014","Gadus Morhua","Cod",43.7,0
+5,"2015","Gadus Morhua","Cod",25.95,0
+5,"2016","Gadus Morhua","Cod",18.26,0
+5,"2017","Gadus Morhua","Cod",6.32,0
+5,"2018","Gadus Morhua","Cod",4.02,0
+5,"2014","Glyptocephalus cynoglossus","Witch",0.46,0
+5,"2015","Glyptocephalus cynoglossus","Witch",0.16,0
+5,"2016","Glyptocephalus cynoglossus","Witch",0.18,0
+5,"2017","Glyptocephalus cynoglossus","Witch",0.11,0
+5,"2018","Glyptocephalus cynoglossus","Witch",0.14,0
+5,"2014","Homarus gammarus","Lobsters",21.32,0
+5,"2015","Homarus gammarus","Lobsters",20.2,0
+5,"2016","Homarus gammarus","Lobsters",29.48,0
+5,"2017","Homarus gammarus","Lobsters",38.48,0
+5,"2018","Homarus gammarus","Lobsters",52.84,0
+5,"2014","Lepidorhombus whiffiagonis","Megrim",41.08,0
+5,"2015","Lepidorhombus whiffiagonis","Megrim",14.73,0
+5,"2016","Lepidorhombus whiffiagonis","Megrim",7.96,0
+5,"2017","Lepidorhombus whiffiagonis","Megrim",7.25,0
+5,"2018","Lepidorhombus whiffiagonis","Megrim",6.98,0
+5,"2014","Lophiidae","Monks or Anglers",167.65,5
+5,"2015","Lophiidae","Monks or Anglers",139.76,5
+5,"2016","Lophiidae","Monks or Anglers",107.34,5
+5,"2017","Lophiidae","Monks or Anglers",66.37,5
+5,"2018","Lophiidae","Monks or Anglers",55.61,5
+5,"2014","Melanogrammus aeglefinus","Haddock",45.14,0
+5,"2015","Melanogrammus aeglefinus","Haddock",58.5,0
+5,"2016","Melanogrammus aeglefinus","Haddock",35.81,0
+5,"2017","Melanogrammus aeglefinus","Haddock",38.67,0
+5,"2018","Melanogrammus aeglefinus","Haddock",22.46,0
+5,"2014","Merlangius merlangus","Whiting",182.29,0
+5,"2015","Merlangius merlangus","Whiting",79.28,0
+5,"2016","Merlangius merlangus","Whiting",126.44,0
+5,"2017","Merlangius merlangus","Whiting",68.22,0
+5,"2018","Merlangius merlangus","Whiting",69.33,0
+5,"2014","Merluccius merluccius","Hake",3.95,0
+5,"2015","Merluccius merluccius","Hake",16.63,0
+5,"2016","Merluccius merluccius","Hake",15.25,0
+5,"2017","Merluccius merluccius","Hake",1.64,0
+5,"2018","Merluccius merluccius","Hake",2.65,0
+5,"2014","Microstomus kitt","Lemon Sole",430.37,0
+5,"2015","Microstomus kitt","Lemon Sole",215.02,0
+5,"2016","Microstomus kitt","Lemon Sole",253.83,0
+5,"2017","Microstomus kitt","Lemon Sole",148.02,0
+5,"2018","Microstomus kitt","Lemon Sole",101.97,0
+5,"2014","Molva molva","Ling",42.31,0
+5,"2015","Molva molva","Ling",24.41,0
+5,"2016","Molva molva","Ling",22.08,0
+5,"2017","Molva molva","Ling",15.47,0
+5,"2018","Molva molva","Ling",9.77,0
+5,"2014","Mugilidae","Mullet",26.83,5
+5,"2015","Mugilidae","Mullet",19.05,5
+5,"2016","Mugilidae","Mullet",18.7,5
+5,"2017","Mugilidae","Mullet",13.59,5
+5,"2018","Mugilidae","Mullet",10.92,5
+5,"2014","Pectinidae","Scallops",1412.1,5
+5,"2015","Pectinidae","Scallops",2969.27,5
+5,"2016","Pectinidae","Scallops",1523.35,5
+5,"2017","Pectinidae","Scallops",1310.26,5
+5,"2018","Pectinidae","Scallops",1601.29,5
+5,"2014","Pleuronectes platessa","Plaice",147.5,0
+5,"2015","Pleuronectes platessa","Plaice",145.11,0
+5,"2016","Pleuronectes platessa","Plaice",157.27,0
+5,"2017","Pleuronectes platessa","Plaice",184.15,0
+5,"2018","Pleuronectes platessa","Plaice",135.11,0
+5,"2014","Pollachius pollachius","Pollack (Lythe)",139.75,0
+5,"2015","Pollachius pollachius","Pollack (Lythe)",89.99,0
+5,"2016","Pollachius pollachius","Pollack (Lythe)",110.09,0
+5,"2017","Pollachius pollachius","Pollack (Lythe)",131.5,0
+5,"2018","Pollachius pollachius","Pollack (Lythe)",84.8,0
+5,"2014","Pollachius virens","Saithe",0.37,0
+5,"2015","Pollachius virens","Saithe",0.3,0
+5,"2016","Pollachius virens","Saithe",0.28,0
+5,"2017","Pollachius virens","Saithe",0.46,0
+5,"2018","Pollachius virens","Saithe",0.65,0
+5,"2014","Rajiformes","Skates and Rays",46.83,7
+5,"2015","Rajiformes","Skates and Rays",51.59,7
+5,"2016","Rajiformes","Skates and Rays",47.91,7
+5,"2017","Rajiformes","Skates and Rays",38.72,7
+5,"2018","Rajiformes","Skates and Rays",45.37,7
+5,"2014","Sardina pilchardus","Sardines",275.06,0
+5,"2015","Sardina pilchardus","Sardines",675.63,0
+5,"2016","Sardina pilchardus","Sardines",2477.11,0
+5,"2017","Sardina pilchardus","Sardines",1246.19,0
+5,"2018","Sardina pilchardus","Sardines",928.39,0
+5,"2014","Scomber scombrus","Mackerel",965.55,0
+5,"2015","Scomber scombrus","Mackerel",1862.04,0
+5,"2016","Scomber scombrus","Mackerel",1241.11,0
+5,"2017","Scomber scombrus","Mackerel",1500.25,0
+5,"2018","Scomber scombrus","Mackerel",19.81,0
+5,"2014","Scophthalmus maximus","Turbot",23.26,0
+5,"2015","Scophthalmus maximus","Turbot",21.77,0
+5,"2016","Scophthalmus maximus","Turbot",23.81,0
+5,"2017","Scophthalmus maximus","Turbot",26.03,0
+5,"2018","Scophthalmus maximus","Turbot",19.69,0
+5,"2014","Scophthalmus rhombus","Brill",20.94,0
+5,"2015","Scophthalmus rhombus","Brill",24.03,0
+5,"2016","Scophthalmus rhombus","Brill",23.76,0
+5,"2017","Scophthalmus rhombus","Brill",14.93,0
+5,"2018","Scophthalmus rhombus","Brill",14.27,0
+5,"2014","Sepia officinalis","Cuttlefish",588.97,0
+5,"2015","Sepia officinalis","Cuttlefish",904.58,0
+5,"2016","Sepia officinalis","Cuttlefish",672.51,0
+5,"2017","Sepia officinalis","Cuttlefish",1118.78,0
+5,"2018","Sepia officinalis","Cuttlefish",428,0
+5,"2014","Soleidae","Sole",90.5,5
+5,"2015","Soleidae","Sole",59.88,5
+5,"2016","Soleidae","Sole",74.11,5
+5,"2017","Soleidae","Sole",78.02,5
+5,"2018","Soleidae","Sole",61.16,5
+5,"2014","Sparidae","Bream",2.12,5
+5,"2015","Sparidae","Bream",1.42,5
+5,"2016","Sparidae","Bream",4.11,5
+5,"2017","Sparidae","Bream",1.25,5
+5,"2018","Sparidae","Bream",1.33,5
+5,"2014","Squalidae","Dogfish",2.33,5
+5,"2015","Squalidae","Dogfish",7.1,5
+5,"2016","Squalidae","Dogfish",71.06,5
+5,"2017","Squalidae","Dogfish",41.44,5
+5,"2018","Squalidae","Dogfish",211.35,5
+5,"2014","Trachurus trachurus","Horse Mackerel",2233.79,0
+5,"2015","Trachurus trachurus","Horse Mackerel",2181.11,0
+5,"2016","Trachurus trachurus","Horse Mackerel",840.54,0
+5,"2017","Trachurus trachurus","Horse Mackerel",126.47,0
+5,"2018","Trachurus trachurus","Horse Mackerel",942.33,0
+5,"2014","Triglidae","Gurnard",101.64,5
+5,"2015","Triglidae","Gurnard",86.04,5
+5,"2016","Triglidae","Gurnard",99.25,5
+5,"2017","Triglidae","Gurnard",78.36,5
+5,"2018","Triglidae","Gurnard",76.13,5
+5,"2014","Unidentified Demersal","Other Demersal",191.16,7
+5,"2015","Unidentified Demersal","Other Demersal",124.44,7
+5,"2016","Unidentified Demersal","Other Demersal",138.53,7
+5,"2017","Unidentified Demersal","Other Demersal",111.26,7
+5,"2018","Unidentified Demersal","Other Demersal",166.8,7
+5,"2014","Unidentified Pelagic","Other Pelagic",358.09,7
+5,"2015","Unidentified Pelagic","Other Pelagic",72.39,7
+5,"2016","Unidentified Pelagic","Other Pelagic",274.2,7
+5,"2017","Unidentified Pelagic","Other Pelagic",78.38,7
+5,"2018","Unidentified Pelagic","Other Pelagic",267.55,7
+5,"2014","Unidentified Shellfish","Other Shellfish",17.83,7
+5,"2015","Unidentified Shellfish","Other Shellfish",26.14,7
+5,"2016","Unidentified Shellfish","Other Shellfish",31.78,7
+5,"2017","Unidentified Shellfish","Other Shellfish",41.13,7
+5,"2018","Unidentified Shellfish","Other Shellfish",34.29,7
+5,"2014","Nephropidae","Nephrops",0,5
+5,"2015","Nephropidae","Nephrops",0,5
+5,"2016","Nephropidae","Nephrops",0.07,5
+5,"2017","Nephropidae","Nephrops",0,5
+5,"2018","Nephropidae","Nephrops",0,5
+5,"2014","Cardiidae","Cockles",0,5
+5,"2015","Cardiidae","Cockles",0,5
+5,"2016","Cardiidae","Cockles",0,5
+5,"2017","Cardiidae","Cockles",0,5
+5,"2018","Cardiidae","Cockles",0.05,5
+5,"2014","Crustacea_shrimps_prawns","Shrimps and Prawns",0,7
+5,"2015","Crustacea_shrimps_prawns","Shrimps and Prawns",0,7
+5,"2016","Crustacea_shrimps_prawns","Shrimps and Prawns",0,7
+5,"2017","Crustacea_shrimps_prawns","Shrimps and Prawns",0,7
+5,"2018","Crustacea_shrimps_prawns","Shrimps and Prawns",0.06,7
+5,"2014","Hippoglossus hippoglossus","Halibut",0,0
+5,"2015","Hippoglossus hippoglossus","Halibut",0,0
+5,"2016","Hippoglossus hippoglossus","Halibut",0,0
+5,"2017","Hippoglossus hippoglossus","Halibut",0,0
+5,"2018","Hippoglossus hippoglossus","Halibut",0.01,0
+6,"2014","Ammodytidae","Sand Eels",1.8,5
+6,"2015","Ammodytidae","Sand Eels",0.35,5
+6,"2016","Ammodytidae","Sand Eels",0,5
+6,"2017","Ammodytidae","Sand Eels",0.51,5
+6,"2018","Ammodytidae","Sand Eels",0,5
+6,"2014","Buccinidae","Whelks",921.73,5
+6,"2015","Buccinidae","Whelks",770.37,5
+6,"2016","Buccinidae","Whelks",919.75,5
+6,"2017","Buccinidae","Whelks",534.44,5
+6,"2018","Buccinidae","Whelks",768.31,5
+6,"2014","Cephalopoda","Squid",252.78,7
+6,"2015","Cephalopoda","Squid",333.64,7
+6,"2016","Cephalopoda","Squid",154.76,7
+6,"2017","Cephalopoda","Squid",291.29,7
+6,"2018","Cephalopoda","Squid",184.47,7
+6,"2014","Clupea harengus","Herring",221.74,0
+6,"2015","Clupea harengus","Herring",69.67,0
+6,"2016","Clupea harengus","Herring",146.41,0
+6,"2017","Clupea harengus","Herring",10.29,0
+6,"2018","Clupea harengus","Herring",4.06,0
+6,"2014","Crustacea_crabs","Crabs",1007.3,7
+6,"2015","Crustacea_crabs","Crabs",807.55,7
+6,"2016","Crustacea_crabs","Crabs",884.54,7
+6,"2017","Crustacea_crabs","Crabs",577.99,7
+6,"2018","Crustacea_crabs","Crabs",449.8,7
+6,"2014","Crustacea_shrimps_prawns","Shrimps and Prawns",0.5,7
+6,"2015","Crustacea_shrimps_prawns","Shrimps and Prawns",0.52,7
+6,"2016","Crustacea_shrimps_prawns","Shrimps and Prawns",0.83,7
+6,"2017","Crustacea_shrimps_prawns","Shrimps and Prawns",0.23,7
+6,"2018","Crustacea_shrimps_prawns","Shrimps and Prawns",0.04,7
+6,"2014","Dicentrarchus labrax","Bass",40.86,0
+6,"2015","Dicentrarchus labrax","Bass",47.35,0
+6,"2016","Dicentrarchus labrax","Bass",54.22,0
+6,"2017","Dicentrarchus labrax","Bass",54.2,0
+6,"2018","Dicentrarchus labrax","Bass",44.22,0
+6,"2014","Gadus Morhua","Cod",38.06,0
+6,"2015","Gadus Morhua","Cod",43.47,0
+6,"2016","Gadus Morhua","Cod",24.88,0
+6,"2017","Gadus Morhua","Cod",12.03,0
+6,"2018","Gadus Morhua","Cod",7.04,0
+6,"2014","Glyptocephalus cynoglossus","Witch",0.42,0
+6,"2015","Glyptocephalus cynoglossus","Witch",0.18,0
+6,"2016","Glyptocephalus cynoglossus","Witch",0.24,0
+6,"2017","Glyptocephalus cynoglossus","Witch",0.02,0
+6,"2018","Glyptocephalus cynoglossus","Witch",0.09,0
+6,"2014","Homarus gammarus","Lobsters",14.68,0
+6,"2015","Homarus gammarus","Lobsters",22.71,0
+6,"2016","Homarus gammarus","Lobsters",28.42,0
+6,"2017","Homarus gammarus","Lobsters",33.71,0
+6,"2018","Homarus gammarus","Lobsters",28.91,0
+6,"2014","Lepidorhombus whiffiagonis","Megrim",15.73,0
+6,"2015","Lepidorhombus whiffiagonis","Megrim",4.62,0
+6,"2016","Lepidorhombus whiffiagonis","Megrim",4.68,0
+6,"2017","Lepidorhombus whiffiagonis","Megrim",5.38,0
+6,"2018","Lepidorhombus whiffiagonis","Megrim",5.91,0
+6,"2014","Lophiidae","Monks or Anglers",271.85,5
+6,"2015","Lophiidae","Monks or Anglers",253.08,5
+6,"2016","Lophiidae","Monks or Anglers",256.12,5
+6,"2017","Lophiidae","Monks or Anglers",198.01,5
+6,"2018","Lophiidae","Monks or Anglers",163,5
+6,"2014","Melanogrammus aeglefinus","Haddock",16.98,0
+6,"2015","Melanogrammus aeglefinus","Haddock",19.07,0
+6,"2016","Melanogrammus aeglefinus","Haddock",12.47,0
+6,"2017","Melanogrammus aeglefinus","Haddock",13.19,0
+6,"2018","Melanogrammus aeglefinus","Haddock",11.36,0
+6,"2014","Merlangius merlangus","Whiting",131.53,0
+6,"2015","Merlangius merlangus","Whiting",207.35,0
+6,"2016","Merlangius merlangus","Whiting",175.13,0
+6,"2017","Merlangius merlangus","Whiting",137.03,0
+6,"2018","Merlangius merlangus","Whiting",125.91,0
+6,"2014","Merluccius merluccius","Hake",2.03,0
+6,"2015","Merluccius merluccius","Hake",0.98,0
+6,"2016","Merluccius merluccius","Hake",10.77,0
+6,"2017","Merluccius merluccius","Hake",6.56,0
+6,"2018","Merluccius merluccius","Hake",2.77,0
+6,"2014","Microstomus kitt","Lemon Sole",390.68,0
+6,"2015","Microstomus kitt","Lemon Sole",379.19,0
+6,"2016","Microstomus kitt","Lemon Sole",397.22,0
+6,"2017","Microstomus kitt","Lemon Sole",248.6,0
+6,"2018","Microstomus kitt","Lemon Sole",140.49,0
+6,"2014","Molva molva","Ling",25.53,0
+6,"2015","Molva molva","Ling",14.72,0
+6,"2016","Molva molva","Ling",13.3,0
+6,"2017","Molva molva","Ling",7.8,0
+6,"2018","Molva molva","Ling",5.99,0
+6,"2014","Mugilidae","Mullet",38.45,5
+6,"2015","Mugilidae","Mullet",106.82,5
+6,"2016","Mugilidae","Mullet",43.18,5
+6,"2017","Mugilidae","Mullet",31.76,5
+6,"2018","Mugilidae","Mullet",70.93,5
+6,"2014","Nephropidae","Nephrops",0.05,5
+6,"2015","Nephropidae","Nephrops",0.22,5
+6,"2016","Nephropidae","Nephrops",0,5
+6,"2017","Nephropidae","Nephrops",0,5
+6,"2018","Nephropidae","Nephrops",0,5
+6,"2014","Pectinidae","Scallops",2952.74,5
+6,"2015","Pectinidae","Scallops",2478.14,5
+6,"2016","Pectinidae","Scallops",2966.67,5
+6,"2017","Pectinidae","Scallops",3648.72,5
+6,"2018","Pectinidae","Scallops",2926.65,5
+6,"2014","Pleuronectes platessa","Plaice",629.67,0
+6,"2015","Pleuronectes platessa","Plaice",585.01,0
+6,"2016","Pleuronectes platessa","Plaice",1031.18,0
+6,"2017","Pleuronectes platessa","Plaice",1080.81,0
+6,"2018","Pleuronectes platessa","Plaice",1002.89,0
+6,"2014","Pollachius pollachius","Pollack (Lythe)",89.25,0
+6,"2015","Pollachius pollachius","Pollack (Lythe)",65.5,0
+6,"2016","Pollachius pollachius","Pollack (Lythe)",88.12,0
+6,"2017","Pollachius pollachius","Pollack (Lythe)",73.85,0
+6,"2018","Pollachius pollachius","Pollack (Lythe)",50.66,0
+6,"2014","Pollachius virens","Saithe",0.14,0
+6,"2015","Pollachius virens","Saithe",0.07,0
+6,"2016","Pollachius virens","Saithe",0.32,0
+6,"2017","Pollachius virens","Saithe",0.07,0
+6,"2018","Pollachius virens","Saithe",0.22,0
+6,"2014","Rajiformes","Skates and Rays",104.69,7
+6,"2015","Rajiformes","Skates and Rays",122.37,7
+6,"2016","Rajiformes","Skates and Rays",154.32,7
+6,"2017","Rajiformes","Skates and Rays",161.21,7
+6,"2018","Rajiformes","Skates and Rays",197.59,7
+6,"2014","Sardina pilchardus","Sardines",10.86,0
+6,"2015","Sardina pilchardus","Sardines",15.13,0
+6,"2016","Sardina pilchardus","Sardines",228,0
+6,"2017","Sardina pilchardus","Sardines",380.54,0
+6,"2018","Sardina pilchardus","Sardines",469.92,0
+6,"2014","Scomber scombrus","Mackerel",76.02,0
+6,"2015","Scomber scombrus","Mackerel",143.78,0
+6,"2016","Scomber scombrus","Mackerel",67.97,0
+6,"2017","Scomber scombrus","Mackerel",77.9,0
+6,"2018","Scomber scombrus","Mackerel",60.2,0
+6,"2014","Scophthalmus maximus","Turbot",153.72,0
+6,"2015","Scophthalmus maximus","Turbot",135.14,0
+6,"2016","Scophthalmus maximus","Turbot",159.79,0
+6,"2017","Scophthalmus maximus","Turbot",194.68,0
+6,"2018","Scophthalmus maximus","Turbot",170.44,0
+6,"2014","Scophthalmus rhombus","Brill",111.31,0
+6,"2015","Scophthalmus rhombus","Brill",139.1,0
+6,"2016","Scophthalmus rhombus","Brill",166.82,0
+6,"2017","Scophthalmus rhombus","Brill",157.37,0
+6,"2018","Scophthalmus rhombus","Brill",160.59,0
+6,"2014","Sepia officinalis","Cuttlefish",1581.05,0
+6,"2015","Sepia officinalis","Cuttlefish",3481.62,0
+6,"2016","Sepia officinalis","Cuttlefish",3071.4,0
+6,"2017","Sepia officinalis","Cuttlefish",4530.64,0
+6,"2018","Sepia officinalis","Cuttlefish",2598.16,0
+6,"2014","Soleidae","Sole",374.95,5
+6,"2015","Soleidae","Sole",340.38,5
+6,"2016","Soleidae","Sole",452.06,5
+6,"2017","Soleidae","Sole",553.51,5
+6,"2018","Soleidae","Sole",580.88,5
+6,"2014","Sparidae","Bream",8.23,5
+6,"2015","Sparidae","Bream",17.28,5
+6,"2016","Sparidae","Bream",10.65,5
+6,"2017","Sparidae","Bream",10.13,5
+6,"2018","Sparidae","Bream",19.49,5
+6,"2014","Squalidae","Dogfish",26.23,5
+6,"2015","Squalidae","Dogfish",495.97,5
+6,"2016","Squalidae","Dogfish",546.79,5
+6,"2017","Squalidae","Dogfish",342.38,5
+6,"2018","Squalidae","Dogfish",597.9,5
+6,"2014","Trachurus trachurus","Horse Mackerel",19.21,0
+6,"2015","Trachurus trachurus","Horse Mackerel",13.78,0
+6,"2016","Trachurus trachurus","Horse Mackerel",3.13,0
+6,"2017","Trachurus trachurus","Horse Mackerel",7.93,0
+6,"2018","Trachurus trachurus","Horse Mackerel",12.34,0
+6,"2014","Triglidae","Gurnard",463.88,5
+6,"2015","Triglidae","Gurnard",560.75,5
+6,"2016","Triglidae","Gurnard",555.44,5
+6,"2017","Triglidae","Gurnard",515.89,5
+6,"2018","Triglidae","Gurnard",598.25,5
+6,"2014","Unidentified Demersal","Other Demersal",896.4,7
+6,"2015","Unidentified Demersal","Other Demersal",580.45,7
+6,"2016","Unidentified Demersal","Other Demersal",580.33,7
+6,"2017","Unidentified Demersal","Other Demersal",613.42,7
+6,"2018","Unidentified Demersal","Other Demersal",579.45,7
+6,"2014","Unidentified Pelagic","Other Pelagic",3640.17,7
+6,"2015","Unidentified Pelagic","Other Pelagic",2598.57,7
+6,"2016","Unidentified Pelagic","Other Pelagic",2799.38,7
+6,"2017","Unidentified Pelagic","Other Pelagic",2475.96,7
+6,"2018","Unidentified Pelagic","Other Pelagic",1883.21,7
+6,"2014","Unidentified Shellfish","Other Shellfish",66.01,7
+6,"2015","Unidentified Shellfish","Other Shellfish",115.03,7
+6,"2016","Unidentified Shellfish","Other Shellfish",133.18,7
+6,"2017","Unidentified Shellfish","Other Shellfish",168.76,7
+6,"2018","Unidentified Shellfish","Other Shellfish",164.29,7
+6,"2014","Ostreidae","Oysters",0,5
+6,"2015","Ostreidae","Oysters",6.31,5
+6,"2016","Ostreidae","Oysters",4.03,5
+6,"2017","Ostreidae","Oysters",6.23,5
+6,"2018","Ostreidae","Oysters",6.75,5
+6,"2014","Micromesistius poutassou","Blue Whiting",0,0
+6,"2015","Micromesistius poutassou","Blue Whiting",0,0
+6,"2016","Micromesistius poutassou","Blue Whiting",0,0
+6,"2017","Micromesistius poutassou","Blue Whiting",0,0
+6,"2018","Micromesistius poutassou","Blue Whiting",0.01,0

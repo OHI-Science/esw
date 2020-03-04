@@ -29,6 +29,7 @@ library(stringr)
 library(RColorBrewer)
 library(rgdal)
 library(circlize) #for curved labels
+library(plotrix) #for 50% benchmark
 
 #---------------#
 #turn off
@@ -38,16 +39,19 @@ library(circlize) #for curved labels
 #year_plot       = NA
 #assessment_name = "South West England"
 #dir_fig_save    = "reports/figures"
-#scale_fill = TRUE
-#gradient_fill = FALSE
+#scale_fill = FALSE
+#gradient_fill = TRUE
+#full_name = FALSE
 #---------------#
 
 PlotFlower <- function(region_plot     = NA,
                        year_plot       = NA,
                        assessment_name = "South West England",
-                       dir_fig_save    = "reports/figures",
-                       scale_fill = TRUE,
-                       gradient_fill = FALSE) {
+                       #dir_fig_save    = "reports/figures",
+                       dir_fig_save = paste("reports/figures","_",ref,sep = ""),
+                       scale_fill = FALSE,
+                       gradient_fill = TRUE,
+                       full_name = TRUE) {
 
   ## scores data
   scores <- read.csv("scores.csv") %>%
@@ -168,7 +172,8 @@ PlotFlower <- function(region_plot     = NA,
   p_limits <- c(0, score_df$pos_end[1])
   blank_circle_rad <- 42
   light_line <- 'grey90'
-  white_fill <- 'white'
+  #white_fill <- 'white'
+  white_fill <- 'transparent'
   light_fill <- 'grey80'
   med_line   <- 'grey50'
   med_fill   <- 'grey52'
@@ -176,16 +181,20 @@ PlotFlower <- function(region_plot     = NA,
   dark_fill  <- 'grey22'
 
   #color palette for gradient fill
-  reds <- grDevices::colorRampPalette(
-    c("#A50026", "#F46D43", "#FEE090"), space="Lab")(50) #source: #65 #c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090")
-  blues <- grDevices::colorRampPalette(
-    c("#E0F3F8", "#74ADD1", "#313695"))(50) #source: #35 #c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695")
-  myPalette <- c(reds, blues)
+  #reds <- grDevices::colorRampPalette(
+    #c("#A50026", "#F46D43", "#FEE090"), space="Lab")(50) #source: #65 #c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090")
+  #blues <- grDevices::colorRampPalette(
+    #c("#E0F3F8", "#74ADD1", "#313695"))(50) #source: #35 #c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695")
+  #myPalette <- c(reds, blues)
+
+  #display.brewer.all()
+  blues <- grDevices::colorRampPalette(brewer.pal(9,"Blues"))(100)
+  myPalette <- c(blues)
 
   #colours for scale fill
-  goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","LSP","ICO","ECO","LIV","TR","CP","CS","AO"),
+  goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","SOC","ECL","ECO","LIV","TR","CP","CS","AO"),
                                color = c("#9A1A4D", "#D84B5B", "#F06352", "#F77753", "#F6955E", "#FFCC81", "#F3E48F", "#CAE297", "#A9D7A4", "#6AC2A7", "#51ACB1", "#3B8DBF", "#5D56A2"))
-  #goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","LSP","ICO","ECO","LIV","TR","CP","CS","AO"),
+  #goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","SOC","ECL","ECO","LIV","TR","CP","CS","AO"),
                                #color = c("#BB3153", "#BB3153", "#F06352", "#F06352", "#F77753", "#F6955E", "#F6955E", "#FFCC81", "#FFCC81", "#E4E999", "#88CCA5", "#51ACB1", "#4E70B7"))
   goals_pal <- goals_pal %>%
     arrange(goal)
@@ -205,7 +214,8 @@ PlotFlower <- function(region_plot     = NA,
                                 dir_fig_save,
                                 str_replace_all(region_name, ' ', '')))
   ## write out filenames
-  readr::write_csv(region_names_all, 'reports/figures/regions_figs.csv')
+  #readr::write_csv(region_names_all, 'reports/figures/regions_figs.csv')
+  readr::write_csv(region_names_all, paste(dir_fig_save,"/regions_figs.csv",sep = ""))
 
   ## move into for loop only with region_names to plot
   ## filter only regions to plot
@@ -217,7 +227,7 @@ PlotFlower <- function(region_plot     = NA,
   ## loop through to save flower plot for each region
 
   for (region in region_plots) {
-#region = 1
+#region = 2
     ## filter region info, setup to plot
     #regional data
     plot_df <- score_df %>%
@@ -270,7 +280,8 @@ PlotFlower <- function(region_plot     = NA,
 
 #scale fill
       if(isTRUE(scale_fill)){
-        plot_obj <- ggplot(data = plot_df, aes(x = pos, y = score, fill = goal, width = weight))
+        plot_obj <- ggplot(data = plot_df,
+                           aes(x = pos, y = score, fill = goal, width = weight))
       }
 
     ## sets up the background/borders to the external boundary (100%) of plot
@@ -353,20 +364,33 @@ PlotFlower <- function(region_plot     = NA,
             axis.title = element_blank())
 
     ## add goal names
-    plot_obj <- plot_obj +
+#full name
+    if(isTRUE(full_name)){
+      plot_obj <- plot_obj +
       geom_text(aes(label = name_flower, x = pos, y = 125), #source y = 120 NB >125 does not plot
                 hjust = .5, vjust = .3, #source vjust = .5
-                size = 2.9, #source code size = 3
+                size = 3, #source code size = 3
                 color = dark_line)
-
+    }
+#acronym
+    if(isFALSE(full_name)){
+      plot_obj <- plot_obj +
+      geom_text(aes(label = goal, x = pos, y = 125), #source y = 120 NB >125 does not plot
+                hjust = .5, vjust = 0.3, #vjust = 0.3 OR -0.2
+                size = 3, #source code size = 3
+                #size = 5, #source code size = 3
+                color = dark_line)
+    }
+#--------------#
     #add goal scores
     #round score data
     plot_obj <- plot_obj +
       geom_text(aes(label = paste("(",round(score),")",sep=""), x = pos, y = 125),
-                hjust = .5, vjust = 3,
+                hjust = .5, vjust = 3, #vjust = 3 OR 1
                 size = 2.5,
+                #size = 5,
                 color = dark_line)
-
+    #--------------#
 #TURN OFF SUPRA TEXT
     ## position supra arc and names. x is angle, y is distance from center
     #supra_rad  <- 150  ## supra goal radius from center #source supra_rad  <- 145
@@ -383,7 +407,8 @@ PlotFlower <- function(region_plot     = NA,
                 #color = dark_line)
 
     #write temp flower plot and read back in as magick image object
-    id <- gsub("reports/figures/", "", fig_save)
+    #id <- gsub("reports/figures/", "", fig_save)
+    id <- gsub(dir_fig_save, "", fig_save)
     id <- gsub(".png", "", id)
 
     temp_plot <- paste0("reports/figures_no_lab/", id, "_no_lab", ".png")
@@ -434,12 +459,14 @@ PlotFlower <- function(region_plot     = NA,
       highlight.sector(8, track.index = 1, text = "Livelihoods & Economies", cex = 4,
                        text.col = dark_line, col = NA, padding = c(0, 0, 0, 0.4),
                        facing = "bending.outside", niceFacing = TRUE)
-      highlight.sector(10, track.index = 1, text = "Sense of Place", cex = 4,
+      highlight.sector(10, track.index = 1, text = "Designated Areas", cex = 4,
                        text.col = dark_line, col = NA, padding = c(0, 0, 0, 1),
                        facing = "bending.outside", niceFacing = TRUE)
       highlight.sector(12, track.index = 1, text = "Biodiversity", cex = 4,
                        text.col = dark_line, col = NA, padding = c(0, 1, 0, 0),
                        facing = "bending.outside", niceFacing = TRUE)
+
+      #draw.circle(0, 0, 0.4,border="dark grey",lty = 2,lwd = 2)
 
       dev.off()
 #---------------#
@@ -451,11 +478,12 @@ PlotFlower <- function(region_plot     = NA,
       text <- magick::image_read(temp_labels)
 
       #scale images
-      plot <- magick::image_scale(plot, 800)
+      plot <- magick::image_scale(plot, 800) #original code
       text <- magick::image_scale(magick::image_background(text, "none"), 600)
 
       #composite images
-      plot_obj <- magick::image_composite(text, plot, offset = "-100-10")
+      plot_obj <- magick::image_composite(text, plot, offset = "-100-10") #original code
+      #plot_obj
 
 #---------------#
 
