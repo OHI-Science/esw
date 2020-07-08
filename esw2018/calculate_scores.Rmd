@@ -26,10 +26,16 @@ Run this code chunk one time only to install packages you don't already have. Th
 
 ```{r install packages, eval=FALSE}
 ## install packages from R community
-install.packages("tidyverse")
-install.packages("zoo")
-install.packages("here")
-install.packages("devtools")
+
+#install previous version of tidyverse
+require(devtools)
+install_version("tidyverse", version = "1.2.1", repos = "http://cran.us.r-project.org")
+
+#do not update!
+#install.packages("tidyverse")
+#install.packages("zoo")
+#install.packages("here")
+#install.packages("devtools")
 
 ## install the ohicore package from OHI team
 devtools::install_github('ohi-science/ohicore')
@@ -74,6 +80,11 @@ layers <- ohicore::Layers('layers.csv', 'layers')
 ## select scenario year for the assessment
 scenario_years <- 2018
 layers$data$scenario_year <- scenario_years
+
+## assign reference point
+ref <- "intra"
+#ref <- "inter"
+
 ```
 
 ## Calculate and save scores
@@ -98,9 +109,20 @@ Run this to create flower plots for each region.
 
 #load function 'flower_plot_esw.R' in 'conf' folder
 
+#run report code separately
+
+dir.create(paste("reports/figures","_",ref,sep = ""))
+
+readr::write_csv(scores, paste("reports/figures","_",ref,"/scores.csv",sep = ""), na='')
+
 PlotFlower(assessment_name = "South West England",
-dir_fig_save    = "reports/figures",
-scale_fill = TRUE)
+#dir_fig_save = "reports/figures",
+#dir_fig_save = paste("reports/figures","_",ref,sep = ""), #set in flower_plot code
+scale_fill = FALSE,
+gradient_fill = TRUE,
+full_name = TRUE)
+
+#######
 
 ```
 
