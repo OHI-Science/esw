@@ -4,7 +4,7 @@
 ggtheme_plot <- function(base_size = 9) {
   theme(axis.ticks = element_blank(),
         text             = element_text(family = 'Helvetica', color = 'gray30', size = base_size),
-        plot.title       = element_text(size = rel(2), hjust = 0.5, vjust=-2, face = 'bold'), #SKP source size = rel(3) hjust = 0.5
+        plot.title       = element_text(size = rel(1.5), hjust = 0.5, vjust= -0.4, face = 'bold'), #SKP source size = rel(3) hjust = 0.5
         #panel.background = element_blank(),
         panel.background = element_rect(fill = "transparent", color = NA),
         plot.background = element_rect(fill = "transparent", color = NA),
@@ -39,9 +39,9 @@ library(plotrix) #for 50% benchmark
 #year_plot       = NA
 #assessment_name = "South West England"
 #dir_fig_save    = "reports/figures"
-#scale_fill = FALSE
-#gradient_fill = TRUE
-#full_name = FALSE
+#scale_fill = TRUE
+#gradient_fill = FALSE
+#full_name = TRUE
 #---------------#
 
 PlotFlower <- function(region_plot     = NA,
@@ -191,17 +191,17 @@ PlotFlower <- function(region_plot     = NA,
   blues <- grDevices::colorRampPalette(brewer.pal(9,"Blues"))(100)
   myPalette <- c(blues)
 
+  #------------#
   #colours for scale fill
-  goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","SOC","ECL","ECO","LIV","TR","CP","CS","AO"),
+  goals_pal <- tibble::tibble(goal = c("FIS","MAR","AO","LIV","ECO","TR","LAN","ECL","HAB","SPP","CPR","CST","CW"),
                                color = c("#9A1A4D", "#D84B5B", "#F06352", "#F77753", "#F6955E", "#FFCC81", "#F3E48F", "#CAE297", "#A9D7A4", "#6AC2A7", "#51ACB1", "#3B8DBF", "#5D56A2"))
-  #goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","SOC","ECL","ECO","LIV","TR","CP","CS","AO"),
-                               #color = c("#BB3153", "#BB3153", "#F06352", "#F06352", "#F77753", "#F6955E", "#F6955E", "#FFCC81", "#FFCC81", "#E4E999", "#88CCA5", "#51ACB1", "#4E70B7"))
   goals_pal <- goals_pal %>%
     arrange(goal)
 
   #add colour palette to score_df
   score_df <- score_df %>%
     dplyr::left_join(goals_pal, by = "goal")
+  #------------#
 
   ## filenaming for labeling and saving
   ## order regions to start with whole study_area
@@ -227,7 +227,7 @@ PlotFlower <- function(region_plot     = NA,
   ## loop through to save flower plot for each region
 
   for (region in region_plots) {
-#region = 2
+#region = 1
     ## filter region info, setup to plot
     #regional data
     plot_df <- score_df %>%
@@ -285,9 +285,24 @@ PlotFlower <- function(region_plot     = NA,
       }
 
     ## sets up the background/borders to the external boundary (100%) of plot
+
+#problems here
     plot_obj <- plot_obj +
       geom_bar(aes(y = 100), stat = 'identity', color = light_line, fill = white_fill, size = .2) +
       geom_errorbar(aes(x = pos, ymin = 100, ymax = 100, width = weight), size = 0.5, color = light_line, show.legend = NA)
+#Warning message:
+#position_stack requires non-overlapping x intervals
+
+    #manually assign x and width
+    #x2 <- plot_df$pos
+    #weight2 <- plot_df$weight
+
+    #plot_obj2 <- plot_obj +
+      #geom_bar(aes(y = 100), stat = 'identity', color = light_line, fill = white_fill, size = .2) +
+      #geom_errorbar(aes(x = x2, ymin = 100, ymax = 100, width = weight2), size = 0.5, color = light_line, show.legend = NA)
+
+    #plot_obj
+    #plot_obj2
 
     ## lays any NA bars on top of background, with darker grey:
     if(any(!is.na(plot_df$plot_NA))) {
@@ -295,8 +310,10 @@ PlotFlower <- function(region_plot     = NA,
         geom_bar(aes(x = pos, y = plot_NA), stat = 'identity', color = light_line, fill = light_fill, size = .2)
     }
 
+    #------------#
     ## establish the basics of the flower plot
     col <- goals_pal$color
+    #------------#
 
 #gradient fill
     if(isTRUE(gradient_fill)){
@@ -367,7 +384,7 @@ PlotFlower <- function(region_plot     = NA,
 #full name
     if(isTRUE(full_name)){
       plot_obj <- plot_obj +
-      geom_text(aes(label = name_flower, x = pos, y = 125), #source y = 120 NB >125 does not plot
+      geom_text(aes(label = name_flower, x = pos, y = 130), #source y = 120 NB >125 does not plot
                 hjust = .5, vjust = .3, #source vjust = .5
                 size = 3, #source code size = 3
                 color = dark_line)
@@ -375,22 +392,24 @@ PlotFlower <- function(region_plot     = NA,
 #acronym
     if(isFALSE(full_name)){
       plot_obj <- plot_obj +
-      geom_text(aes(label = goal, x = pos, y = 125), #source y = 120 NB >125 does not plot
+      geom_text(aes(label = goal, x = pos, y = 130), #source y = 120 NB >125 does not plot
                 hjust = .5, vjust = 0.3, #vjust = 0.3 OR -0.2
                 size = 3, #source code size = 3
                 #size = 5, #source code size = 3
                 color = dark_line)
     }
-#--------------#
+
     #add goal scores
     #round score data
     plot_obj <- plot_obj +
-      geom_text(aes(label = paste("(",round(score),")",sep=""), x = pos, y = 125),
+      geom_text(aes(label = paste("(",round(score),")",sep=""), x = pos, y = 130),
                 hjust = .5, vjust = 3, #vjust = 3 OR 1
                 size = 2.5,
                 #size = 5,
                 color = dark_line)
-    #--------------#
+
+    #plot_obj
+
 #TURN OFF SUPRA TEXT
     ## position supra arc and names. x is angle, y is distance from center
     #supra_rad  <- 150  ## supra goal radius from center #source supra_rad  <- 145
@@ -441,29 +460,35 @@ PlotFlower <- function(region_plot     = NA,
 #custom index for sectors with padding
 #transparent grey background
       highlight.sector(1, track.index = 1, text = "", cex = 1,
-                       col = "#D3D3D3E5", padding = c(0, 0, 0, 0.1),
+                       col = "#D3D3D3E5", padding = c(0, 1.9, 0, 0.3),
+                       facing = "bending.outside", niceFacing = TRUE)
+      highlight.sector(4, track.index = 1, text = "", cex = 1,
+                       col = "#D3D3D3E5", padding = c(0, 0.75, 0, 0.05),
+                       facing = "bending.outside", niceFacing = TRUE)
+      highlight.sector(6, track.index = 1, text = "", cex = 1,
+                       col = "#D3D3D3E5", padding = c(0, 0.05, 0, 0.18),
                        facing = "bending.outside", niceFacing = TRUE)
       highlight.sector(8, track.index = 1, text = "", cex = 1,
-                       col = "#D3D3D3E5", padding = c(0, 0.1, 0, 0.5),
+                       col = "#D3D3D3E5", padding = c(0, -0.15, 0, 0.95),
                        facing = "bending.outside", niceFacing = TRUE)
-      highlight.sector(10, track.index = 1, text = "", cex = 1,
-                       col = "#D3D3D3E5", padding = c(0, -0.2, 0, 0.8),
-                       facing = "bending.outside", niceFacing = TRUE)
-      highlight.sector(12, track.index = 1, text = "", cex = 1,
-                       col = "#D3D3D3E5", padding = c(0, 0.7, 0, -0.2),
+      highlight.sector(11, track.index = 1, text = "", cex = 1,
+                       col = "#D3D3D3E5", padding = c(0, 0, 0, 0.2),
                        facing = "bending.outside", niceFacing = TRUE)
 #supra-goal text
       highlight.sector(1, track.index = 1, text = "Food Provision", cex = 4,
+                       text.col = dark_line, col = NA, padding = c(0, 1.6, 0, 0),
+                       facing = "bending.outside", niceFacing = TRUE)
+      highlight.sector(4, track.index = 1, text = "Coastal Systems", cex = 4,
+                       text.col = dark_line, col = NA, padding = c(0, 0.7, 0, 0),
+                       facing = "bending.inside", niceFacing = FALSE)
+      highlight.sector(6, track.index = 1, text = "Biodiversity", cex = 4,
                        text.col = dark_line, col = NA, padding = c(0, 0, 0, 0.1),
-                       facing = "bending.outside", niceFacing = TRUE)
-      highlight.sector(8, track.index = 1, text = "Livelihoods & Economies", cex = 4,
-                       text.col = dark_line, col = NA, padding = c(0, 0, 0, 0.4),
-                       facing = "bending.outside", niceFacing = TRUE)
-      highlight.sector(10, track.index = 1, text = "Designated Areas", cex = 4,
+                       facing = "bending.inside", niceFacing = FALSE)
+      highlight.sector(8, track.index = 1, text = "Designated Areas", cex = 4,
                        text.col = dark_line, col = NA, padding = c(0, 0, 0, 1),
                        facing = "bending.outside", niceFacing = TRUE)
-      highlight.sector(12, track.index = 1, text = "Biodiversity", cex = 4,
-                       text.col = dark_line, col = NA, padding = c(0, 1, 0, 0),
+      highlight.sector(11, track.index = 1, text = "Livelihoods & Economies", cex = 4,
+                       text.col = dark_line, col = NA, padding = c(0, 0, 0, 0.2),
                        facing = "bending.outside", niceFacing = TRUE)
 
       #draw.circle(0, 0, 0.4,border="dark grey",lty = 2,lwd = 2)
@@ -482,7 +507,8 @@ PlotFlower <- function(region_plot     = NA,
       text <- magick::image_scale(magick::image_background(text, "none"), 600)
 
       #composite images
-      plot_obj <- magick::image_composite(text, plot, offset = "-100-10") #original code
+      plot_obj <- magick::image_composite(text, plot, offset = "-100-13") #original code
+
       #plot_obj
 
 #---------------#

@@ -186,15 +186,15 @@ full_name = FALSE
   #myPalette <- c(reds, blues)
 
   #display.brewer.all()
+
+  #----------#
   blues <- grDevices::colorRampPalette(brewer.pal(9,"Blues"))(100)
   myPalette <- c(blues)
+  #----------#
 
   #colours for scale fill
-  goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","SOC","ECL","ECO","LIV","TR","CP","CS","AO"),
+  goals_pal <- tibble::tibble(goal = c("FIS","MAR","AO","LIV","ECO","TR","LAN","ECL","HAB","SPP","CPR","CST","CW"),
                               color = c("#9A1A4D", "#D84B5B", "#F06352", "#F77753", "#F6955E", "#FFCC81", "#F3E48F", "#CAE297", "#A9D7A4", "#6AC2A7", "#51ACB1", "#3B8DBF", "#5D56A2"))
-
-  #goals_pal <- tibble::tibble(goal = c("MAR","FIS","SPP","HAB","CW","SOC","ECL","ECO","LIV","TR","CP","CS","AO"),
-  #color = c("#BB3153", "#BB3153", "#F06352", "#F06352", "#F77753", "#F6955E", "#F6955E", "#FFCC81", "#FFCC81", "#E4E999", "#88CCA5", "#51ACB1", "#4E70B7"))
 
   goals_pal <- goals_pal %>%
     arrange(goal)
@@ -227,7 +227,7 @@ full_name = FALSE
   ## loop through to save flower plot for each region
 
   for (region in region_plots) {
-    #region = 1
+#region = 1
     ## filter region info, setup to plot
     #regional data
     plot_df <- score_df %>%
@@ -274,8 +274,7 @@ full_name = FALSE
 
     #gradient fill
     if(isTRUE(gradient_fill)){
-      plot_obj <- ggplot(data = plot_df,
-                         aes(x = pos, y = score, fill = score, width = weight))
+      plot_obj <- ggplot(data = plot_df, aes(x = pos, y = score, fill = score, width = weight))
     }
 
     #scale fill
@@ -377,7 +376,7 @@ full_name = FALSE
     if(isFALSE(full_name)){
       plot_obj <- plot_obj +
         geom_text(aes(label = goal, x = pos, y = 125), #source y = 120 NB >125 does not plot
-                  hjust = .5, vjust = 0.3, #vjust = 0.3 OR -0.2
+                  hjust = .5, vjust = -0.25, #vjust = 0.3 OR -0.2
                   size = 4, #source code size = 3
                   #size = 5, #source code size = 3
                   color = dark_line)
@@ -387,10 +386,12 @@ full_name = FALSE
     #round score data
     plot_obj <- plot_obj +
       geom_text(aes(label = paste("(",round(score),")",sep=""), x = pos, y = 125),
-                hjust = .5, vjust = 2.5, #vjust = 3 OR 1
+                hjust = .5, vjust = 1.2, #vjust = 3 OR 1
                 size = 4,
                 #size = 5,
                 color = dark_line)
+
+#plot_obj
 
     #write temp flower plot and read back in as magick image object
     #id <- gsub("reports/figures/", "", fig_save)
