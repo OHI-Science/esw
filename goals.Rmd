@@ -1,11 +1,9 @@
 ---
-title: <center>Goals
-author:  
+title: "Goals"
 output:
   html_document:
-    theme: flatly
-    toc: false
-    toc_float: false
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
