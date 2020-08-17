@@ -18,7 +18,7 @@ Learn more and explore ongoing assessments at [ohi-science.org](http://ohi-scien
 
 <font size="4">**What does each goal score mean?** 
 
-<font size="3">Scores for each goal represent the present status for each goal measured against a set reference point (50% of the score) and the likely future status of the goal (50% of the score). Likely future status is assessed based on the status trend (status score over the last 5 years), resilience actions (policies, initiatives, habitat protection, enforcement, local stewardship, etc), and cumulative pressures (human impacts to ocean habitats, pollution, social pressures, economic indicators, etc).
+<font size="3">The Ocean Health Index measures the ability of oceans to sustainably provide benefits (called “goals” by the OHI) that are important to humans and biodiversity. The Ocean Health Index+ for South West England will assess eight goals described [here](https://www.sustainable-seas.org/methods). Scores for each goal represent the present status for each goal measured against a set reference point (50% of the score) and the likely future status of the goal (50% of the score). Likely future status is assessed based on the status trend (status score over the last 5 years), resilience actions (policies, initiatives, habitat protection, enforcement, local stewardship, etc), and cumulative pressures (human impacts to ocean habitats, pollution, social pressures, economic indicators, etc).
 
 
 <font size="4">**How are each goal’s reference points set?**
@@ -29,16 +29,6 @@ Learn more and explore ongoing assessments at [ohi-science.org](http://ohi-scien
 <font size="4">**Will the data layers be available?**
 
 <font size="3">Yes. All data layers will be available on this website when they are finalized. <!--- www/ohi-science.org/esw/layers. ---> OHI assessments depend on data that are freely available and updated regularly so assessments can be repeated to track changes in ocean health. 
-
-
-<font size="4">**What proportion of the index contains things that local management can change or influence?** 
-
-<font size="3">Goal scores will respond to management targets through interactions with resilience layers. Some of the goals have management targets as set reference points and so those goals will directly change as we approach those targets. 
-
-
-<font size="4">**How does the OHI relate to ongoing ocean management efforts?**
-
-<font size="3">Management strategies can be tested with the OHI to understand cross sector impacts and benefits. The OHI is designed to provide context for management decisions and explore actions (in part through setting SMART reference points) that support sustainable ocean use. This assessment can be used to communicate how achieving these targets will support ocean health in South West England. 
 
 
 <font size="4">**The South West Marine Plan**
@@ -54,3 +44,6 @@ This project will apply the OHI methodology to the South West Marine Plan area w
 <center><img src="images/MMO_SWMP.jpg" width="450px"></center>
 <br>
 
+<font size="4">**Project Dissemination** 
+
+<font size="3">Stakeholder validation is key to successful delivery of the OHI+ assessment for South West England. It ensures project outputs reflect the priorities' of coastal communities and stakeholder groups. To ensure stakeholder validation was achieved throughout the project life-cycle, methods and results have, and will continue to be, shared via local, regional and national conferences, webinars and workshops. Details of these, including links to presentations given, can be found [here](https://www.sustainable-seas.org/outputs).
