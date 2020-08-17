@@ -10,7 +10,7 @@ navbar:
 #     href: goals.html
 #   - text: "Scores" ## NOTE: to display this page you'll need to delete eval=FALSE on the .Rmd
 #     href: scores.html
-    - text: "Who we are"
+    - text: "Who We Are"
       href: who_we_are.html
 
 output_dir: "."
