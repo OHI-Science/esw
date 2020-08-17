@@ -10,7 +10,8 @@ output:
 <!--- please update--->
 
 ----
-
+<center> <font size="5.5">The OHI+ for South West England website has moved. For further details on the assessment visit our new project website at: [www.sustainable-seas.org](https://www.sustainable-seas.org/)</center> 
+<br>
 <img align="right" src="images/profile_Matt2.jpg" width="160px">
 <font size="3">[**Dr Matthew Witt**](https://biosciences.exeter.ac.uk/staff/index.php?web_id=matthew_witt) (project lead and spatial ecologist) - _M.J.Witt@exeter.ac.uk_
 
