@@ -8,7 +8,7 @@ output:
     toc_float: false
 ---
 
-```{r setup, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r setup, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
 source("./_site.R")
 ```
 
@@ -22,30 +22,11 @@ Put in your css file or directly in rmarkdown--->
   }
 </style>
 
-<br> 
-The Ocean Health Index measures the ability of oceans to sustainably provide benefits (called "goals") that are important to humans. Here you will find a description of the goals used in global assessments. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores.     
+<font size="4">**What We Measure**
 
-![](https://docs.google.com/drawings/d/17N97_cydibY4QM79tnVf-hLDii0NNm3VhBJ2hhkKKkM/pub?w=1344&h=192)
-
-----
-
-<div class="col2">
-<br>
-<br>
-
-![](https://docs.google.com/drawings/d/1O08iEoo3qxOZRoK6Ohv-jdouTBsN_kafJjIhEEqb-yg/pub?w=960&h=720)
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<font size="3">The Ocean Health Index measures the ability of oceans to sustainably provide benefits (called “goals” by the OHI) that are important to humans and biodiversity. The Ocean Health Index+ for South West England will assess the eight goals detailed [here](https://www.sustainable-seas.org/methods).   
 
 
-**Goal scores are calculated by modeling data first as Present Status and Likely Future State.**  
-Likely Future State is a combination of status, trend, pressures and resilience calculations, which unequally contribute to goal scores.  
 
 <!--- Scroll down for a description of each goal as well as the model and data used to calculate the goal (blue text links to descriptions of the specific data used in the calculation of each goal. --->
 

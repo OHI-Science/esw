@@ -7,6 +7,8 @@ output:
     fig_width: 1
 ---
 ----
+<center> <font size="5.5">The OHI+ for South West England website has moved. For further details on the assessment visit our new project website at: [www.sustainable-seas.org](https://www.sustainable-seas.org/)</center> 
+<br>
 
 <font size="4">**What is the Ocean Health Index project?**
 
@@ -36,14 +38,19 @@ Learn more and explore ongoing assessments at [ohi-science.org](http://ohi-scien
 
 <font size="4">**How does the OHI relate to ongoing ocean management efforts?**
 
-<font size="3">Management strategies can be tested with the OHI to understand cross sector impacts and benefits. The OHI is designed to provide context for management decisions and explore actions (in part through setting SMART reference points) that support sustainable ocean use. This assessment can be used to communicate how achieving these targets will support ocean health in Southwest England. 
+<font size="3">Management strategies can be tested with the OHI to understand cross sector impacts and benefits. The OHI is designed to provide context for management decisions and explore actions (in part through setting SMART reference points) that support sustainable ocean use. This assessment can be used to communicate how achieving these targets will support ocean health in South West England. 
 
 
-<font size="4">**How adaptive is OHI to adaptive management?**
+<font size="4">**The South West Marine Plan**
 
-<font size="3">The OHI is very adaptable and can incorporate new management targets, policies, and new scientific research. This information is generally incorporated into pressure or resilience scores for each goal. For example, new research on the impacts of marine debris can be incorporated as a more precise pressure layer for clean water and tourism goals. If goal metrics and reference points are updated then the goal score not be comparable to prior assessments. However, previous assessments can be back-calculated using the updated methods to make them comparable to track progress. Updating goal metrics and reference points will be done in future assessments if there is consensus to do so and updating the goal will increase our understanding of sustainable ocean use and ocean health.
+<font size="3">In English waters Marine Spatial Planning (MSP) is currently being implemented by the Marine Management Organisation (MMO) through a set of regional Marine Plans. The South West Marine Plan (SWMP) offers a regional approach for MSP in maritime areas such as the Western Approaches, English Channel and Celtic Sea.
 
-<font size="4">**How can we have a large impact and create meaningful change using the OHI?**
+The imminent implementation of the SWMP will provide a useful case study to test iterative developments of the OHI+ framework against. Through a variety of policy mapping and stakeholder validation exercises, the OHI+ for South West England can be compared to the SWMP's management objectives, thus ensuring the OHI+ contains local indicators that are both informative and relevant. The spatial extent of the OHI+ assessment will therefore match the extents of the UK Government's South West Marine Plan area. 
 
-<font size="3">The OHI incorporates diverse stakeholders to create a coalition for ocean health. The index will work to incorporate management and local stewardship actions to incentivize actions across private partners, agencies, managers, and policy makers to increase sustainable ocean use and ultimately ocean health. 
+The SWMP provides a useful management case study as it is considered a holistic approach; essential to ensure improved delivery of food security, employment and ecosystem services. The SWMP will require regular, preferably independent, assessment to support the plan in delivery of its stated benefits. Furthermore, a baseline understanding of ecosystem health is required from which to evaluate change and measure the relative success of marine policies over time.
+
+This project will apply the OHI methodology to the South West Marine Plan area with the primary goal of assisting marine spatial planning in the delivery of healthy regional ecosystems that support biodiversity and livelihoods. We hope that by assessing the OHI+ against these objectives, it will demonstrate the potential value of OHI+ to other regional marine management initiatives.
+
+<center><img src="images/MMO_SWMP.jpg" width="450px"></center>
+<br>
 

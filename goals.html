@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="" />
@@ -71,9 +71,7 @@ h6 {
 
 <link rel="stylesheet" href="_sass\main.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -87,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -97,6 +94,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -112,7 +112,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -132,6 +131,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -153,19 +189,74 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -187,9 +278,6 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="faq.html">Frequently Asked Questions</a>
-</li>
-<li>
-  <a href="goals.html">Goals</a>
 </li>
 <li>
   <a href="who_we_are.html">Who we are</a>
@@ -221,21 +309,8 @@ Put in your css file or directly in rmarkdown--->
     -moz-columns: 2 200px;    /* firefox */
   }
 </style>
-<p><br> The Ocean Health Index measures the ability of oceans to sustainably provide benefits (called “goals”) that are important to humans. Here you will find a description of the goals used in global assessments. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores.</p>
-<div class="figure">
-<img src="https://docs.google.com/drawings/d/17N97_cydibY4QM79tnVf-hLDii0NNm3VhBJ2hhkKKkM/pub?w=1344&amp;h=192" />
-
-</div>
-<hr />
-<div class="col2">
-<p><br> <br></p>
-<div class="figure">
-<img src="https://docs.google.com/drawings/d/1O08iEoo3qxOZRoK6Ohv-jdouTBsN_kafJjIhEEqb-yg/pub?w=960&amp;h=720" />
-
-</div>
-<p><br> <br> <br> <br> <br> <br> <br></p>
-<p><strong>Goal scores are calculated by modeling data first as Present Status and Likely Future State.</strong><br />
-Likely Future State is a combination of status, trend, pressures and resilience calculations, which unequally contribute to goal scores.</p>
+<p><font size="4"><strong>What We Measure</strong></p>
+<p><font size="3">The Ocean Health Index measures the ability of oceans to sustainably provide benefits (called “goals” by the OHI) that are important to humans and biodiversity. The Ocean Health Index+ for South West England will assess the eight goals detailed <a href="https://www.sustainable-seas.org/methods">here</a>.</p>
 <!--- Scroll down for a description of each goal as well as the model and data used to calculate the goal (blue text links to descriptions of the specific data used in the calculation of each goal. --->
 <!--- TODO: link to supplement --->
 </div>
@@ -258,6 +333,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

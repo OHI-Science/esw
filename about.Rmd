@@ -7,50 +7,30 @@ theme: flatly
 <!--- please edit as needed!--->
 
 ----
-<font size="4">**Assessing ocean health in South West England**
-
-<font size="3">This project will apply the OHI methodology to the South West Marine Plan area with the primary goal of assisting marine spatial planning in the delivery of healthy regional ecosystems that support biodiversity and livelihoods.
-
-In English waters Marine Spatial Planning (MSP) is currently being implemented by the UK Marine Management Organisation (MMO) through a set of regional Marine Plans. The South West Marine Plan (SWMP) offers a regional approach for MSP in busy maritime areas such as the Western Approaches, English Channel and Celtic Sea. 
-
-MSP is essential to ensure improved delivery of food security, employment and ecosystem services, but requires regular, preferably independent, assessment to support the plan in delivery of its stated benefits. Furthermore, a baseline understanding of ecosystem health is required from which to evaluate change and measure the relative success of marine policies over time.
-
-The application of OHI to the South West can provide this independent, repeatable and transparent assessment framework. We will tailor the OHI framework to represent the cultural, social, and ecological characteristics and priorities of South West England using the best available information and knowledge. 
-As the OHI framework is transparent and repeatable over time, it can be integrated into ongoing policy initiatives to support sustainable ocean management. 
-
-<left><img src="images/MMO_SWMP.jpg" width="450px"></left>
-<right><img src="images/Regions_Blue.jpg" width="450px"></right>
+<center><font size="5.5">The OHI+ for South West England website has moved. For further details on the assessment visit our new project website at: [www.sustainable-seas.org](https://www.sustainable-seas.org/)</center> 
 <br>
 
-<font size="4"> **Project timeline and spatial scale**
+<font size="4">**Assessing Ocean Health at the Regional Scale**
 
-<font size="3">The project began in June 2018 and is expected to be complete by early 2020. Spatially, the project is defined by the boundaries of the Marine Management Organisation's [South West Marine Plan](https://www.gov.uk/government/collections/south-west-marine-plan). This runs from the River Severn border with Wales to the River Dart in Devon, extending offshore to the edge of the EEZ and therefore incorporating the Isles of Scilly. In total the study area includes approximately 2000 kilometres of coastline and 16,000 square kilometres of sea.
+<font size="3">The Ocean Health Index global framework can be used regionally to help provide a more geographically relevant understanding of the state of the marine environment. This has been done in Hawaii, the Baltic Sea, West Coast Pacific US to name but a few locations. When the OHI framework is applied at a regional level, it is known as OHI+, which enables modifications to the framework to better reflect regional differences.  
 
-<font size="4">**Delivering OHI for the South West**
 
-<font size="3">The OHI South West is being delivered by interdisciplinary researchers from the University of Exeter, overseen by a steering group of local experts from the fields of industry, conservation and governance.  
+<font size="4"> **OHI+ for South West England**
 
-Based across the [Environment and Sustainability Institute](https://www.exeter.ac.uk/esi/) in Cornwall and at the [Streatham Campus](https://www.exeter.ac.uk/visit/campuses/streatham/) in Devon, you can read our team profiles [here](http://ohi-science.org/esw/who_we_are.html).
+<font size="3">An OHI+ assessment for South West England will provide an independent, repeatable and transparent overview of the health of our coastal seas. We will tailor the OHI+ framework to represent the cultural, social, and ecological characteristics and priorities of South West England using the best available information and knowledge. As the OHI+ framework is transparent and repeatable over time, it can be integrated into ongoing policy initiatives to support sustainable ocean management. We anticipate the results will be relevant to a variety of management groups or initiatives such as; Local Nature Partnerships, Environmental Growth Strategies, Blue Growth Agendas and Marne Spatial Planning efforts.
+
+<center><img src="images/Regions_blue3.jpg" width="450px"></center>
+<br>
+
+<font size="4">**Project Delivery**
+
+<font size="3">The OHI+ South West project is being delivered by an interdisciplinary team of researchers from the University of Exeter, overseen by a steering group of partners from the fields of industry, conservation and governance. Based across the[Environment and Sustainability Institute](https://www.exeter.ac.uk/esi/) in Cornwall and at the [Streatham Campus](https://www.exeter.ac.uk/visit/campuses/streatham/), you can read our team profiles [here](https://www.sustainable-seas.org/team).
+
  
 <font size="4"> **Future assessments**
 
-<font size="3">This study aims to provide an initial baseline characterisation of marine health for the South West region. Once operational, OHI assessments can be updated annually or on other management time frames with less effort than its initial development. This is because all analysis is done with open source collaborative software (R, RStudio, Git, GitHub) and can be updated with the most recent data. 
-
-There is the potential for OHI assessments to continue or expand to other regions, with the ongoing support from marine management agencies and stakeholders. 
+<font size="3">The project will provide a baseline characterisation of marine health for South West England. Our OHI+ assessment can be updated annually or on other management time frames with less effort than its initial development. All analysis is done using open source collaborative software (R, RStudio, Git, GitHub) and as such the framework can be updated with the most recent data. There is also the potential for this OHI+ assessment to expand to other English regions.
 
 
 
-<font size="4"> **Project Governance**
 
-<font size="3">The project is advised by a group of regionally relevant organisations that are either data custodians or have mandates likely to facilitate the successful delivery of the project. Representatives have been identified from the following Government departments and Non-Government groups:
-
-Cornwall Council - https://www.cornwall.gov.uk/ <br /> 
-Cornwall Wildlife Trust - https://www.cornwallwildlifetrust.org.uk/ <br /> 
-Devon Wildlife Trust - https://www.devonwildlifetrust.org/  <br /> 
-Isles of Scilly Inshore Fisheries and Conservation Authority - https://www.scillyifca.gov.uk/ <br /> 
-Marine Management Organisation - https://www.gov.uk/government/organisations/marine-management-organisation <br /> 
-Natural England - https://www.gov.uk/government/organisations/natural-england <br /> 
-South West Marine Ecosystems - https://swmecosystems.co.uk/ 
-
-<br>
-<center><img src="images/logo_all.JPG" width="1000px"></center>

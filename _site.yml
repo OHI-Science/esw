@@ -6,8 +6,8 @@ navbar:
       href: about.html
     - text: "Frequently Asked Questions"
       href: faq.html
-    - text: "Goals"
-      href: goals.html
+#   - text: "Goals"
+#      href: goals.html
 #   - text: "Scores" ## NOTE: to display this page you'll need to delete eval=FALSE on the .Rmd
 #     href: scores.html
     - text: "Who we are"
