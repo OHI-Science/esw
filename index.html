@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="" />
@@ -71,9 +71,7 @@ h6 {
 
 <link rel="stylesheet" href="_sass\main.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -87,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -192,8 +189,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -238,6 +233,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -250,20 +246,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -314,16 +307,16 @@ $(document).ready(function () {
 <center>
 <img src="images/Porthcurnow3.JPG" width="1000px">
 </center>
-<br> <font size="4"><i class="fa fa-globe fa-x"></i> <strong>The Ocean Health Index</strong>
+<p><br> <font size="5.5">The OHI+ for South West England website has moved. For further details on the assessment visit our new project website at: <a href="https://www.sustainable-seas.org/">www.sustainable-seas.org</a> <br></p>
+<font size="3"><i class="fa fa-globe fa-x"></i> <strong>The Ocean Health Index (OHI)</strong>
 </h2>
-<p><font size="3">The Ocean Health Index (OHI) is a tool to measure the benefits and services that the ocean provides for people now and into the future. Assessments are developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use. Discover more at <a href="http://www.oceanhealthindex.org/">ohi-science.org</a>.</p>
-<font size="4"><i class="fa fa-folder-open fa-x"></i> <strong>The project</strong>
+<p><font size="3">The OHI is a tool to measure the benefits and services that the ocean provides for people now and into the future. Assessments are developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use. Discover more at <a href="https://www.sustainable-seas.org/">sustainable-seas.org</a>.</p>
+<font size="3"><i class="fa fa-folder-open fa-x"></i> <strong>The project</strong>
 </h2>
-<p><font size="3">The application of OHI to the <a href="http://ohi-science.org/esw/about.html">South West</a> aims to provide a regional baseline for marine health and to assess the impact of management policies. The project specifically coincides with development of the Marine Management Organisation’s <a href="https://www.gov.uk/government/collections/south-west-marine-plan">South West Marine Plan</a>. Results will help inform management decision making with all data openly available.</p>
-<font size="4"><i class="fa fa-user fa-x"></i> <strong>The team</strong>
+<p><font size="3">The application of OHI to the South West (known as OHI+) aims to provide a regional baseline for marine health. The project coincides with development of the Marine Management Organisation’s South West Marine Plan and as such we assess the relevance that a regional OHI+ assessment may have to regional planning strategy. The inclusion of multiple diverse data sets across key goals enables engagement with a broad range of marine stakeholder groups. All data and methods are open source, ensuring the process is transparent and repeatable.</p>
+<font size="3"><i class="fa fa-user fa-x"></i> <strong>The team</strong>
 </h2>
-<p><font size="3">The South West Ocean Health Index is being conducted by <a href="http://ohi-science.org/esw/who_we_are.html">researchers</a> from the University of Exeter. The project began in 2018 and results are expected to be made available early 2020.</p>
-<p>For further information please visit our <a href="http://ohi-science.org/esw/faq.html">FAQ</a> page and a link for email updates will be available here shortly.</p>
+<p><font size="3">The South West Ocean Health Index is being conducted by <a href="https://www.sustainable-seas.org/team">researchers</a> from the University of Exeter. The project began in 2018 and results are expected to be made available Autumn 2020.</p>
 <hr />
 <p><img align="left" src="images/university.png" width="120px"></p>
 <p><img align="right" src="images/emff_logo.png" width="80px"></p>
@@ -345,6 +338,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
