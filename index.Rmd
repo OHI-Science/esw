@@ -10,7 +10,10 @@ output:
 
 <center><img src="images/Porthcurnow3.JPG" width="1000px"></center>
 <br>
+<br>
+
 <center><font size="5.5">The OHI+ for South West England website has moved. For further details on the assessment visit our new project website at: [www.sustainable-seas.org](https://www.sustainable-seas.org/)</center>  
+<br>
 
 <font size="3"><i class="fa fa-globe fa-x"></i>  **The Ocean Health Index (OHI)**</h2> 
 <font size="3">The OHI is a tool to measure the benefits and services that the ocean provides for people now and into the future. Assessments are developed with the support of local stakeholders to better understand how to sustainably balance current and future ocean use. Discover more at [sustainable-seas.org](https://www.sustainable-seas.org/). 

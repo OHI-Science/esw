@@ -7,7 +7,9 @@ output:
     fig_width: 1
 ---
 ----
-<center> <font size="5.5">The OHI+ for South West England website has moved. For further details on the assessment visit our new project website at: [www.sustainable-seas.org](https://www.sustainable-seas.org/)</center> 
+<br>
+
+<center><font size="5.5">The OHI+ for South West England website has moved. For further details on the assessment visit our new project website at: [www.sustainable-seas.org](https://www.sustainable-seas.org/)</center>  
 <br>
 
 <font size="4">**What is the Ocean Health Index project?**
